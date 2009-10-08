@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Symmetrics_TrustedRating>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Symmetrics_TrustedRating>
+    </modules>
+</config>
