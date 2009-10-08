@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category Symmetrics
+ * @package Symmetrics_TrustedRating
+ * @author symmetrics gmbh <info@symmetrics.de>, Siegfried Schmitz <ss@symmetrics.de>
+ * @copyright symmetrics gmbh
+ * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<layout version="0.1.0">
+	<default>
+		<reference name="right">
+			 <block type="core/template" before="cart_sidebar" name="trustedrating" template="trustedrating/trustedrating.phtml"/>
+		</reference>		
+	</default>
+</layout>

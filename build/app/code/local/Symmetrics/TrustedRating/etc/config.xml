@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category Symmetrics
+ * @package Symmetrics_TrustedRating
+ * @author symmetrics gmbh <info@symmetrics.de>, Siegfried Schmitz <ss@symmetrics.de>
+ * @copyright symmetrics gmbh
+ * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Symmetrics_TrustedRating>
+            <version>0.1.0</version>
+        </Symmetrics_TrustedRating>
+    </modules>
+	<global>
+		<helpers>
+	        <trustedrating>
+	            <class>Symmetrics_TrustedRating_Helper</class>
+	        </trustedrating>
+	    </helpers>
+		<models>
+			<trustedrating>
+		    	<class>Symmetrics_TrustedRating_Model</class>
+			</trustedrating>
+		</models>
+		<events>
+            <admin_system_config_changed_section_trustedrating>
+                <observers>
+                    <symmetrics_trustedrating_model_observer>
+                        <type>singleton</type>
+                        <class>Symmetrics_TrustedRating_Model_Observer</class>
+                        <method>trustedshopsapicall</method>
+                    </symmetrics_trustedrating_model_observer>
+                </observers>
+            </admin_system_config_changed_section_trustedrating>
+		</events>
+	</global>
+	<frontend>
+		<layout>
+            <updates>
+                <trustedrating>
+                    <file>trustedrating.xml</file>
+                </trustedrating>
+            </updates>
+        </layout>
+	</frontend>
+	<adminhtml>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<trustedrating>
+											<title>trustedrating</title>
+										</trustedrating>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+	<default>
+		<ratinglanguagelink>
+			<de>https://qa.trustedshops.com/bewertung/seite/bewerten</de>
+			<en>https://qa.trustedshops.com/buyerfeedback/page/rate</en>
+			<fr>https://qa.trustedshops.com/evaluation/page/evaluer</fr>
+			<es>https://qa.trustedshops.com/evaluacion/pagina/evaluar</es>
+		</ratinglanguagelink>
+		<soapapi>
+			<url>https://qa.trustedshops.de/ts/services/TsRating?wsdl</url>
+		</soapapi>
+	</default>
+</config>

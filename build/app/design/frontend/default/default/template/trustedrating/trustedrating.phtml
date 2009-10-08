@@ -1,0 +1,9 @@
+<div class="box">
+	<?php 
+		$model = new Symmetrics_TrustedRating_Model_TrustedRating();
+		if($model->getIsActive()) {
+			$id = $model->getTsId();
+			echo $model->getImage();
+		}
+	?>
+</div>

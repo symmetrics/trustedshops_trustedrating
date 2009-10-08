@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <trustedrating translate="label" module="trustedrating">
+            <label>Trusted Shops Rating</label>
+            <tab>sales</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <info translate="label">
+                    <label>Info</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<comment><![CDATA[
+<h3>Trusted Shops – Rating</h3>
+                    ]]></comment>
+                </info>
+				<data translate="label">
+                    <label>Data</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <trustedrating_id translate="label">
+                            <label>Trusted Shops ID<![CDATA[<font color="red">*</font>]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_id>
+                        <trustedrating_user translate="label">
+                            <label>WS Benutzerkennung<![CDATA[<font color="red">*</font>]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_user>
+                        <trustedrating_password translate="label">
+                            <label>WS Passwort<![CDATA[<font color="red">*</font>]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_password>
+                        <trustedrating_ratinglanguage translate="label">
+                            <label>Sprache Bewertungsseite<![CDATA[<font color="red">*</font>]]></label>
+                            <frontend_type>select</frontend_type>
+							<source_model>trustedrating/system_rating</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_ratinglanguage>
+                        <trustedrating_soapurl translate="label">
+                            <label>Trusted Shops Api Url<![CDATA[<font color="red">*</font>]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment><![CDATA[Bei leerem Feld wird automatisch die Standart-Url eingetragen]]></comment>					
+                        </trustedrating_soapurl>
+						<trustedrating_company translate="label">
+                            <label>Firma</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_company>
+						<trustedrating_legalform translate="label">
+                            <label>Rechtsform</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_legalform>
+						<trustedrating_website translate="label">
+                            <label>Website</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_website>
+						<trustedrating_firstname translate="label">
+                            <label>Vorname Shopbetreiber</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_firstname>
+						<trustedrating_lastname translate="label">
+                            <label>Nachname Shopbetreiber</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_lastname>
+						<trustedrating_street translate="label">
+                            <label>Straße</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_street>
+						<trustedrating_hn translate="label">
+                            <label>Hausnummer</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_hn>
+						<trustedrating_zip translate="label">
+                            <label>PLZ</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_zip>
+						<trustedrating_city translate="label">
+                            <label>Stadt</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_city>
+						<trustedrating_mail translate="label">
+                            <label>E-mail</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_mail>
+						<trustedrating_country translate="label">
+                            <label>Land</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_country>
+						<trustedrating_language translate="label">
+                            <label>Sprache</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_language>
+					</fields>
+				</data>
+				<status translate="label">
+                    <label>Status</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                  		<fields>
+							<trustedrating_active translate="label">
+	                            <label>Trusted Rating aktivieren?</label>
+	                            <frontend_type>select</frontend_type>
+	                            <source_model>adminhtml/system_config_source_yesno</source_model>
+	                            <sort_order>15</sort_order>
+	                            <show_in_default>1</show_in_default>
+	                            <show_in_website>1</show_in_website>
+	                            <show_in_store>1</show_in_store>
+	                        </trustedrating_active>
+						</fields>
+				</status>
+				<trustedrating_registration translate="label">
+                        <label>Registrierung</label>
+	                    <frontend_type>text</frontend_type>
+	                    <sort_order>0</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>
+						<comment><![CDATA[
+	<a href="https://www.trustedshops.com/bewertung/anmeldung.html?partnerPackage=partnerPackage" target="_blank">Link zur Registrierung bei Trusted Shops Rating</a>
+	                    ]]></comment>
+                </trustedrating_registration>
+			</groups>
+		</trustedrating>
+	</sections>
+</config>
