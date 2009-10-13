@@ -33,20 +33,19 @@ AUTHORS = {
 # =============================================================================
 # additional infos
 # =============================================================================
-INFO = 'Rating System for Trusted Shops'
+INFO = 'Trusted Shops Rating System'
 
 SUMMARY = '''
-	implements the rating system from Trusted Shops
+	Implementiert das Trusted Shops Rating System
 '''
 
-NOTES = '''
-    [special notes, restrictions, bugs etc.]
-'''
+NOTES = ''''''
 
 # =============================================================================
 # relations
 # =============================================================================
 REQUIRES = {
+	'magento': '*'
 }
 
 EXCLUDES = {
@@ -55,11 +54,7 @@ EXCLUDES = {
 VIRTUAL = {
 }
 
-DEPENDS_ON_FILES = (
-    'app/code/core/.../1.php',
-    'app/code/core/.../2.php',
-    'app/code/core/.../3.php',
-)
+DEPENDS_ON_FILES = ()
 
 PEAR_KEY = ''
 

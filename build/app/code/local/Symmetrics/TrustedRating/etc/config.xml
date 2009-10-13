@@ -25,6 +25,11 @@
 		    	<class>Symmetrics_TrustedRating_Model</class>
 			</trustedrating>
 		</models>
+		<blocks>
+            <trustedrating>
+                <class>Symmetrics_TrustedRating_Block</class>
+            </trustedrating>
+		</blocks>
 		<events>
             <admin_system_config_changed_section_trustedrating>
                 <observers>

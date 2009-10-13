@@ -20,28 +20,10 @@ class Symmetrics_TrustedRating_Model_Observer
 			$soap_url = Mage::helper('trustedrating')->getConfig('soapapi','url');
 			Mage::getModel('core/config')->saveConfig('trustedrating/data/trustedrating_soapurl', $soap_url); 
 		}
-		
 		$returnValue = $this->callTrustedShopsApi($send_data,$soap_url);
 		Mage::getSingleton('core/session')->addNotice('returnValue: '.$returnValue);
 	}
-	
-	private function callTrustedShopsApi($send_data,$soap_url) 
-	{
-		try {
-			$client = new SoapClient($soap_url);
-			$returnValue = 'SOAP_ERROR';
-			
-			$returnValue = $client->updateRatingWidgetState($send_data['tsId'], $send_data['activation'], $send_data['wsUser'], $send_data['wsPassword'], $send_data['partnerPackage'] );
-				
-		} catch (SoapFault $fault) {
-			$errorText = "SOAP Fault: (faultcode: {$fault->faultcode}, faultstring:
-			{$fault->faultstring})";
-			Mage::log($errorText);
-		}
 		
-		return $returnValue;
-	}
-	
 	private function getSendData() 
 	{
 		$send_data = array();
@@ -52,5 +34,28 @@ class Symmetrics_TrustedRating_Model_Observer
 		$send_data['partnerPackage'] = 'partnerPackage';
 		
 		return $send_data;	
+	}
+	
+	private function callTrustedShopsApi($send_data,$soap_url) 
+	{
+		try {
+			$client = new SoapClient($soap_url);
+			$returnValue = 'SOAP_ERROR';
+			
+			$returnValue = $client->updateRatingWidgetState(
+				$send_data['tsId'],
+				$send_data['activation'],
+				$send_data['wsUser'],
+				$send_data['wsPassword'],
+				$send_data['partnerPackage']
+			);
+				
+		} catch (SoapFault $fault) {
+			$errorText = "SOAP Fault: (faultcode: {$fault->faultcode}, faultstring:
+			{$fault->faultstring})";
+			Mage::log($errorText);
+		}
+		
+		return $returnValue;
 	}
 }

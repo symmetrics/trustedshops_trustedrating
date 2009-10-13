@@ -11,7 +11,9 @@
 class Symmetrics_TrustedRating_Model_TrustedRating extends Mage_Core_Model_Abstract
 {
 	const IMAGELINK = 'https://qa.trustedshops.com/bewertung/widget/widgets/';
+	
 	const IMAGELOCALPATH = 'skin/frontend/default/default/images/trustedrating/';
+	
 	const CACHEID = 'trustedratingimage';
 	
 	public function getTsId() 

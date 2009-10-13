@@ -1,6 +1,3 @@
 <div class="box">
-	<?php $model = new Symmetrics_TrustedRating_Model_TrustedRating(); ?>
-	<?php if($model->getIsActive()): ?>
-		<?php echo $model->getImage(); ?>
-	<?php endif ?>
+	<?php echo $this->_toHtml()?>
 </div>

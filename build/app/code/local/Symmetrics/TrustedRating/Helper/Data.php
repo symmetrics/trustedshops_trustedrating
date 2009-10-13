@@ -10,6 +10,6 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
 {
 	public function getConfig($node, $key)
 	{
-		return Mage::getStoreConfig($node.'/'.$key, Mage::app()->getStore());
+		return Mage::getStoreConfig($node . '/' . $key, Mage::app()->getStore());
 	}
 }

@@ -11,7 +11,7 @@
 <layout version="0.1.0">
 	<default>
 		<reference name="right">
-			 <block type="core/template" before="cart_sidebar" name="trustedrating" template="trustedrating/trustedrating.phtml"/>
+			 <block type="trustedrating/widget" before="cart_sidebar" name="trustedrating_widget" template="trustedrating/trustedrating.phtml"/>
 		</reference>		
 	</default>
 </layout>
