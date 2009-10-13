@@ -10,6 +10,9 @@
  */
 class Symmetrics_TrustedRating_Model_TrustedRating extends Mage_Core_Model_Abstract
 {
+	const IMAGELINK = 'https://qa.trustedshops.com/bewertung/widget/widgets/';
+	const IMAGELOCALPATH = 'skin/frontend/default/default/images/trustedrating/';
+	const CACHEID = 'trustedratingimage';
 	
 	public function getTsId() 
 	{	
@@ -26,27 +29,21 @@ class Symmetrics_TrustedRating_Model_TrustedRating extends Mage_Core_Model_Abstr
 		$optionValue =  Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage');
 		$link = Mage::helper('trustedrating')->getConfig('ratinglanguagelink', $optionValue);
 		return $link;
-		
 	}
 	
 	public function getImage()
 	{
 		$cacheTags = array();
-		$cacheId = 'trustedratingimage';
 		$tsId = $this->getTsId();
-		$imageLink = "https://qa.trustedshops.com/bewertung/widget/widgets/".$tsId.".gif";
-		
-		$imageLocalPath = "skin/frontend/default/default/images/trustedrating/".$tsId.".gif";
 		$ratingLink = "<a href='".$this->getRatingLink()."_".$tsId.".html'>";
 		
-		if(!Mage::app()->loadCache($cacheId)) {
-			$current = file_get_contents($imageLink);
-			file_put_contents($imageLocalPath, $current);
-			
-			Mage::app()->saveCache($imageLocalPath, $cacheId, $cacheTags, 1 ); //cache only 1 second
+		if (!Mage::app()->loadCache(self::CACHEID)) {
+			$current = file_get_contents(self::IMAGELINK.$tsId.'.gif');
+			file_put_contents(self::IMAGELOCALPATH.$tsId.'gif', $current);
+			Mage::app()->saveCache(self::IMAGELOCALPATH.$tsId.'gif', self::CACHEID, $cacheTags, 1 ); //cache only 1 second
 			Mage::log("widget neu gecached");
 		}
 	
-		return $ratingLink."<img src='".Mage::getBaseUrl()."$imageLocalPath'/></a>";
+		return $ratingLink."<img src='".Mage::getBaseUrl().self::IMAGELOCALPATH.$tsId.".gif'/></a>";
 	}
 }

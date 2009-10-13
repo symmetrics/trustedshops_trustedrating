@@ -31,7 +31,7 @@
                     <symmetrics_trustedrating_model_observer>
                         <type>singleton</type>
                         <class>Symmetrics_TrustedRating_Model_Observer</class>
-                        <method>trustedshopsapicall</method>
+                        <method>changeTrustedRatingStatus</method>
                     </symmetrics_trustedrating_model_observer>
                 </observers>
             </admin_system_config_changed_section_trustedrating>

@@ -6,7 +6,7 @@
 # =============================================================================
 NAME = 'symmetrics_module_trustedrating'
 
-TAGS = ()
+TAGS = ('symmetrics', 'magento', 'module', 'trustedshops', 'trustedrating')
 
 LICENSE = 'AFL 3.0'
 
@@ -19,25 +19,24 @@ INSTALL_PATH = ''
 # responsibilities
 # =============================================================================
 TEAM_LEADER = {
-    '[firstname] [lastname]': '[email]'
+    'Sergej Braznikov': 'sb@symmetrics.de'
 }
 
 MAINTAINER = {
-    '[firstname] [lastname]': '[email]'
+    'Siegfried Schmitz': 'ss@symmetrics.de'
 }
 
 AUTHORS = {
-    '[firstname] [lastname]': '[email]',
+    'Siegfried Schmitz': 'ss@symmetrics.de',
 }
 
 # =============================================================================
 # additional infos
 # =============================================================================
-INFO = '[short description, max 60 chars]'
+INFO = 'Rating System for Trusted Shops'
 
 SUMMARY = '''
-    [long description
-    with multiple lines]
+	implements the rating system from Trusted Shops
 '''
 
 NOTES = '''
@@ -65,5 +64,5 @@ DEPENDS_ON_FILES = (
 PEAR_KEY = ''
 
 COMPATIBLE_WITH = {
-    # 'magento': ['1.3.2', '1.3.2.1', ...],
+     'magento': ['1.3.2.3'],
 }
