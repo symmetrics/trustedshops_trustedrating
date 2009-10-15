@@ -15,6 +15,12 @@ class Symmetrics_TrustedRating_Block_Widget extends Mage_Core_Block_Template
         parent::_construct();
     }
 
+	/**
+      * returns the widget if the trusted rating status
+	  * is active in the store config
+	  *
+	  * @return string
+	  */
     protected function _toHtml()
     {
     	$model = Mage::getModel('trustedrating/trustedrating');

@@ -10,8 +10,18 @@
  */
 class Symmetrics_TrustedRating_Model_System_Rating
 {
+	 /**
+      * option array
+	  *
+	  * @var array
+      */
     protected $_options = null;
 
+	/**
+     * gets the languages for trusted rating site as option array
+	 *
+	 * @return array
+     */
     public function toOptionArray()
     {
         if (is_null($this->_options)) {
