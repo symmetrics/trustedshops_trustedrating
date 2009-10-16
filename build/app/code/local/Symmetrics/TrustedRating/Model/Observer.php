@@ -53,7 +53,6 @@ class Symmetrics_TrustedRating_Model_Observer
 	  * @param array $soap_url
 	  * @return string
       */
-
 	private function callTrustedShopsApi($send_data, $soap_url) 
 	{
 		try {
