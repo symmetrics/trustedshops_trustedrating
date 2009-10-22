@@ -28,6 +28,7 @@ MAINTAINER = {
 
 AUTHORS = {
     'Siegfried Schmitz': 'ss@symmetrics.de',
+	'Eric Reiche': 'er@symmetrics.de'
 }
 
 # =============================================================================
