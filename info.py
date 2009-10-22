@@ -48,11 +48,9 @@ REQUIRES = {
 	'magento': '*'
 }
 
-EXCLUDES = {
-}
+EXCLUDES = {}
 
-VIRTUAL = {
-}
+VIRTUAL = {}
 
 DEPENDS_ON_FILES = ()
 
