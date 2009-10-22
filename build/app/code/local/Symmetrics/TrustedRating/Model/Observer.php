@@ -14,6 +14,7 @@ class Symmetrics_TrustedRating_Model_Observer
       * change the activity status (active, inactive) by sending an api call to trusted rating
 	  *
       * @param Varien_Event_Observer $observer
+	  * @return void
       */
 	public function changeTrustedRatingStatus($observer) 
 	{	
