@@ -10,12 +10,12 @@
  */
 class Symmetrics_TrustedRating_Model_Observer
 {
-	 /**
-      * change the activity status (active, inactive) by sending an api call to trusted rating
-	  *
-      * @param Varien_Event_Observer $observer
-	  * @return void
-      */
+	/**
+     * change the activity status (active, inactive) by sending an api call to trusted rating
+	 *
+     * @param Varien_Event_Observer $observer
+	 * @return void
+     */
 	public function changeTrustedRatingStatus($observer) 
 	{	
 		$soap_url = Mage::getStoreConfig('trustedrating/data/trustedrating_soapurl');
@@ -30,11 +30,11 @@ class Symmetrics_TrustedRating_Model_Observer
 		Mage::getSingleton('core/session')->addNotice('returnValue: ' . $returnValue);
 	}
 	
-	 /**
-      * collect the data for sending to trusted rating
-	  *
-	  * @return array
-      */	
+	/**
+     * collect the data for sending to trusted rating
+	 *
+	 * @return array
+     */	
 	private function getSendData() 
 	{
 		$send_data = array();
@@ -47,13 +47,13 @@ class Symmetrics_TrustedRating_Model_Observer
 		return $send_data;	
 	}
 	
-	 /**
-      * calling the soap api from trusted rating
-	  * 
-	  * @param array $send_data
-	  * @param array $soap_url
-	  * @return string
-      */
+	/**
+     * calling the soap api from trusted rating
+	 * 
+	 * @param array $send_data
+	 * @param array $soap_url
+	 * @return string
+     */
 	private function callTrustedShopsApi($send_data, $soap_url) 
 	{
 		try {

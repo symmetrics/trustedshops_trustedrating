@@ -8,13 +8,13 @@
  */
 class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
 {
-	 /**
-      * get store config by node and key
-	  *
-	  * @param string $node
-	  * @param string $key
-	  * @return string
-      */
+	/**
+     * get store config by node and key
+	 *
+	 * @param string $node
+	 * @param string $key
+	 * @return string
+     */
 	public function getConfig($node, $key)
 	{
 		return Mage::getStoreConfig($node . '/' . $key, Mage::app()->getStore());

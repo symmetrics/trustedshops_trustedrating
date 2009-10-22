@@ -10,25 +10,25 @@
  */
 class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstract
 {
-	 /**
-      * fixed part of the link for the rating-site for the widget
-	  *
-	  * @var string
-      */
+	/**
+     * fixed part of the link for the rating-site for the widget
+	 *
+	 * @var string
+     */
 	const IMAGELINK = 'https://qa.trustedshops.com/bewertung/widget/widgets/';
 	
-	 /**
-      * fixed part of the widget path
-	  *
-	  * @var string
-      */
+	/**
+     * fixed part of the widget path
+	 *
+	 * @var string
+     */
 	const IMAGELOCALPATH = 'media/';
 	
-	 /**
-      * the cacheid to cache the widget
-	  *
-	  * @var string
-      */
+	/**
+     * the cacheid to cache the widget
+	 *
+	 * @var string
+     */
 	const CACHEID = 'trustedratingimage';
 	
 	/**

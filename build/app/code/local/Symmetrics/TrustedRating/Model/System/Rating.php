@@ -10,11 +10,11 @@
  */
 class Symmetrics_TrustedRating_Model_System_Rating
 {
-	 /**
-      * option array
-	  *
-	  * @var array
-      */
+	/**
+     * option array
+	 *
+	 * @var array
+     */
     protected $_options = null;
 
 	/**
