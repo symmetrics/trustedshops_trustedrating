@@ -22,7 +22,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	  *
 	  * @var string
       */
-	const IMAGELOCALPATH = 'skin/frontend/default/default/images/';
+	const IMAGELOCALPATH = 'media/';
 	
 	 /**
       * the cacheid to cache the widget
@@ -78,7 +78,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		if (!Mage::app()->loadCache(self::CACHEID)) {
 			$current = file_get_contents(self::IMAGELINK . $tsId . '.gif');
 			file_put_contents(self::IMAGELOCALPATH . $tsId . '.gif', $current);
-			Mage::app()->saveCache(self::IMAGELOCALPATH . $tsId . 'gif', self::CACHEID, $cacheTags, 1 ); //for testing: cache only 1 second
+			Mage::app()->saveCache(self::IMAGELOCALPATH . $tsId . '.gif', self::CACHEID, $cacheTags, 1 ); //for testing: cache only 1 second
 			Mage::log("widget neu gecached");
 		}
 	
