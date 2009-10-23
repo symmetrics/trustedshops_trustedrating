@@ -18,15 +18,15 @@ class Symmetrics_TrustedRating_Model_Observer
      */
 	public function changeTrustedRatingStatus($observer) 
 	{	
-		$soap_url = Mage::getStoreConfig('trustedrating/data/trustedrating_soapurl');
-		$send_data = $this->getSendData();
+		$soapUrl = Mage::getStoreConfig('trustedrating/data/trustedrating_soapurl');
+		$sendData = $this->getSendData();
 		
-		if ($soap_url == '') {
+		if (strlen(trim($soapUrl)) == 0) {
 			//use default value from config if user had cleared the field in the configuration
-			$soap_url = Mage::helper('trustedrating')->getConfig('soapapi','url');
-			Mage::getModel('core/config')->saveConfig('trustedrating/data/trustedrating_soapurl', $soap_url); 
+			$soapUrl = Mage::helper('trustedrating')->getConfig('soapapi','url');
+			Mage::getModel('core/config')->saveConfig('trustedrating/data/trustedrating_soapurl', $soapUrl); 
 		}
-		$returnValue = $this->callTrustedShopsApi($send_data, $soap_url);
+		$returnValue = $this->callTrustedShopsApi($sendData, $soapUrl);
 		Mage::getSingleton('core/session')->addNotice('returnValue: ' . $returnValue);
 	}
 	
@@ -37,14 +37,14 @@ class Symmetrics_TrustedRating_Model_Observer
      */	
 	private function getSendData() 
 	{
-		$send_data = array();
-		$send_data['tsId'] = Mage::getStoreConfig('trustedrating/data/trustedrating_id');
-		$send_data['activation'] = Mage::getStoreConfig('trustedrating/status/trustedrating_active');
-		$send_data['wsUser'] = Mage::getStoreConfig('trustedrating/data/trustedrating_user');
-		$send_data['wsPassword'] = Mage::getStoreConfig('trustedrating/data/trustedrating_password');
-		$send_data['partnerPackage'] = 'partnerPackage';
+		$sendData = array();
+		$sendData['tsId'] = Mage::getStoreConfig('trustedrating/data/trustedrating_id');
+		$sendData['activation'] = Mage::getStoreConfig('trustedrating/status/trustedrating_active');
+		$sendData['wsUser'] = Mage::getStoreConfig('trustedrating/data/trustedrating_user');
+		$sendData['wsPassword'] = Mage::getStoreConfig('trustedrating/data/trustedrating_password');
+		$sendData['partnerPackage'] = 'partnerPackage';
 		
-		return $send_data;	
+		return $sendData;	
 	}
 	
 	/**
@@ -54,18 +54,18 @@ class Symmetrics_TrustedRating_Model_Observer
 	 * @param array $soap_url
 	 * @return string
      */
-	private function callTrustedShopsApi($send_data, $soap_url) 
+	private function callTrustedShopsApi($sendData, $soap_url) 
 	{
 		try {
 			$client = new SoapClient($soap_url);
 			$returnValue = 'SOAP_ERROR';
 			
 			$returnValue = $client->updateRatingWidgetState(
-				$send_data['tsId'],
-				$send_data['activation'],
-				$send_data['wsUser'],
-				$send_data['wsPassword'],
-				$send_data['partnerPackage']
+				$sendData['tsId'],
+				$sendData['activation'],
+				$sendData['wsUser'],
+				$sendData['wsPassword'],
+				$sendData['partnerPackage']
 			);
 				
 		} catch (SoapFault $fault) {
