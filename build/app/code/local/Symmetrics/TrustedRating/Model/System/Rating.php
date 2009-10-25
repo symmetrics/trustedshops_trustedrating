@@ -13,9 +13,9 @@ class Symmetrics_TrustedRating_Model_System_Rating
 	/**
      * option array
 	 *
-	 * @var array
+	 * @var null
      */
-    protected $_options = array();
+    protected $_options = null;
 
 	/**
      * gets the languages for trusted rating site as option array
