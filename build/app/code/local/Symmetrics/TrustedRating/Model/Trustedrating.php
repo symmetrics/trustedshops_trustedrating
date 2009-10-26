@@ -15,7 +15,8 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 *
 	 * @var string
      */
-	const WIDGET_LINK = 'https://qa.trustedshops.com/bewertung/widget/widgets/';
+	//const WIDGET_LINK = 'https://qa.trustedshops.com/bewertung/widget/widgets/';
+	const WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/widgets/';
 	
 	/**
      * fixed part of the widget path
@@ -75,13 +76,13 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		$ratingLink = "<a href='" . $this->getRatingLink() . "_" . $tsId . ".html'>";
 
 		if (!Mage::app()->loadCache(self::CACHEID)) {
-			$this->_cacheImage($tsId);
+			$this->cacheImage($tsId);
 		}
 		
 		return $ratingLink . "<img src='" . Mage::getBaseUrl() . self::IMAGELOCALPATH . $tsId . ".gif'/></a>";
 	}
 	
-	private function _cacheImage($tsId) 
+	public function cacheImage($tsId)
 	{
 		$cacheTags = array();
 		
