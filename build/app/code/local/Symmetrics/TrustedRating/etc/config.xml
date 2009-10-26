@@ -74,13 +74,13 @@
 	</adminhtml>
 	<default>
 		<ratinglanguagelink>
-			<de>https://qa.trustedshops.com/bewertung/seite/bewerten</de>
-			<en>https://qa.trustedshops.com/buyerfeedback/page/rate</en>
-			<fr>https://qa.trustedshops.com/evaluation/page/evaluer</fr>
-			<es>https://qa.trustedshops.com/evaluacion/pagina/evaluar</es>
+			<de>https://www.trustedshops.com/bewertung/bewerten</de>
+			<en>https://www.trustedshops.com/buyerfeedback/page/rate</en>
+			<fr>https://www.trustedshops.com/evaluation/page/evaluer</fr>
+			<es>https://www.trustedshops.com/evaluacion/pagina/evaluar</es>
 		</ratinglanguagelink>
 		<soapapi>
-			<url>https://qa.trustedshops.de/ts/services/TsRating?wsdl</url>
+			<url>https://www.trustedshops.de/ts/services/TsRating?wsdl</url>
 		</soapapi>
 	</default>
 </config>

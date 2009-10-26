@@ -26,5 +26,5 @@ keine bekannt.
 		2. Prüfen sie ob das Widget nur erscheint wenn im Backend der Status auf Ja gestellt ist, bei Nein muß es verschwinden.
         3. Prüfen sie ob Sie beim klick auf das Widget zu der Bewertungsseite weitergeleitet werden [SCREENSHOT: trustedratingsite.png]
 		4. Führen sie eine Bewertung durch, bestätigen sie die Bewertung per e-mail (Sie bekommen einen Link zugeschickt).
-		5. Loggen sie sich auf https://qa.trustedshops.de/shop/login.html in Ihren Account ein und prüfen sie ob die Bewertung angekommen ist, bestätigen sie die Bewertung.
+		5. Loggen sie sich auf https://qa.trustedshops.de/shop/login.html (Testumgebung) oder https://www.trustedshops.de/shop/login.html (Live-Umgebung) in Ihren Account ein und prüfen sie ob die Bewertung angekommen ist, bestätigen sie die Bewertung.
 		6. Das Widget wird von Trusted Shops nur einmal am Tag neu gecached, man kann das cachen aber erzwingen indem man auf "Bewertungen" => "Widget Einstellungen" geht, den Shop auswählt und bei dem Bild einmal auf "ändern" und dann wieder auf "speichern" klickt. Das Widget sollte sich jetzt ändern und den Kommentar der letzten Bewertung zeigen sowie die neue Anzahl der Bewertungen.
