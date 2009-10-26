@@ -14,4 +14,9 @@
 			 <block type="trustedrating/widget" before="cart_sidebar" name="trustedrating_widget" template="trustedrating/trustedrating.phtml"/>
 		</reference>		
 	</default>
+	<checkout_onepage_success>
+		<reference name="content">
+            <block type="trustedrating/rateus" name="trustedrating_rateus" template="trustedrating/rateus.phtml"/>
+        </reference>
+	</checkout_onepage_success>
 </layout>

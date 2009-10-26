@@ -72,6 +72,17 @@
 			</resources>
 		</acl>
 	</adminhtml>
+	<admin>
+    	<routers>
+    		<adminhtml>
+    			<args>
+    				<modules>   				
+    					<Symmetrics_TrustedRating_Admin before="Mage_Adminhtml">Symmetrics_TrustedRating_Admin</Symmetrics_TrustedRating_Admin>
+    				</modules>
+    			</args>
+    		</adminhtml>
+    	</routers>
+    </admin>
 	<default>
 		<ratinglanguagelink>
 			<de>https://www.trustedshops.com/bewertung/bewerten</de>
@@ -79,6 +90,12 @@
 			<fr>https://www.trustedshops.com/evaluation/page/evaluer</fr>
 			<es>https://www.trustedshops.com/evaluacion/pagina/evaluar</es>
 		</ratinglanguagelink>
+		<ratingemaillanguagelink>
+			<de>https://www.trustedshops.com/bewertung/seite/bewerten</de>
+			<en>https://www.trustedshops.com/buyerfeedback/page/rate</en>
+			<fr>https://www.trustedshops.com/evaluation/page/evaluer</fr>
+			<es>https://www.trustedshops.com/evaluacion/pagina/evaluar</es>
+		</ratingemaillanguagelink>
 		<soapapi>
 			<url>https://www.trustedshops.de/ts/services/TsRating?wsdl</url>
 		</soapapi>
