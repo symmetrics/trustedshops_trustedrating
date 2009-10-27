@@ -111,9 +111,10 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 			$this->cacheImage($tsId);
 		}
 
-		return array('tsId' => $tsId,
-					 'ratingLink' => $this->getRatingLink(),
-					 'imageLocalPath' => self::IMAGE_LOCAL_PATH
+		return array(
+			'tsId' => $tsId,
+			'ratingLink' => $this->getRatingLink(),
+			'imageLocalPath' => self::IMAGE_LOCAL_PATH
 		);
 	}
 	
@@ -135,11 +136,12 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 			$this->cacheEmailImage();
 		}
 		
-		return array('tsId' => $tsId,
-					 'ratingLink' => $this->getEmailRatingLink(),
-					 'imageLocalPath' => self::IMAGE_LOCAL_PATH,
-					 'orderId' => $orderId,
-					 'buyerEmail' => $buyerEmail
+		return array(
+			'tsId' => $tsId,
+			'ratingLink' => $this->getEmailRatingLink(),
+			'imageLocalPath' => self::IMAGE_LOCAL_PATH,
+			'orderId' => $orderId,
+			'buyerEmail' => $buyerEmail
 		);
 	}
 	

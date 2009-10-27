@@ -1,0 +1,36 @@
+<?php
+/**
+ * Symmetrics_TrustedRating_Block_Widget
+ *
+ * @category Symmetrics
+ * @package Symmetrics_TrustedRating
+ * @author symmetrics gmbh <info@symmetrics.de>, Siegfried Schmitz <ss@symmetrics.de>
+ * @copyright symmetrics gmbh
+ * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Template
+{
+	/**
+	 * returns the widget link data if trusted rating status is active
+	 * 
+	 * @param boolean $emailWidget
+	 * @return array
+	 */
+	public function getImageData($emailWidget = false) 
+	{
+		$model = Mage::getModel('trustedrating/trustedrating');
+		
+		if ($model->getIsActive()) {
+			if ($emailWidget) {
+				return $model->getEmailImageData();
+			}
+			else {
+				return $model->getImageData();	
+			}
+		}
+		else {
+			return null;
+		}
+	}
+	
+}
