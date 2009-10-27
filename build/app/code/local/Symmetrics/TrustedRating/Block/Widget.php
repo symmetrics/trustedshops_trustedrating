@@ -20,7 +20,9 @@ class Symmetrics_TrustedRating_Block_Widget extends Mage_Core_Block_Template
     {
     	$model = Mage::getModel('trustedrating/trustedrating');
 		if ($model->getIsActive()) {
-			return $model->getImage();
+			$ratingLinkData =  $model->getImageData();
+			
+			return '<a href="' . $ratingLinkData['ratingLink'] . '_' . $ratingLinkData['tsId'] . '.html">' . '<img src="' . Mage::getBaseUrl() . $ratingLinkData['imageLocalPath'] . $ratingLinkData['tsId'] . '.gif" /></a>';
 		}
     	else {
     		return null;

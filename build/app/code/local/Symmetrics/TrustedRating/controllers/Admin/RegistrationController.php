@@ -13,6 +13,7 @@ class Symmetrics_TrustedRating_Admin_RegistrationController extends Mage_Adminht
 	/**
 	 * gets the registration link and redirect to it 
 	 *
+	 * @return void
 	 */
 	public function indexAction()
     {

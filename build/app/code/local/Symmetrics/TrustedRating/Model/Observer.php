@@ -69,8 +69,7 @@ class Symmetrics_TrustedRating_Model_Observer
 			);
 				
 		} catch (SoapFault $fault) {
-			$errorText = "SOAP Fault: (faultcode: {$fault->faultcode}, faultstring:
-			{$fault->faultstring})";
+			$errorText = 'SOAP Fault: (faultcode: ' . $fault->faultcode . ', faultstring: ' . $fault->faultstring . ')';
 			Mage::log($errorText);
 		}
 		

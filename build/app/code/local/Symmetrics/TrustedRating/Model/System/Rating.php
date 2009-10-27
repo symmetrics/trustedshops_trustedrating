@@ -11,7 +11,7 @@
 class Symmetrics_TrustedRating_Model_System_Rating
 {
 	/**
-     * option array
+     * options
 	 *
 	 * @var null
      */

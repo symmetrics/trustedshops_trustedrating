@@ -8,7 +8,7 @@
  * @copyright symmetrics gmbh
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Symmetrics_TrustedRating_Block_Rateus extends Mage_Core_Block_Template
+class Symmetrics_TrustedRating_Block_Email_Widget extends Mage_Core_Block_Template
 {
 	/**
      * returns the widget if the trusted rating status
@@ -20,11 +20,9 @@ class Symmetrics_TrustedRating_Block_Rateus extends Mage_Core_Block_Template
     {
     	$model = Mage::getModel('trustedrating/trustedrating');
 		if ($model->getIsActive()) {
-			$orderId = Mage::getSingleton('checkout/type_onepage')->getCheckout()->getLastOrderId();
-			$order = Mage::getModel('sales/order')->load($orderId);
-			$buyerEmail = $order->getData('customer_email');
-
-			return $model->getEmailImage($orderId, $buyerEmail);
+			$ratingLinkData = $model->getEmailImageData();
+			
+			return '<a href="' . $ratingLinkData['ratingLink'] . '_' . $ratingLinkData['tsId'] . '.html&buyerEmail=' . base64_encode($ratingLinkData['buyerEmail']) . '&shopOrderID=' . base64_encode($ratingLinkData['orderId']) . '">' . '<img src="' . Mage::getBaseUrl() . $ratingLinkData['imageLocalPath'] . 'bewerten_de.gif"/></a>';
 		}
     	else {
     		return null;

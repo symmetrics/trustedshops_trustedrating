@@ -23,13 +23,20 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 * @var string
      */
 	const EMAIL_WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/img/bewerten_de.gif';
+
+	/**
+	 * TODO: fill me
+	 * 
+	 * @var string
+	 */
+	const REGISTRATION_LINK = 'https://www.trustedshops.com/bewertung/anmeldung.html?partnerPackage=partnerPackage';
 	
 	/**
      * fixed part of the widget path
 	 *
 	 * @var string
      */
-	const IMAGELOCALPATH = 'media/';
+	const IMAGE_LOCAL_PATH = 'media/';
 	
 	/**
      * the cacheid to cache the widget
@@ -78,7 +85,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		return $link;
 	}
 	
-	 /*
+	/**
 	 * gets the selected language (for the rating - site) from the store config and returns
 	 * the link for the widget, which stands in the module config for each language
 	 *
@@ -96,16 +103,18 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 *
 	 * @return string
      */
-	public function getImage()
+	public function getImageData()
 	{
 		$tsId = $this->getTsId();
-		$ratingLink = "<a href='" . $this->getRatingLink() . "_" . $tsId . ".html'>";
 
 		if (!Mage::app()->loadCache(self::CACHEID)) {
 			$this->cacheImage($tsId);
 		}
-		
-		return $ratingLink . "<img src='" . Mage::getBaseUrl() . self::IMAGELOCALPATH . $tsId . ".gif'/></a>";
+
+		return array('tsId' => $tsId,
+					 'ratingLink' => $this->getRatingLink(),
+					 'imageLocalPath' => self::IMAGE_LOCAL_PATH
+		);
 	}
 	
 	/**
@@ -115,16 +124,23 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 * @param string $buyerEmail
 	 * @return string
      */
-	public function getEmailImage($orderId, $buyerEmail)
+	public function getEmailImageData()
 	{
 		$tsId = $this->getTsId();
-		$ratingLink = "<a href='" . $this->getEmailRatingLink() . "_" . $tsId . ".html&buyerEmail=" . base64_encode($buyerEmail) . "&shopOrderID=" . base64_encode($orderId) . "'>";
-	
+		$orderId = Mage::getSingleton('checkout/type_onepage')->getCheckout()->getLastOrderId();
+		$order = Mage::getModel('sales/order')->load($orderId);
+		$buyerEmail = $order->getData('customer_email');
+			
 		if (!Mage::app()->loadCache(self::EMAIL_CACHEID)) {
 			$this->cacheEmailImage();
 		}
 		
-		return $ratingLink . "<img src='" . Mage::getBaseUrl() . self::IMAGELOCALPATH . "bewerten_de.gif'/></a>";
+		return array('tsId' => $tsId,
+					 'ratingLink' => $this->getEmailRatingLink(),
+					 'imageLocalPath' => self::IMAGE_LOCAL_PATH,
+					 'orderId' => $orderId,
+					 'buyerEmail' => $buyerEmail
+		);
 	}
 	
 	/**
@@ -137,8 +153,8 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		$cacheTags = array();
 		
 		$current = file_get_contents(self::EMAIL_WIDGET_LINK);
-		file_put_contents(self::IMAGELOCALPATH . 'bewerten_de.gif', $current);
-		Mage::app()->saveCache(self::IMAGELOCALPATH . 'bewerten_de.gif', self::EMAIL_CACHEID, $cacheTags, 1 ); //for testing: cache only 1 second
+		file_put_contents(self::IMAGE_LOCAL_PATH . 'bewerten_de.gif', $current);
+		Mage::app()->saveCache(self::IMAGE_LOCAL_PATH . 'bewerten_de.gif', self::EMAIL_CACHEID, $cacheTags, 1 ); //for testing: cache only 1 second
 		Mage::log("widget neu gecached");
 	}
 	
@@ -150,10 +166,10 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	public function cacheImage($tsId)
 	{
 		$cacheTags = array();
-		
+	
 		$current = file_get_contents(self::WIDGET_LINK . $tsId . '.gif');
-		file_put_contents(self::IMAGELOCALPATH . $tsId . '.gif', $current);
-		Mage::app()->saveCache(self::IMAGELOCALPATH . $tsId . '.gif', self::CACHEID, $cacheTags, 1 ); //for testing: cache only 1 second
+		file_put_contents(self::IMAGE_LOCAL_PATH . $tsId . '.gif', $current);
+		Mage::app()->saveCache(self::IMAGE_LOCAL_PATH . $tsId . '.gif', self::CACHEID, $cacheTags, 1 ); //for testing: cache only 1 second
 		Mage::log("mail widget neu gecached");
 	}
 	
@@ -164,6 +180,8 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 */
 	 public function getRegistrationLink() 
 	 {
+		$link = self::REGISTRATION_LINK;
+		
 	  	$params = array(
 			'company' => Mage::getStoreConfig('trustedrating/data/trustedrating_company'),
 			'legalForm' => Mage::getStoreConfig('trustedrating/data/trustedrating_legalform'),
@@ -178,11 +196,10 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 			'country' => Mage::getStoreConfig('trustedrating/data/trustedrating_country'),
 			'language' => Mage::getStoreConfig('trustedrating/data/trustedrating_language'),
 		);
-		$link = "https://www.trustedshops.com/bewertung/anmeldung.html?partnerPackage=partnerPackage";
 
 		foreach ($params as $key => $param) {
 			if ($param) {
-				$link .= '&' . $key . '=' . urlencode($param);
+				$link .=  '&' . $key . '=' . urlencode($param);
 			}
 		}
 		
