@@ -99,7 +99,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	}
 	
 	/**
-     * gets the link form the widget image from cache
+     * gets the link data for the widget image from cache
 	 *
 	 * @return string
      */
@@ -119,7 +119,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	}
 	
 	/**
-     * gets the link form the email widget image from cache
+     * gets the link data for the email widget image from cache
      *
 	 * @param int $orderId
 	 * @param string $buyerEmail
