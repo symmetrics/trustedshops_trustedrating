@@ -13,24 +13,27 @@ class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Tem
 	/**
 	 * returns the widget link data if trusted rating status is active
 	 * 
-	 * @param boolean $emailWidget
+	 * @param boolean $type
 	 * @return array
 	 */
-	public function getImageData($emailWidget = false) 
+	public function getDataForWidget($type) 
 	{
 		$model = Mage::getModel('trustedrating/trustedrating');
 		
 		if ($model->getIsActive()) {
-			if ($emailWidget) {
-				return $model->getEmailImageData();
-			}
-			else {
-				return $model->getImageData();	
-			}
+		    return null;
 		}
-		else {
-			return null;
-		}
+
+        switch ($type) {
+            case 'RATING':
+			    return $model->getRatingWidgetData();	
+            break;
+            case 'EMAIL':
+			    return $model->getEmailWidgetData();
+            break;
+            default:
+                return null;
+            break;
+        }
 	}
-	
 }

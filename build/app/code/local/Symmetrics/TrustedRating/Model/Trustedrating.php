@@ -103,7 +103,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 *
 	 * @return string
      */
-	public function getImageData()
+	public function getRatingWidgetData()
 	{
 		$tsId = $this->getTsId();
 
@@ -125,7 +125,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 * @param string $buyerEmail
 	 * @return string
      */
-	public function getEmailImageData()
+	public function getEmailWidgetData()
 	{
 		$tsId = $this->getTsId();
 		$orderId = Mage::getSingleton('checkout/type_onepage')->getCheckout()->getLastOrderId();

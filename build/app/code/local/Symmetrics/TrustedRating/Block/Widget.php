@@ -17,11 +17,11 @@ class Symmetrics_TrustedRating_Block_Widget extends Symmetrics_TrustedRating_Blo
 	 */
     protected function _toHtml()
     {
-		if ($ratingLinkData = $this->getImageData()) {
-			return '<a href="' . $ratingLinkData['ratingLink'] . '_' . $ratingLinkData['tsId'] . '.html">' . '<img src="' . Mage::getBaseUrl() . $ratingLinkData['imageLocalPath'] . $ratingLinkData['tsId'] . '.gif" /></a>';
+		if ($data = $this->getDataForWidget('RATING')) {
+			return '<a href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html"><img src="' . Mage::getBaseUrl() . $data['imageLocalPath'] . $data['tsId'] . '.gif" /></a>';
 		}
     	else {
-    		return null;
+    		return '';
     	}
     }
 }
