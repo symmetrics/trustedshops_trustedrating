@@ -108,6 +108,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	
 	/**
      * gets the link form the email widget image from cache
+     *
 	 * @param int $orderId
 	 * @param string $buyerEmail
 	 * @return string
@@ -115,13 +116,13 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	public function getEmailImage($orderId, $buyerEmail)
 	{
 		$tsId = $this->getTsId();
-		$ratingLink = "<a href='" . $this->getEmailRatingLink() . "_" . $tsId . ".html&buyerEmail=".base64_encode($buyerEmail)."&shopOrderID=".base64_encode($orderId)."'>";
+		$ratingLink = "<a href='" . $this->getEmailRatingLink() . "_" . $tsId . ".html&buyerEmail=" . base64_encode($buyerEmail) . "&shopOrderID=" . base64_encode($orderId) . "'>";
 	
 		if (!Mage::app()->loadCache(self::EMAIL_CACHEID)) {
 			$this->cacheEmailImage();
 		}
 		
-		return $ratingLink . "<img src='" . Mage::getBaseUrl() . self::IMAGELOCALPATH. "bewerten_de.gif'/></a>";
+		return $ratingLink . "<img src='" . Mage::getBaseUrl() . self::IMAGELOCALPATH . "bewerten_de.gif'/></a>";
 	}
 	
 	/**
@@ -151,6 +152,38 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		$current = file_get_contents(self::WIDGET_LINK . $tsId . '.gif');
 		file_put_contents(self::IMAGELOCALPATH . $tsId . '.gif', $current);
 		Mage::app()->saveCache(self::IMAGELOCALPATH . $tsId . '.gif', self::CACHEID, $cacheTags, 1 ); //for testing: cache only 1 second
-		Mage::log("widget neu gecached");
+		Mage::log("mail widget neu gecached");
 	}
+	
+	/**
+	 * returns Registration Link
+	 * 
+	 * @return string
+	 */
+	 public function getRegistrationLink() 
+	 {
+	  	$params = array(
+			'company' => Mage::getStoreConfig('trustedrating/data/trustedrating_company'),
+			'legalForm' => Mage::getStoreConfig('trustedrating/data/trustedrating_legalform'),
+			'website' => Mage::getStoreConfig('trustedrating/data/trustedrating_website'),
+			'firstName' => Mage::getStoreConfig('trustedrating/data/trustedrating_firstname'),
+			'lastName' => Mage::getStoreConfig('trustedrating/data/trustedrating_lastname'),
+			'street' => Mage::getStoreConfig('trustedrating/data/trustedrating_street'),
+			'streetNumber' => Mage::getStoreConfig('trustedrating/data/trustedrating_hn'),
+			'zip' => Mage::getStoreConfig('trustedrating/data/trustedrating_zip'),
+			'city' => Mage::getStoreConfig('trustedrating/data/trustedrating_city'),
+			'buyerEmail' => Mage::getStoreConfig('trustedrating/data/trustedrating_mail'),
+			'country' => Mage::getStoreConfig('trustedrating/data/trustedrating_country'),
+			'language' => Mage::getStoreConfig('trustedrating/data/trustedrating_language'),
+		);
+		$link = "https://www.trustedshops.com/bewertung/anmeldung.html?partnerPackage=partnerPackage";
+
+		foreach($params as $key => $param) {
+			if($param) {
+				$link .= '&' . $key . '=' . urlencode($param);
+			}
+		}
+		
+		return $link;
+	 }
 }
