@@ -25,7 +25,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	const EMAIL_WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/img/bewerten_de.gif';
 
 	/**
-	 * TODO: fill me
+	 * fixed part of the registration link
 	 * 
 	 * @var string
 	 */
