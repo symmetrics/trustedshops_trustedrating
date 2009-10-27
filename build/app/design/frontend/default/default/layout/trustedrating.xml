@@ -16,7 +16,7 @@
 	</default>
 	<checkout_onepage_success>
 		<reference name="content">
-            <block type="trustedrating/rateus" name="trustedrating_rateus" template="trustedrating/rateus.phtml"/>
+            <block type="trustedrating/email_widget" name="trustedrating_email_widget" template="trustedrating/rateus.phtml"/>
         </reference>
 	</checkout_onepage_success>
 </layout>

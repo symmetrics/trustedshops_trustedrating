@@ -23,6 +23,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 * @var string
      */
 	const EMAIL_WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/img/bewerten_de.gif';
+	
 	/**
      * fixed part of the widget path
 	 *
@@ -76,6 +77,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		$link = Mage::helper('trustedrating')->getConfig('ratinglanguagelink', $optionValue);
 		return $link;
 	}
+	
 	 /*
 	 * gets the selected language (for the rating - site) from the store config and returns
 	 * the link for the widget, which stands in the module config for each language
@@ -178,8 +180,8 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		);
 		$link = "https://www.trustedshops.com/bewertung/anmeldung.html?partnerPackage=partnerPackage";
 
-		foreach($params as $key => $param) {
-			if($param) {
+		foreach ($params as $key => $param) {
+			if ($param) {
 				$link .= '&' . $key . '=' . urlencode($param);
 			}
 		}
