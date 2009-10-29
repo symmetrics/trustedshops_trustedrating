@@ -172,7 +172,6 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 			$ioObject->open();
 			$result = $ioObject->read(self::WIDGET_LINK . $tsId . '.gif', self::IMAGE_LOCAL_PATH . $tsId . '.gif');
 			$ioObject->close();
-			Mage::log($result);
 			Mage::app()->saveCache(self::IMAGE_LOCAL_PATH . $tsId . '.gif', self::CACHEID, array(), 1 );
 		}
 	}
