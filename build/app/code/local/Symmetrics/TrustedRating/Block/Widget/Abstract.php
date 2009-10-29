@@ -11,7 +11,7 @@
 class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Template
 {
 	/**
-	 * returns the widget link data if trusted rating status is active
+	 * returns the widget link data if trusted rating status is active and data are present for the current language
 	 * 
 	 * @param boolean $type
 	 * @return array
@@ -20,7 +20,7 @@ class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Tem
 	{
 		$model = Mage::getModel('trustedrating/trustedrating');
 		
-		if (!$model->getIsActive()) {
+		if (!$model->getIsActive() || !$model->checkLocaleData()) {
 		    return null;
 		}
 

@@ -84,18 +84,24 @@
     	</routers>
     </admin>
 	<default>
+		<overwiewlanguagelink>
+			<de>https://www.trustedshops.com/bewertung/seite/info</de>
+			<en>https://www.trustedshops.com/buyerfeedback/page/info</en>
+			<fr>https://www.trustedshops.com/evaluation/page/info</fr>
+			<es>https://www.trustedshops.com/evaluacion/pagina/info</es>
+		</overwiewlanguagelink>
 		<ratinglanguagelink>
 			<de>https://www.trustedshops.com/bewertung/bewerten</de>
 			<en>https://www.trustedshops.com/buyerfeedback/page/rate</en>
 			<fr>https://www.trustedshops.com/evaluation/page/evaluer</fr>
 			<es>https://www.trustedshops.com/evaluacion/pagina/evaluar</es>
 		</ratinglanguagelink>
-		<ratingemaillanguagelink>
-			<de>https://www.trustedshops.com/bewertung/seite/bewerten</de>
-			<en>https://www.trustedshops.com/buyerfeedback/page/rate</en>
-			<fr>https://www.trustedshops.com/evaluation/page/evaluer</fr>
-			<es>https://www.trustedshops.com/evaluacion/pagina/evaluar</es>
-		</ratingemaillanguagelink>
+		<emailratingimage>
+			<de>https://www.trustedshops.com/bewertung/widget/img/bewerten_de.gif</de>
+			<en>https://www.trustedshops.com/bewertung/widget/img/bewerten_en.gif</en>
+			<fr>https://www.trustedshops.com/bewertung/widget/img/bewerten_fr.gif</fr>
+			<es>https://www.trustedshops.com/bewertung/widget/img/bewerten_es.gif</es>
+		</emailratingimage>
 		<soapapi>
 			<url>https://www.trustedshops.de/ts/services/TsRating?wsdl</url>
 		</soapapi>

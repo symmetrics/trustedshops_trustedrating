@@ -22,7 +22,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 *
 	 * @var string
      */
-	const EMAIL_WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/img/bewerten_de.gif';
+	const EMAIL_WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/img/';
 
 	/**
 	 * fixed part of the registration link
@@ -82,9 +82,26 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 private function getRatingLinkData($type) 
 	 {
 	  	$optionValue =  Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage');
+		Mage::log($optionValue);
 		$link = Mage::helper('trustedrating')->getConfig($type, $optionValue);
 		return $link;
 	 }
+	
+	/**
+	 * returns true, if the current language is choosen in the trusted rating config
+	 * 
+	 * @return boolean
+	 */
+	public function checkLocaleData() 
+	{
+		$storeId = Mage::app()->getStore()->getId();
+		$countryCode = substr(Mage::getStoreConfig('general/locale/code', $storeId),0,2);
+
+		if (Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage') == $countryCode) {
+			return true;
+		}
+		return false;
+	}
 	
 	/**
      * returns the rating link
@@ -93,7 +110,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
 	public function getRatingLink()
 	{
-		return $this->getRatingLinkData('ratinglanguagelink');
+		return $this->getRatingLinkData('overwiewlanguagelink');
 	}
 	
 	/**
@@ -103,7 +120,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
 	public function getEmailRatingLink()
 	{
-		return $this->getRatingLinkData('ratingemaillanguagelink');
+		return $this->getRatingLinkData('ratinglanguagelink');
 	}
 	
 	/**
