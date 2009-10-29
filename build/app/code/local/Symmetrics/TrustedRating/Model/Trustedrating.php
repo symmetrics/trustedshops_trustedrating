@@ -79,10 +79,9 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 * @param string $type
 	 * @return string
 	 */
-	 private function getRatingLinkData($type) 
+	 private function _getRatingLinkData($type) 
 	 {
-	  	$optionValue =  Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage');
-		Mage::log($optionValue);
+	  	$optionValue = Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage');
 		$link = Mage::helper('trustedrating')->getConfig($type, $optionValue);
 		return $link;
 	 }
@@ -110,7 +109,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
 	public function getRatingLink()
 	{
-		return $this->getRatingLinkData('overwiewlanguagelink');
+		return $this->_getRatingLinkData('overwiewlanguagelink');
 	}
 	
 	/**
@@ -120,7 +119,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
 	public function getEmailRatingLink()
 	{
-		return $this->getRatingLinkData('ratinglanguagelink');
+		return $this->_getRatingLinkData('ratinglanguagelink');
 	}
 	
 	/**
@@ -175,7 +174,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 * @param string $tsId
 	 * @return void
 	 */
-	private function cacheImageData($type, $tsId = null) 
+	private function _cacheImageData($type, $tsId = null) 
 	{
 		$ioObject = new Varien_Io_File();
 		
@@ -200,7 +199,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 */
 	public function cacheEmailImage()
 	{
-		$this->cacheImageData('emailWidget');
+		$this->_cacheImageData('emailWidget');
 	}
 	
 	/**
@@ -210,7 +209,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 */
 	public function cacheImage($tsId)
 	{
-		$this->cacheImageData('mainWidget', $tsId);
+		$this->_cacheImageData('mainWidget', $tsId);
 	}
 	
 	/**
@@ -239,7 +238,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 
 		foreach ($params as $key => $param) {
 			if ($param) {
-				$link .=  '&' . $key . '=' . urlencode($param);
+				$link .= '&' . $key . '=' . urlencode($param);
 			}
 		}
 		

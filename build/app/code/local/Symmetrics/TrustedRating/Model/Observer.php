@@ -19,14 +19,14 @@ class Symmetrics_TrustedRating_Model_Observer
 	public function changeTrustedRatingStatus($observer) 
 	{	
 		$soapUrl = Mage::getStoreConfig('trustedrating/data/trustedrating_soapurl');
-		$sendData = $this->getSendData();
+		$sendData = $this->_getSendData();
 		
 		if (strlen(trim($soapUrl)) == 0) {
 			//use default value from config if user had cleared the field in the configuration
 			$soapUrl = Mage::helper('trustedrating')->getConfig('soapapi','url');
 			Mage::getModel('core/config')->saveConfig('trustedrating/data/trustedrating_soapurl', $soapUrl); 
 		}
-		$returnValue = $this->callTrustedShopsApi($sendData, $soapUrl);
+		$returnValue = $this->_callTrustedShopsApi($sendData, $soapUrl);
 		Mage::getSingleton('core/session')->addNotice('returnValue: ' . $returnValue);
 	}
 	
@@ -35,7 +35,7 @@ class Symmetrics_TrustedRating_Model_Observer
 	 *
 	 * @return array
      */	
-	private function getSendData() 
+	private function _getSendData() 
 	{
 		$sendData = array();
 		$sendData['tsId'] = Mage::getStoreConfig('trustedrating/data/trustedrating_id');
@@ -54,12 +54,11 @@ class Symmetrics_TrustedRating_Model_Observer
 	 * @param array $soap_url
 	 * @return string
      */
-	private function callTrustedShopsApi($sendData, $soap_url) 
+	private function _callTrustedShopsApi($sendData, $soapUrl) 
 	{
+		$returnValue = 'SOAP_ERROR';
 		try {
-			$client = new SoapClient($soap_url);
-			$returnValue = 'SOAP_ERROR';
-			
+			$client = new SoapClient($soapUrl);
 			$returnValue = $client->updateRatingWidgetState(
 				$sendData['tsId'],
 				$sendData['activation'],
