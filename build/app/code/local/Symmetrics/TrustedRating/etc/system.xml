@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <config>
+	<!--TODO: on english please -->
     <sections>
         <trustedrating translate="label" module="trustedrating">
             <label>Trusted Shops Rating</label>
