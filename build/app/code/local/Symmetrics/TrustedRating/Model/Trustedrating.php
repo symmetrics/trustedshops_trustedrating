@@ -180,13 +180,15 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		
 		if ($type == 'emailWidget') {
 			$ioObject->open();
-			$ioObject->read(self::EMAIL_WIDGET_LINK, self::IMAGE_LOCAL_PATH . 'bewerten_de.gif');
+			$result = $ioObject->read(self::EMAIL_WIDGET_LINK);
+			$ioObject->write(self::IMAGE_LOCAL_PATH . 'bewerten_de.gif', $result);
 			$ioObject->close();
 			Mage::app()->saveCache(self::IMAGE_LOCAL_PATH . 'bewerten_de.gif', self::EMAIL_CACHEID, array(), 1 ); 
 		}
 		else {
 			$ioObject->open();
-			$result = $ioObject->read(self::WIDGET_LINK . $tsId . '.gif', self::IMAGE_LOCAL_PATH . $tsId . '.gif');
+			$result = $ioObject->read(self::WIDGET_LINK . $tsId . '.gif');
+		    $ioObject->write(self::IMAGE_LOCAL_PATH . $tsId . '.gif', $result);
 			$ioObject->close();
 			Mage::app()->saveCache(self::IMAGE_LOCAL_PATH . $tsId . '.gif', self::CACHEID, array(), 1 );
 		}
