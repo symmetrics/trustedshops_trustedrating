@@ -18,8 +18,10 @@ class Symmetrics_TrustedRating_Model_Observer
      */
 	public function changeTrustedRatingStatus($observer) 
 	{	
+		$storeId = $observer->getStore();
+		Mage::log($storeId);
 		$soapUrl = Mage::helper('trustedrating')->getConfig('soapapi', 'url');
-		$sendData = $this->_getSendData();
+		$sendData = $this->_getSendData($storeId);
 		$returnValue = $this->_callTrustedShopsApi($sendData, $soapUrl);
 		
 		Mage::getSingleton('core/session')->addNotice('returnValue: ' . $returnValue);
@@ -30,12 +32,12 @@ class Symmetrics_TrustedRating_Model_Observer
 	 *
 	 * @return array
      */	
-	private function _getSendData() 
+	private function _getSendData($storeId) 
 	{
 		$sendData = array();
-		$storeId = Mage::app()->getStore()->getId();
 		
 		$sendData['tsId'] = Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
+		Mage::log($storeId);
 		$sendData['activation'] = Mage::getStoreConfig('trustedrating/status/trustedrating_active', $storeId);
 		$sendData['wsUser'] = Mage::helper('trustedrating')->getConfig('soapapi', 'wsuser');
 		$sendData['wsPassword'] = Mage::helper('trustedrating')->getConfig('soapapi', 'wspassword');
