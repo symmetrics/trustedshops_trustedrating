@@ -103,7 +103,10 @@
 			<es>https://www.trustedshops.com/bewertung/widget/img/bewerten_es.gif</es>
 		</emailratingimage>
 		<soapapi>
+			<wsuser>symmetricsOnTS</wsuser>
+			<wspassword>7aBUzece</wspassword>
 			<url>https://www.trustedshops.de/ts/services/TsRating?wsdl</url>
+			<partnerpackage>symmetrics</partnerpackage>
 		</soapapi>
 	</default>
 </config>

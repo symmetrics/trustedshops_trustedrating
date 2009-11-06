@@ -220,28 +220,26 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 public function getRegistrationLink() 
 	 {
 		$link = self::REGISTRATION_LINK;
-		
-	  	$params = array(
-			'company' => Mage::getStoreConfig('trustedrating/data/trustedrating_company'),
-			'legalForm' => Mage::getStoreConfig('trustedrating/data/trustedrating_legalform'),
-			'website' => Mage::getStoreConfig('trustedrating/data/trustedrating_website'),
-			'firstName' => Mage::getStoreConfig('trustedrating/data/trustedrating_firstname'),
-			'lastName' => Mage::getStoreConfig('trustedrating/data/trustedrating_lastname'),
-			'street' => Mage::getStoreConfig('trustedrating/data/trustedrating_street'),
-			'streetNumber' => Mage::getStoreConfig('trustedrating/data/trustedrating_hn'),
-			'zip' => Mage::getStoreConfig('trustedrating/data/trustedrating_zip'),
-			'city' => Mage::getStoreConfig('trustedrating/data/trustedrating_city'),
-			'buyerEmail' => Mage::getStoreConfig('trustedrating/data/trustedrating_mail'),
-			'country' => Mage::getStoreConfig('trustedrating/data/trustedrating_country'),
-			'language' => Mage::getStoreConfig('trustedrating/data/trustedrating_language'),
-		);
+		$link.= 'partnerPackage='.Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage');
 
-		foreach ($params as $key => $param) {
-			if ($param) {
-				$link .= '&' . $key . '=' . urlencode($param);
+		/*if symmetrics_impressum is installed, get Data from here*/
+		if($data = Mage::getStoreConfig('general/impressum')) {
+			$params = array(
+				'company' => $data['company1'],
+				'website' => $data['web'],
+				'street' => $data['street'],
+				'zip' => $data['zip'],
+				'city' => $data['city'],
+				'buyerEmail' => $data['email'],
+			);
+
+			foreach ($params as $key => $param) {
+				if ($param) {
+					$link .= '&' . $key . '=' . urlencode($param);
+				}
 			}
 		}
-		
+
 		return $link;
 	 }
 }

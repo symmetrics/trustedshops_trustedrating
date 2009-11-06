@@ -18,15 +18,10 @@ class Symmetrics_TrustedRating_Model_Observer
      */
 	public function changeTrustedRatingStatus($observer) 
 	{	
-		$soapUrl = Mage::getStoreConfig('trustedrating/data/trustedrating_soapurl');
+		$soapUrl = Mage::helper('trustedrating')->getConfig('soapapi', 'url');
 		$sendData = $this->_getSendData();
-		
-		if (strlen(trim($soapUrl)) == 0) {
-			//use default value from config if user had cleared the field in the configuration
-			$soapUrl = Mage::helper('trustedrating')->getConfig('soapapi','url');
-			Mage::getModel('core/config')->saveConfig('trustedrating/data/trustedrating_soapurl', $soapUrl); 
-		}
 		$returnValue = $this->_callTrustedShopsApi($sendData, $soapUrl);
+		
 		Mage::getSingleton('core/session')->addNotice('returnValue: ' . $returnValue);
 	}
 	
@@ -38,11 +33,13 @@ class Symmetrics_TrustedRating_Model_Observer
 	private function _getSendData() 
 	{
 		$sendData = array();
-		$sendData['tsId'] = Mage::getStoreConfig('trustedrating/data/trustedrating_id');
-		$sendData['activation'] = Mage::getStoreConfig('trustedrating/status/trustedrating_active');
-		$sendData['wsUser'] = Mage::getStoreConfig('trustedrating/data/trustedrating_user');
-		$sendData['wsPassword'] = Mage::getStoreConfig('trustedrating/data/trustedrating_password');
-		$sendData['partnerPackage'] = 'partnerPackage';
+		$storeId = Mage::app()->getStore()->getId();
+		
+		$sendData['tsId'] = Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
+		$sendData['activation'] = Mage::getStoreConfig('trustedrating/status/trustedrating_active', $storeId);
+		$sendData['wsUser'] = Mage::helper('trustedrating')->getConfig('soapapi', 'wsuser');
+		$sendData['wsPassword'] = Mage::helper('trustedrating')->getConfig('soapapi', 'wspassword');
+		$sendData['partnerPackage'] = Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage');
 		
 		return $sendData;	
 	}
