@@ -29,7 +29,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	 * 
 	 * @var string
 	 */
-	const REGISTRATION_LINK = 'https://www.trustedshops.com/bewertung/anmeldung.html?partnerPackage=partnerPackage';
+	const REGISTRATION_LINK = 'https://www.trustedshops.com/bewertung/anmeldung.html?';
 	
 	/**
      * fixed part of the widget path
