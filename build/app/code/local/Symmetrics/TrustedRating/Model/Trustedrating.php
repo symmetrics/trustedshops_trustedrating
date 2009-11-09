@@ -184,15 +184,17 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		
 		if ($type == 'emailWidget') {
 			$emailWidgetName = $this->_getRatingLinkData('emailratingimage');
-			$result = $ioObject->read(self::EMAIL_WIDGET_LINK . $emailWidgetName );
+			$readPath = self::EMAIL_WIDGET_LINK . $emailWidgetName;
 			$writePath = self::IMAGE_LOCAL_PATH . $emailWidgetName;
 			$cacheId = self::EMAIL_CACHEID;
 		}
 		else {
-			$result = $ioObject->read(self::WIDGET_LINK . $tsId . '.gif');
+			$readPath = self::WIDGET_LINK . $tsId . '.gif';
 			$writePath = self::IMAGE_LOCAL_PATH . $tsId . '.gif';
 			$cacheId = self::CACHEID;
 		}
+		
+		$result = $ioObject->read($readPath);
 		$ioObject->write($writePath, $result);
 		Mage::app()->saveCache($writePath, $cacheId, array(), 1 );
 		$ioObject->close();
