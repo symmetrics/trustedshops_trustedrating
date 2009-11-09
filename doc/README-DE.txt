@@ -10,6 +10,7 @@ Dieses Modul implementiert das Bewertungssystem von Trusted Shops (Trusted Ratin
 *** A: Im Konfigurationsbereich im Backend kann man Trusted Rating aktivieren / deaktiveren.
 *** B: Über das eingebundene Widget kann der Kunde die Anzahl der bisherigen Bewertungen sehen sowie beim klick auf das Image eine Bewertung vornehmen.
 *** C: Auf der Bestellbestätigungsseite erscheint ein "Bewerten" - Button mit dem gleichzeitig die Kunden-email sowie die OrderId übergeben wird.
+*** D: Je nach eingestellter Sprache im Shop wird das dazugehörige Widget geladen.
 
 ** TECHNINCAL
 	Per layout modifikator wird ein eigenes Template über eine eigene Blockklasse auf der Startseite eingebunden, das das Widget darstellt.
@@ -31,3 +32,4 @@ keine bekannt.
 		5. Loggen sie sich auf https://qa.trustedshops.de/shop/login.html (Testumgebung) oder https://www.trustedshops.de/shop/login.html (Live-Umgebung) in Ihren Account ein und prüfen sie ob die Bewertung angekommen ist, bestätigen sie die Bewertung.
 		6. Das Widget wird von Trusted Shops nur einmal am Tag neu gecached, man kann das cachen aber erzwingen indem man auf "Bewertungen" => "Widget Einstellungen" geht, den Shop auswählt und bei dem Bild einmal auf "ändern" und dann wieder auf "speichern" klickt. Das Widget sollte sich jetzt ändern und den Kommentar der letzten Bewertung zeigen sowie die neue Anzahl der Bewertungen.
 *** C:	1. Prüfen sie ob auf der Bestellbestätigungsseite eine "Bewerten" - Grafik erscheint und in dem Formular auf das der Link verweist, bereits die Kunden-Emailadresse sowie die OrderID eingetragen ist.
+*** D: Schalten Sie in der Konfiguration auf eine andere StoreView mit englischer, spanischer oder französischer Sprache um, trage Sie eine neue (gültige) TS-ID ein und stellen Sie die Sprache entsprechend ein. Prüfen Sie ob im Frontend, wenn Sie auf die jeweilige StoreView umschalten, das richtige Widget geladen wird, das gleiche gilt für das e-mail - Widget.

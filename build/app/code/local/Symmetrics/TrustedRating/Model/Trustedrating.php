@@ -85,7 +85,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		$link = Mage::helper('trustedrating')->getConfig($type, $optionValue);
 		return $link;
 	 }
-	
+		
 	/**
 	 * returns true, if the current language is choosen in the trusted rating config
 	 * 
@@ -153,18 +153,21 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		$orderId = Mage::getSingleton('checkout/type_onepage')->getCheckout()->getLastOrderId();
 		$order = Mage::getModel('sales/order')->load($orderId);
 		$buyerEmail = $order->getData('customer_email');
-			
+
 		if (!Mage::app()->loadCache(self::EMAIL_CACHEID)) {
 			$this->cacheEmailImage();
 		}
 		
-		return array(
+		$array = array(
 			'tsId' => $tsId,
 			'ratingLink' => $this->getEmailRatingLink(),
 			'imageLocalPath' => self::IMAGE_LOCAL_PATH,
 			'orderId' => $orderId,
-			'buyerEmail' => $buyerEmail
+			'buyerEmail' => $buyerEmail,
+			'widgetName' => $this->_getRatingLinkData('emailratingimage')
 		);
+
+		return $array;
 	}
 	
 	/**
@@ -180,10 +183,11 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 		
 		if ($type == 'emailWidget') {
 			$ioObject->open();
-			$result = $ioObject->read(self::EMAIL_WIDGET_LINK);
-			$ioObject->write(self::IMAGE_LOCAL_PATH . 'bewerten_de.gif', $result);
+			$emailWidgetName = $this->_getRatingLinkData('emailratingimage');
+			$result = $ioObject->read(self::EMAIL_WIDGET_LINK . $emailWidgetName );
+			$ioObject->write(self::IMAGE_LOCAL_PATH . $emailWidgetName, $result);
 			$ioObject->close();
-			Mage::app()->saveCache(self::IMAGE_LOCAL_PATH . 'bewerten_de.gif', self::EMAIL_CACHEID, array(), 1 ); 
+			Mage::app()->saveCache(self::IMAGE_LOCAL_PATH . $emailWidgetName, self::EMAIL_CACHEID, array(), 1 ); 
 		}
 		else {
 			$ioObject->open();

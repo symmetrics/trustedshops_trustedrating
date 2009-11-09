@@ -15,13 +15,13 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
 	 *
 	 * @return string
 	 */
-    protected function _toHtml()
-    {
- 		if ($data = $this->getDataForWidget('RATING') && isset($data['tsId'])) {
-			return '<a href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html&buyerEmail=' . base64_encode($data['buyerEmail']) . '&shopOrderID=' . base64_encode($data['orderId']) . '">' . '<img src="' . Mage::getBaseUrl() . $data['imageLocalPath'] . 'bewerten_de.gif"/></a>';
+	protected function _toHtml()
+ 	{
+		if ($data = $this->getDataForWidget('EMAIL')) {
+			return '<a href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html&buyerEmail=' . base64_encode($data['buyerEmail']) . '&shopOrderID=' . base64_encode($data['orderId']) . '">' . '<img src="' . Mage::getBaseUrl() . $data['imageLocalPath'] . $data['widgetName'] . '"/></a>';
 		}
-    	else {
-    		return null;
-    	}
-    }
+ 		else {
+ 			return null;
+ 		}
+ 	}
 }

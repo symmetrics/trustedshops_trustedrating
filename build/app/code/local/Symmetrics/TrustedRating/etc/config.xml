@@ -71,6 +71,16 @@
 				</admin>
 			</resources>
 		</acl>
+		<translate>
+            <modules>
+                <Symmetrics_TrustedRating>
+                    <files>
+						<default>Mage_Adminhtml.csv</default>
+                        <trustedrating>Symmetrics_TrustedRating.csv</trustedrating>
+                    </files>
+                </Symmetrics_TrustedRating>
+            </modules>
+        </translate>
 	</adminhtml>
 	<admin>
     	<routers>
@@ -97,10 +107,10 @@
 			<es>https://www.trustedshops.com/evaluacion/pagina/evaluar</es>
 		</ratinglanguagelink>
 		<emailratingimage>
-			<de>https://www.trustedshops.com/bewertung/widget/img/bewerten_de.gif</de>
-			<en>https://www.trustedshops.com/bewertung/widget/img/bewerten_en.gif</en>
-			<fr>https://www.trustedshops.com/bewertung/widget/img/bewerten_fr.gif</fr>
-			<es>https://www.trustedshops.com/bewertung/widget/img/bewerten_es.gif</es>
+			<de>bewerten_de.gif</de>
+			<en>bewerten_en.gif</en>
+			<fr>bewerten_fr.gif</fr>
+			<es>bewerten_es.gif</es>
 		</emailratingimage>
 		<soapapi>
 			<wsuser>symmetricsOnTS</wsuser>
