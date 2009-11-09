@@ -180,22 +180,22 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 	private function _cacheImageData($type, $tsId = null) 
 	{
 		$ioObject = new Varien_Io_File();
+		$ioObject->open();
 		
 		if ($type == 'emailWidget') {
-			$ioObject->open();
 			$emailWidgetName = $this->_getRatingLinkData('emailratingimage');
 			$result = $ioObject->read(self::EMAIL_WIDGET_LINK . $emailWidgetName );
-			$ioObject->write(self::IMAGE_LOCAL_PATH . $emailWidgetName, $result);
-			$ioObject->close();
-			Mage::app()->saveCache(self::IMAGE_LOCAL_PATH . $emailWidgetName, self::EMAIL_CACHEID, array(), 1 ); 
+			$writePath = self::IMAGE_LOCAL_PATH . $emailWidgetName;
+			$cacheId = self::EMAIL_CACHEID;
 		}
 		else {
-			$ioObject->open();
 			$result = $ioObject->read(self::WIDGET_LINK . $tsId . '.gif');
-		    $ioObject->write(self::IMAGE_LOCAL_PATH . $tsId . '.gif', $result);
-			$ioObject->close();
-			Mage::app()->saveCache(self::IMAGE_LOCAL_PATH . $tsId . '.gif', self::CACHEID, array(), 1 );
+			$writePath = self::IMAGE_LOCAL_PATH . $tsId . '.gif';
+			$cacheId = self::CACHEID;
 		}
+		$ioObject->write($writePath, $result);
+		Mage::app()->saveCache($writePath, $cacheId, array(), 1 );
+		$ioObject->close();
 	}
 	
 	/**
