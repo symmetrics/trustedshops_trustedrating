@@ -34,10 +34,11 @@ class Symmetrics_TrustedRating_Model_Observer
      */	
 	private function _getSendData($storeId) 
 	{
+		Mage::log($storeId);
+
 		$sendData = array();
 		
 		$sendData['tsId'] = Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
-		Mage::log($storeId);
 		$sendData['activation'] = Mage::getStoreConfig('trustedrating/status/trustedrating_active', $storeId);
 		$sendData['wsUser'] = Mage::helper('trustedrating')->getConfig('soapapi', 'wsuser');
 		$sendData['wsPassword'] = Mage::helper('trustedrating')->getConfig('soapapi', 'wspassword');
