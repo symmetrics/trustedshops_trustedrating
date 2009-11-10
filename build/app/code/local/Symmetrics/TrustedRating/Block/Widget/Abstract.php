@@ -10,30 +10,30 @@
  */
 class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Template
 {
-	/**
-	 * returns the widget link data if trusted rating status is active and data are present for the current language
-	 * 
-	 * @param boolean $type
-	 * @return array
-	 */
-	public function getDataForWidget($type) 
-	{
-		$model = Mage::getModel('trustedrating/trustedrating');
-		
-		if (!$model->getIsActive() || !$model->checkLocaleData()) {
-		    return null;
-		}
+    /**
+     * returns the widget link data if trusted rating status is active and data are present for the current language
+     * 
+     * @param boolean $type
+     * @return array
+     */
+    public function getDataForWidget($type) 
+    {
+        $model = Mage::getModel('trustedrating/trustedrating');
+        
+        if (!$model->getIsActive() || !$model->checkLocaleData()) {
+            return null;
+        }
 
         switch ($type) {
             case 'RATING':
-			    return $model->getRatingWidgetData();	
-            break;
+                return $model->getRatingWidgetData();   
+                break;
             case 'EMAIL':
-			    return $model->getEmailWidgetData();
-            break;
+                return $model->getEmailWidgetData();
+                break;
             default:
                 return null;
-            break;
+                break;
         }
-	}
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config>
-	<!--TODO: on english please -->
+    <!--TODO: on english please -->
     <sections>
         <trustedrating translate="label" module="trustedrating">
             <label>Trusted Shops Rating</label>
@@ -18,36 +18,36 @@
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-					<comment><![CDATA[
-						<b>Trusted Shops Kundenbewertungen</b>
-						<br><br>
-						Positive und nachprüfbare Kundenbewertungen sind für Online-Käufer ein wichtiger Hinweis<br>für die Vertrauenswürdigkeit eines Online-Shops. Die notwendige Software ist bereits in Ihrer<br>Shoplösung vorhanden, sodass Sie mit wenigen Klicks auch in Ihrem Shop<br>Kundenbewertungen einholen können.<br><br>
-						Die Nutzer bewerten die Qualität der Webseite, der Lieferung, der Ware und des<br> Kundenservices. Zusätzlich können die Käufer ihrer Bewertung einen freien Kommentar<br>hinzufügen.
+                    <comment><![CDATA[
+                        <b>Trusted Shops Kundenbewertungen</b>
+                        <br><br>
+                        Positive und nachprüfbare Kundenbewertungen sind für Online-Käufer ein wichtiger Hinweis<br>für die Vertrauenswürdigkeit eines Online-Shops. Die notwendige Software ist bereits in Ihrer<br>Shoplösung vorhanden, sodass Sie mit wenigen Klicks auch in Ihrem Shop<br>Kundenbewertungen einholen können.<br><br>
+                        Die Nutzer bewerten die Qualität der Webseite, der Lieferung, der Ware und des<br> Kundenservices. Zusätzlich können die Käufer ihrer Bewertung einen freien Kommentar<br>hinzufügen.
 <br><br>
-						<img src="http://www.trustedshops.de/shop-info/wp-content/uploads/2009/08/grafik-kundenbewertungen-kundenmeinungen.jpg"/>
+                        <img src="http://www.trustedshops.de/shop-info/wp-content/uploads/2009/08/grafik-kundenbewertungen-kundenmeinungen.jpg"/>
 <br><br>
-						<b>Ihre Vorteile</b>
+                        <b>Ihre Vorteile</b>
 <br><br>
-						Lernen Sie die Wünsche Ihrer Kunden besser kennen und verbessern Sie Ihren Service.<br> Machen Sie so zufriedene Kunden zu Ihren besten Verkäufern!
+                        Lernen Sie die Wünsche Ihrer Kunden besser kennen und verbessern Sie Ihren Service.<br> Machen Sie so zufriedene Kunden zu Ihren besten Verkäufern!
 <br><br>
-	<ul style="list-style-type: disc;margin-left:14px">
-		<li>Mehr Umsatz durch mehr Vertrauen</li>
-		<li>Orientierungshilfe für Ihre Kunden</li>
-		<li>Echte Kundenmeinungen im Shop</li>
-		<li>Besserer Service durch Feedback</li>
-		<li>Webbasierte Lösung ohne Aufwand</li>
-		<li>Basis für Shop-Optimierungen</li>
-		<li>Auswertungen und Benchmarks</li>
-	</ul>
+    <ul style="list-style-type: disc;margin-left:14px">
+        <li>Mehr Umsatz durch mehr Vertrauen</li>
+        <li>Orientierungshilfe für Ihre Kunden</li>
+        <li>Echte Kundenmeinungen im Shop</li>
+        <li>Besserer Service durch Feedback</li>
+        <li>Webbasierte Lösung ohne Aufwand</li>
+        <li>Basis für Shop-Optimierungen</li>
+        <li>Auswertungen und Benchmarks</li>
+    </ul>
 <br><br>
-						<b>So funktioniert es</b>
+                        <b>So funktioniert es</b>
 <br><br>
-						1.&nbsp;Sie melden sich auf dieser Seite für die Trusted Shops Kundenbewertungen an.<br>
-						2.&nbsp;Sie erhalten Ihre Zugangsdaten und Ihre persönliche Trusted Shops ID per E-Mail, die <br>Sie dann bitte in das Eingabefeld eingeben. Das Widget integriert sich dann<br>automatisch in das Shop-Template und die Bewertungsauffoderung in die System E-Mails.<br>
-						3.&nbsp;Ihre Käufer geben Bewertungen ab, die Sie prüfen und bestätigen können.<br>Im geschützten Bereich können Sie die Kundenbewertungen analysieren.<br><br>
+                        1.&nbsp;Sie melden sich auf dieser Seite für die Trusted Shops Kundenbewertungen an.<br>
+                        2.&nbsp;Sie erhalten Ihre Zugangsdaten und Ihre persönliche Trusted Shops ID per E-Mail, die <br>Sie dann bitte in das Eingabefeld eingeben. Das Widget integriert sich dann<br>automatisch in das Shop-Template und die Bewertungsauffoderung in die System E-Mails.<br>
+                        3.&nbsp;Ihre Käufer geben Bewertungen ab, die Sie prüfen und bestätigen können.<br>Im geschützten Bereich können Sie die Kundenbewertungen analysieren.<br><br>
                     ]]></comment>
                 </info>
-				<data translate="label">
+                <data translate="label">
                     <label>Data</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>1</sort_order>
@@ -66,43 +66,43 @@
                         <trustedrating_ratinglanguage translate="label">
                             <label>Shop Language<![CDATA[<font color="red">*</font>]]></label>
                             <frontend_type>select</frontend_type>
-							<source_model>trustedrating/system_rating</source_model>
+                            <source_model>trustedrating/system_rating</source_model>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </trustedrating_ratinglanguage>
-					</fields>
-				</data>
-				<status translate="label">
-                    <label>Status</label>
+                    </fields>
+                </data>
+                <status translate="label">
+                    <label>Activation</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>1</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                  		<fields>
-							<trustedrating_active translate="label">
-	                            <label>Activate TrustedRating?</label>
-	                            <frontend_type>select</frontend_type>
-	                            <source_model>adminhtml/system_config_source_yesno</source_model>
-	                            <sort_order>15</sort_order>
-	                            <show_in_default>1</show_in_default>
-	                            <show_in_website>1</show_in_website>
-	                            <show_in_store>1</show_in_store>
-	                        </trustedrating_active>
-						</fields>
-				</status>
-				<trustedrating_registration translate="label comment">
+                        <fields>
+                            <trustedrating_active translate="label">
+                                <label>Activate TrustedRating?</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>15</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </trustedrating_active>
+                        </fields>
+                </status>
+                <trustedrating_registration translate="label comment">
                         <label>Now register free of charge!</label>
-	                    <frontend_type>text</frontend_type>
-	                    <sort_order>0</sort_order>
-	                    <show_in_default>1</show_in_default>
-	                    <show_in_website>1</show_in_website>
-	                    <show_in_store>1</show_in_store>
-						<comment>&lt;a href='../../../../registration' target='_blank'&gt;Link to the registration on Trusted Shops Rating&lt;/a&gt;</comment>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>0</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>&lt;a href='../../../../registration' target='_blank'&gt;Link to the registration on Trusted Shops Rating&lt;/a&gt;</comment>
                 </trustedrating_registration>
-			</groups>
-		</trustedrating>
-	</sections>
+            </groups>
+        </trustedrating>
+    </sections>
 </config>

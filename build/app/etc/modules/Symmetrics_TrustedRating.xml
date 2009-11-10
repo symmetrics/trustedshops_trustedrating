@@ -4,9 +4,9 @@
         <Symmetrics_TrustedRating>
             <active>true</active>
             <codePool>local</codePool>
-			<depends>
-				<Mage_Core />
-			</depends>
+            <depends>
+                <Mage_Core />
+            </depends>
         </Symmetrics_TrustedRating>
     </modules>
 </config>

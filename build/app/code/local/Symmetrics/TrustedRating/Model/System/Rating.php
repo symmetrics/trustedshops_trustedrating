@@ -10,17 +10,17 @@
  */
 class Symmetrics_TrustedRating_Model_System_Rating
 {
-	/**
+    /**
      * options
-	 *
-	 * @var null
+     *
+     * @var null
      */
     protected $_options = null;
 
-	/**
+    /**
      * gets the languages for trusted rating site as option array
-	 *
-	 * @return array
+     *
+     * @return array
      */
     public function toOptionArray()
     {
@@ -30,19 +30,19 @@ class Symmetrics_TrustedRating_Model_System_Rating
                 'value' => 'de',
                 'label' => Mage::helper('trustedrating')->__('deutsch'),
             );
-	        $this->_options[1] = array(
-	            'value' => 'en',
-	            'label' => Mage::helper('trustedrating')->__('englisch'),
-	        );
-		    $this->_options[2] = array(
-		        'value' => 'fr',
-		        'label' => Mage::helper('trustedrating')->__('französisch'),
-		    );
-			$this->_options[3] = array(
-			    'value' => 'es',
-			    'label' => Mage::helper('trustedrating')->__('spanisch'),
-			);
-		}
+            $this->_options[1] = array(
+                'value' => 'en',
+                'label' => Mage::helper('trustedrating')->__('englisch'),
+            );
+            $this->_options[2] = array(
+                'value' => 'fr',
+                'label' => Mage::helper('trustedrating')->__('französisch'),
+            );
+            $this->_options[3] = array(
+                'value' => 'es',
+                'label' => Mage::helper('trustedrating')->__('spanisch'),
+            );
+        }
         return $this->_options;
     }
 }

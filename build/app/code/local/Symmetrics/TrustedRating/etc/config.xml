@@ -11,26 +11,26 @@
 <config>
     <modules>
         <Symmetrics_TrustedRating>
-            <version>0.1.2</version>
+            <version>0.1.4</version>
         </Symmetrics_TrustedRating>
     </modules>
-	<global>
-		<helpers>
-	        <trustedrating>
-	            <class>Symmetrics_TrustedRating_Helper</class>
-	        </trustedrating>
-	    </helpers>
-		<models>
-			<trustedrating>
-		    	<class>Symmetrics_TrustedRating_Model</class>
-			</trustedrating>
-		</models>
-		<blocks>
+    <global>
+        <helpers>
+            <trustedrating>
+                <class>Symmetrics_TrustedRating_Helper</class>
+            </trustedrating>
+        </helpers>
+        <models>
+            <trustedrating>
+                <class>Symmetrics_TrustedRating_Model</class>
+            </trustedrating>
+        </models>
+        <blocks>
             <trustedrating>
                 <class>Symmetrics_TrustedRating_Block</class>
             </trustedrating>
-		</blocks>
-		<events>
+        </blocks>
+        <events>
             <admin_system_config_changed_section_trustedrating>
                 <observers>
                     <symmetrics_trustedrating_model_observer>
@@ -40,83 +40,83 @@
                     </symmetrics_trustedrating_model_observer>
                 </observers>
             </admin_system_config_changed_section_trustedrating>
-		</events>
-	</global>
-	<frontend>
-		<layout>
+        </events>
+    </global>
+    <frontend>
+        <layout>
             <updates>
                 <trustedrating>
                     <file>trustedrating.xml</file>
                 </trustedrating>
             </updates>
         </layout>
-	</frontend>
-	<adminhtml>
-		<acl>
-			<resources>
-				<admin>
-					<children>
-						<system>
-							<children>
-								<config>
-									<children>
-										<trustedrating>
-											<title>trustedrating</title>
-										</trustedrating>
-									</children>
-								</config>
-							</children>
-						</system>
-					</children>
-				</admin>
-			</resources>
-		</acl>
-		<translate>
+    </frontend>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <trustedrating>
+                                            <title>trustedrating</title>
+                                        </trustedrating>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
             <modules>
                 <Symmetrics_TrustedRating>
                     <files>
-						<default>Mage_Adminhtml.csv</default>
+                        <default>Mage_Adminhtml.csv</default>
                         <trustedrating>Symmetrics_TrustedRating.csv</trustedrating>
                     </files>
                 </Symmetrics_TrustedRating>
             </modules>
         </translate>
-	</adminhtml>
-	<admin>
-    	<routers>
-    		<adminhtml>
-    			<args>
-    				<modules>   				
-    					<Symmetrics_TrustedRating_Admin before="Mage_Adminhtml">Symmetrics_TrustedRating_Admin</Symmetrics_TrustedRating_Admin>
-    				</modules>
-    			</args>
-    		</adminhtml>
-    	</routers>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>                   
+                        <Symmetrics_TrustedRating_Admin before="Mage_Adminhtml">Symmetrics_TrustedRating_Admin</Symmetrics_TrustedRating_Admin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
     </admin>
-	<default>
-		<overwiewlanguagelink>
-			<de>https://www.trustedshops.com/bewertung/seite/info</de>
-			<en>https://www.trustedshops.com/buyerfeedback/page/info</en>
-			<fr>https://www.trustedshops.com/evaluation/page/info</fr>
-			<es>https://www.trustedshops.com/evaluacion/pagina/info</es>
-		</overwiewlanguagelink>
-		<ratinglanguagelink>
-			<de>https://www.trustedshops.com/bewertung/bewerten</de>
-			<en>https://www.trustedshops.com/buyerfeedback/page/rate</en>
-			<fr>https://www.trustedshops.com/evaluation/page/evaluer</fr>
-			<es>https://www.trustedshops.com/evaluacion/pagina/evaluar</es>
-		</ratinglanguagelink>
-		<emailratingimage>
-			<de>bewerten_de.gif</de>
-			<en>bewerten_en.gif</en>
-			<fr>bewerten_fr.gif</fr>
-			<es>bewerten_es.gif</es>
-		</emailratingimage>
-		<soapapi>
-			<wsuser>symmetricsOnTS</wsuser>
-			<wspassword>7aBUzece</wspassword>
-			<url>https://www.trustedshops.de/ts/services/TsRating?wsdl</url>
-			<partnerpackage>symmetrics</partnerpackage>
-		</soapapi>
-	</default>
+    <default>
+        <overwiewlanguagelink>
+            <de>https://www.trustedshops.com/bewertung/info</de>
+            <en>https://www.trustedshops.com/buyerrating/info</en>
+            <fr>https://www.trustedshops.com/evaluation/info</fr>
+            <es>https://www.trustedshops.com/evaluacion/info</es>
+        </overwiewlanguagelink>
+        <ratinglanguagelink>
+            <de>https://www.trustedshops.com/bewertung/bewerten</de>
+            <en>https://www.trustedshops.com/buyerrating/rate</en>
+            <fr>https://www.trustedshops.com/evaluation/evaluer</fr>
+            <es>https://www.trustedshops.com/evaluacion/evaluar</es>
+        </ratinglanguagelink>
+        <emailratingimage>
+            <de>bewerten_de.gif</de>
+            <en>bewerten_en.gif</en>
+            <fr>bewerten_fr.gif</fr>
+            <es>bewerten_es.gif</es>
+        </emailratingimage>
+        <soapapi>
+            <wsuser>symmetricsOnTS</wsuser>
+            <wspassword>7aBUzece</wspassword>
+            <url>https://www.trustedshops.de/ts/services/TsRating?wsdl</url>
+            <partnerpackage>symmetrics</partnerpackage>
+        </soapapi>
+    </default>
 </config>
