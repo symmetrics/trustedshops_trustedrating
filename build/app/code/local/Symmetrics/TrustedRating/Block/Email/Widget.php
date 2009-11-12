@@ -19,10 +19,10 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
     {
         if ($data = $this->getDataForWidget('EMAIL')) {
             $buyerEmail = base64_encode($data['buyerEmail']);
-            $baseUrl = Mage::getBaseUrl();
-            if(strpos($baseUrl,'index.php')) {
+            $baseUrl = Mage::getBaseUrl('web');
+            /*if(strpos($baseUrl,'index.php')) {
                 $baseUrl = substr(Mage::getBaseUrl(),0,strrpos(Mage::getBaseUrl(),'index.php'));
-            }
+            }*/
             $orderId = base64_encode($data['orderId']);
             $link = '<a href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html';
             $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $orderId . '">';

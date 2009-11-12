@@ -122,10 +122,10 @@ class Symmetrics_TrustedRating_Model_Observer
             $model = Mage::getModel('trustedrating/trustedrating');
             $buyerEmail = base64_encode($customerEmail);
             $orderId = base64_encode($orderId);
-            $baseUrl = Mage::getBaseUrl();
-            if(strpos($baseUrl,'index.php')) {
+            $baseUrl = Mage::getBaseUrl('web');
+            /*if(strpos($baseUrl,'index.php')) {
                 $baseUrl = substr(Mage::getBaseUrl(),0,strrpos(Mage::getBaseUrl(),'index.php'));
-            }
+            }*/
             $link = '<a href="' . $model->getEmailRatingLink() . '_' . $model->getTsId() . '.html';
             $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $orderId . '">';
             $widget = '<img src="' . $baseUrl . Symmetrics_TrustedRating_Model_Trustedrating::IMAGE_LOCAL_PATH . $this->_getRatingLinkData('emailratingimage') . '"/></a>';
