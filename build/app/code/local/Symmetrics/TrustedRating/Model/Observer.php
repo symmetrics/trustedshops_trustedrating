@@ -122,9 +122,14 @@ class Symmetrics_TrustedRating_Model_Observer
             $model = Mage::getModel('trustedrating/trustedrating');
             $buyerEmail = base64_encode($customerEmail);
             $orderId = base64_encode($orderId);
+            $baseUrl = Mage::getBaseUrl();
+            if(strpos($baseUrl,'index.php')) {
+                $baseUrl = substr(Mage::getBaseUrl(),0,strrpos(Mage::getBaseUrl(),'index.php'));
+            }
             $link = '<a href="' . $model->getEmailRatingLink() . '_' . $model->getTsId() . '.html';
             $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $orderId . '">';
-            $widget = '<img src="' . Mage::getBaseUrl() . Symmetrics_TrustedRating_Model_Trustedrating::IMAGE_LOCAL_PATH . $this->_getRatingLinkData('emailratingimage') . '"/></a>';
+            $widget = '<img src="' . $baseUrl . Symmetrics_TrustedRating_Model_Trustedrating::IMAGE_LOCAL_PATH . $this->_getRatingLinkData('emailratingimage') . '"/></a>';
+            Mage::log($widget);
             return $link . $params . $widget;
         }
         
@@ -211,7 +216,7 @@ class Symmetrics_TrustedRating_Model_Observer
         $sendData['wsUser'] = Mage::helper('trustedrating')->getConfig('soapapi', 'wsuser');
         $sendData['wsPassword'] = Mage::helper('trustedrating')->getConfig('soapapi', 'wspassword');
         $sendData['partnerPackage'] = Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage');
-        
+        Mage::log($sendData);
         return $sendData;   
     }
     

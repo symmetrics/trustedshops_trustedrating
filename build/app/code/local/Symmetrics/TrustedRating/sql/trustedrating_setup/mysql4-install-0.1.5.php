@@ -13,6 +13,7 @@ $installer = $this;
 $installer->startSetup();
 
 // execute emails
+
 foreach ($this->getConfigEmails() as $name => $data) {
     if ($data['execute'] == 1) {
         $this->createEmail($data);
