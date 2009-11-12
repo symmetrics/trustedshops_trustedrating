@@ -11,11 +11,12 @@ Dieses Modul implementiert das Bewertungssystem von Trusted Shops (Trusted Ratin
 *** B: Über das eingebundene Widget kann der Kunde die Anzahl der bisherigen Bewertungen sehen sowie beim klick auf das Image eine Bewertung vornehmen.
 *** C: Auf der Bestellbestätigungsseite erscheint ein "Bewerten" - Button mit dem gleichzeitig die Kunden-email sowie die OrderId übergeben wird.
 *** D: Je nach eingestellter Sprache im Shop wird das dazugehörige Widget geladen.
+*** E: Man kann einstellen nach wieviel Tagen einer Bestellung der User eine mail mit Bewerten-Button bekommt.
 
 ** TECHNINCAL
 	Per layout modifikator wird ein eigenes Template über eine eigene Blockklasse auf der Startseite eingebunden, das das Widget darstellt.
 	In <checkout_onepage_success> wird ein neuer Block hinzugefügt der die Grafik für die Bewertung darstellt (das ist eine andere Grafik und verweist auf eine andere Bewertungsseite, hier wird gleichzeitig die email und die OrderId übertragen.)
-
+    Wenn sich jemand ins backend einloggt wird ein Event ausgelöst das alle Bestellungen die mindestens x (Tage in der config einstellbar) Tage her sind überprüft ob sie schon eine TR-Mail bekommen haben...wenn nein, wird eine versendet und die shipping-ID der Sendung in einer eigenen Tabelle gespeichert.
 ** PROBLEMS
 keine bekannt.
 
@@ -33,3 +34,4 @@ keine bekannt.
 		6. Das Widget wird von Trusted Shops nur einmal am Tag neu gecached, man kann das cachen aber erzwingen indem man auf "Bewertungen" => "Widget Einstellungen" geht, den Shop auswählt und bei dem Bild einmal auf "ändern" und dann wieder auf "speichern" klickt. Das Widget sollte sich jetzt ändern und den Kommentar der letzten Bewertung zeigen sowie die neue Anzahl der Bewertungen.
 *** C:	1. Prüfen sie ob auf der Bestellbestätigungsseite eine "Bewerten" - Grafik erscheint und in dem Formular auf das der Link verweist, bereits die Kunden-Emailadresse sowie die OrderID eingetragen ist.
 *** D: Schalten Sie in der Konfiguration auf eine andere StoreView mit englischer, spanischer oder französischer Sprache um, trage Sie eine neue (gültige) TS-ID ein und stellen Sie die Sprache entsprechend ein. Prüfen Sie ob im Frontend, wenn Sie auf die jeweilige StoreView umschalten, das richtige Widget geladen wird, das gleiche gilt für das e-mail - Widget.
+*** E: Stellen sie in der Trusted-Rating Konfiguration den Wert 0.0001 bei "Tagen" ein, tätigen Sie eine Bestellung, versenden Sie sie, loggen Sie sich ein und wieder aus und prüfen sie ob sie einen e-mail mit dem Bewertungs-Widget bekommen haben. Achtung, alle User die eine Bestellung in Ihrem Shop getätigt haben, bekommen dann so eine mail.
