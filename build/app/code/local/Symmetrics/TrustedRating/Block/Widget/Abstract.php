@@ -19,10 +19,10 @@ class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Tem
     public function getDataForWidget($type) 
     {
         $model = Mage::getModel('trustedrating/trustedrating');
-        
+        /*
         if (!$model->getIsActive() || !$model->checkLocaleData()) {
             return null;
-        }
+        }*/
 
         switch ($type) {
             case 'RATING':

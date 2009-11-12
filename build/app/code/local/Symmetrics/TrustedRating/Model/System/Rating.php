@@ -38,10 +38,6 @@ class Symmetrics_TrustedRating_Model_System_Rating
                 'value' => 'fr',
                 'label' => Mage::helper('trustedrating')->__('französisch'),
             );
-            $this->_options[3] = array(
-                'value' => 'es',
-                'label' => Mage::helper('trustedrating')->__('spanisch'),
-            );
         }
         return $this->_options;
     }

@@ -93,6 +93,24 @@
                             </trustedrating_active>
                         </fields>
                 </status>
+                <trustedrating_email translate="label">
+                    <label>E-Mail</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>99</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                        <fields>
+                            <days translate="label">
+                                <label>Tage nachdem die E-mail rausgeht:</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>1</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </days>
+                        </fields>
+                </trustedrating_email>
                 <trustedrating_registration translate="label comment">
                         <label>Now register free of charge!</label>
                         <frontend_type>text</frontend_type>
@@ -100,7 +118,7 @@
                         <show_in_default>1</show_in_default>
                         <show_in_website>1</show_in_website>
                         <show_in_store>1</show_in_store>
-                        <comment>&lt;a href='../../../../registration' target='_blank'&gt;Link to the registration on Trusted Shops Rating&lt;/a&gt;</comment>
+                        <comment><![CDATA[<a href='../../../../registration' target='_blank'>Link to the registration on Trusted Shops Rating</a>]]></comment>
                 </trustedrating_registration>
             </groups>
         </trustedrating>

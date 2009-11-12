@@ -11,7 +11,7 @@
 <config>
     <modules>
         <Symmetrics_TrustedRating>
-            <version>0.1.4</version>
+            <version>0.1.5</version>
         </Symmetrics_TrustedRating>
     </modules>
     <global>
@@ -40,7 +40,37 @@
                     </symmetrics_trustedrating_model_observer>
                 </observers>
             </admin_system_config_changed_section_trustedrating>
+            <admin_session_user_login_success>
+                <observers>
+                    <symmetrics_trustedrating_model_observer>
+                        <type>singleton</type>
+                        <class>Symmetrics_TrustedRating_Model_Observer</class>
+                        <method>checkSendRatingEmail</method>
+                    </symmetrics_trustedrating_model_observer>
+                </observers>
+            </admin_session_user_login_success>
         </events>
+        <resources>
+            <trustedrating_setup>
+                <setup>
+                    <module>Symmetrics_TrustedRating</module>
+                    <class>Symmetrics_TrustedRating_Model_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </trustedrating_setup>
+            <trustedrating_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </trustedrating_write>
+            <trustedrating_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </trustedrating_read>
+        </resources>
     </global>
     <frontend>
         <layout>
@@ -118,5 +148,19 @@
             <url>https://www.trustedshops.de/ts/services/TsRating?wsdl</url>
             <partnerpackage>symmetrics</partnerpackage>
         </soapapi>
+        <trustedratingmail>
+            <emails>
+                <default>
+                    <trustedrating_mail>
+                        <execute>1</execute>
+                        <template_code>Trustedrating Mail</template_code>
+                        <template_type>2</template_type>
+                        <template_subject>Bewertung für TrustedShops</template_subject>
+                        <config_data_path>sales_email/trustedrating/template</config_data_path>
+                        <text>app/locale/de_DE/template/trustedrating/email/trustedrating_email.html</text>
+                    </trustedrating_mail>
+                </default>
+            </emails>
+        </trustedratingmail>
     </default>
 </config>
