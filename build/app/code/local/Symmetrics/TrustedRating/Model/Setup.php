@@ -11,10 +11,9 @@
 class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
 {
     /**
+     * get config data
      * 
-     * 
-     * @param array example
-     * @return string
+     * @return array
      */
     public function getConfigData()
     {
@@ -22,9 +21,10 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     }
     
     /**
+     * get config node‚
      * 
-     * 
-     * @param array example
+     * @param string $node
+     * @param string $nextNode
      * @return string
      */
     private function getConfigNode($node, $nextNode = null)
@@ -38,9 +38,8 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     }
     
     /**
-     * 
-     * 
-     * @param array example
+     * get email from config
+     *
      * @return string
      */
     public function getConfigEmails()
@@ -49,10 +48,10 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     }
     
     /**
+     * get content from template file
      * 
-     * 
-     * @param array example
-     * @return string
+     * @param string $filename
+     * @return file
      */
     public function getTemplateContent($filename)
     {
@@ -60,10 +59,10 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     }
     
     /**
+     * create Transaction Email
      * 
-     * 
-     * @param array example
-     * @return string
+     * @param array $emailData
+     * @return void
      */
     public function createEmail($emailData)
     {

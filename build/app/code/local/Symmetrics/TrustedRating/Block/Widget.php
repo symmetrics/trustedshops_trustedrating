@@ -18,8 +18,9 @@ class Symmetrics_TrustedRating_Block_Widget extends Symmetrics_TrustedRating_Blo
     protected function _toHtml()
     {
         if ($data = $this->getDataForWidget('RATING')) {
+            $baseUrl = Mage::getBaseUrl('web');
             $link = '<a href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html">';
-            $widget = '<img src="' . Mage::getBaseUrl() . $data['imageLocalPath'] . $data['tsId'] . '.gif" /></a>';
+            $widget = '<img src="' . $baseUrl . $data['imageLocalPath'] . $data['tsId'] . '.gif" /></a>';
             return $link . $widget;
         } else {
             return '';

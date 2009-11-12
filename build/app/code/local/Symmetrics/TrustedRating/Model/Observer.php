@@ -10,8 +10,16 @@
  */
 class Symmetrics_TrustedRating_Model_Observer
 {
+    /**
+     * config path to email template
+     */
     const XML_PATH_SYMMETRICS_TRUSTEDRATING_EMAIL_TEMPLATE = 'sales_email/trustedrating/template';
+    
+    /**
+     * email identity path
+     */
     const XML_PATH_EMAIL_IDENTITY = 'sales_email/order/identity';
+    
     /**
      * Get table name
      *
@@ -64,10 +72,12 @@ class Symmetrics_TrustedRating_Model_Observer
         if (!$dayInterval = $this->_getDayInterval()) {
             return false;
         }
+        $from = $dayInterval['from'];
+        $to = $dayInterval['to'];
         
         $shipments = Mage::getResourceModel('sales/order_shipment_collection')
-            ->addAttributeToFilter('entity_id', array('nin' => $this->_getSendedIds()))
-            ->addAttributeToFilter('created_at', array('from' => $dayInterval['from'], 'to' => $dayInterval['to']))
+            ->addAttributeToFilter('entity_id', array('nin' => $this->_getSentIds()))
+            ->addAttributeToFilter('created_at', array('from' => $from, 'to' => $to))
             ->load();
          
         if (!$shipments) {
@@ -139,8 +149,8 @@ class Symmetrics_TrustedRating_Model_Observer
         private function _saveShippmentIdToTable($shipmentId) 
         {
             $write = Mage::getSingleton('core/resource')->getConnection('core_write');
-            $table = $this->getTable('symmetrics_trustedrating_emails')
-            $sql = 'INSERT INTO ' . $table . ' (shippment_id) VALUES ('.$shipmentId.');';
+            $table = $this->getTable('symmetrics_trustedrating_emails');
+            $sql = 'INSERT INTO ' . $table . ' (shippment_id) VALUES (' . $shipmentId . ');';
             $write->query($sql);
         }
        
@@ -149,7 +159,7 @@ class Symmetrics_TrustedRating_Model_Observer
         * 
         * @return array
         */
-        private function _getSendedIds() 
+        private function _getSentIds() 
         {
             $read = Mage::getSingleton('core/resource')->getConnection('core_read');
             $table = $this->getTable('symmetrics_trustedrating_emails');
@@ -178,14 +188,15 @@ class Symmetrics_TrustedRating_Model_Observer
              if (!$dayInterval = Mage::getStoreConfig('trustedrating/trustedrating_email/days')) {
                  return false;
              }
-             $intervalSeconds = $dayInterval * 24 * 60 * 60;s
+             $intervalSeconds = $dayInterval * 24 * 60 * 60;
              $date = new Zend_Date();
              $timestamp = $date->get();
              
              $diff = $timestamp - $intervalSeconds;
              
-             return array('from' => $from,
-                          'to' => date("Y-m-d H:i:s", $diff)
+             return array(
+                'from' => $from,
+                'to' => date("Y-m-d H:i:s", $diff)
              );
          }
     
@@ -226,7 +237,6 @@ class Symmetrics_TrustedRating_Model_Observer
                     $sendData['wsPassword'],
                     $sendData['partnerPackage']
                 );
-                
             } catch (SoapFault $fault) {
                 $errorText = 'SOAP Fault: (faultcode: ' . $fault->faultcode;
                 $errorText.= ', faultstring: ' . $fault->faultstring . ')';
