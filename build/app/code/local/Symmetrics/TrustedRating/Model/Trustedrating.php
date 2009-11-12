@@ -149,15 +149,19 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
     public function getEmailWidgetData()
     {
+        Mage::log("am anfang");
         $tsId = $this->getTsId();
+        Mage::log("tsid");
         $orderId = Mage::getSingleton('checkout/type_onepage')->getCheckout()->getLastOrderId();
+        Mage::log("orderid");
         $order = Mage::getModel('sales/order')->load($orderId);
         $buyerEmail = $order->getData('customer_email');
+        Mage::log("buyeremail");
 
         if (!Mage::app()->loadCache(self::EMAIL_CACHEID)) {
             $this->cacheEmailImage();
         }
-        
+        Mage::log("vor array");
         $array = array(
             'tsId' => $tsId,
             'ratingLink' => $this->getEmailRatingLink(),
@@ -166,6 +170,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
             'buyerEmail' => $buyerEmail,
             'widgetName' => $this->getRatingLinkData('emailratingimage')
         );
+        Mage::log($array);
 
         return $array;
     }
@@ -183,7 +188,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         $ioObject->open();
         
         if ($type == 'emailWidget') {
-            $emailWidgetName = $this->_getRatingLinkData('emailratingimage');
+            $emailWidgetName = $this->getRatingLinkData('emailratingimage');
             $readPath = self::EMAIL_WIDGET_LINK . $emailWidgetName;
             $writePath = self::IMAGE_LOCAL_PATH . $emailWidgetName;
             $cacheId = self::EMAIL_CACHEID;

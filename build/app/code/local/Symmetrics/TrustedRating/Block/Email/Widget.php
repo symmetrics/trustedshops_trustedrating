@@ -17,7 +17,9 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
      */
     protected function _toHtml()
     {
+        Mage::log("aklsdfjlkadsfjadsflkjdlksjflks");
         if ($data = $this->getDataForWidget('EMAIL')) {
+            Mage::log('data');
             $buyerEmail = base64_encode($data['buyerEmail']);
             $baseUrl = Mage::getBaseUrl('web');
             $orderId = base64_encode($data['orderId']);
@@ -27,6 +29,7 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
             
             return $link . $params . $widget;
         } else {
+            Mage::log("EEEEEEELSE");
             return null;
         }
     }
