@@ -79,7 +79,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      * @param string $type
      * @return string
      */
-     private function _getRatingLinkData($type) 
+     public function getRatingLinkData($type) 
      {
         $optionValue = Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage');
         $link = Mage::helper('trustedrating')->getConfig($type, $optionValue);
@@ -109,7 +109,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
     public function getRatingLink()
     {
-        return $this->_getRatingLinkData('overwiewlanguagelink');
+        return $this->getRatingLinkData('overwiewlanguagelink');
     }
     
     /**
@@ -119,7 +119,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
     public function getEmailRatingLink()
     {
-        return $this->_getRatingLinkData('ratinglanguagelink');
+        return $this->getRatingLinkData('ratinglanguagelink');
     }
     
     /**
@@ -164,7 +164,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
             'imageLocalPath' => self::IMAGE_LOCAL_PATH,
             'orderId' => $orderId,
             'buyerEmail' => $buyerEmail,
-            'widgetName' => $this->_getRatingLinkData('emailratingimage')
+            'widgetName' => $this->getRatingLinkData('emailratingimage')
         );
 
         return $array;

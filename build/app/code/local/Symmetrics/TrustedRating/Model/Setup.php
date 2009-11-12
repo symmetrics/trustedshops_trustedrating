@@ -32,8 +32,7 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
         $configData = $this->getConfigData();
         if ($nextNode) {
             return $configData[$node][$nextNode];
-        }
-        else {
+        } else {
             return $configData[$node];
         }
     }
