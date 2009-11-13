@@ -127,7 +127,7 @@
                         <show_in_default>1</show_in_default>
                         <show_in_website>1</show_in_website>
                         <show_in_store>1</show_in_store>
-                        <comment><![CDATA[<a href='../../../../registration' target='_blank'>Link to the registration on Trusted Shops Rating</a>]]></comment>
+                        <comment>_</comment>
                 </trustedrating_registration>
             </groups>
         </trustedrating>

@@ -111,6 +111,13 @@
                 </Symmetrics_TrustedRating>
             </modules>
         </translate>
+        <layout>
+            <updates>
+                <trustedrating>
+                    <file>trustedrating.xml</file>
+                </trustedrating>
+            </updates>
+        </layout>
     </adminhtml>
     <admin>
         <routers>

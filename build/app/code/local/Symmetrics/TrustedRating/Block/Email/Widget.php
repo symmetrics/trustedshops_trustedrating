@@ -23,7 +23,8 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
             $orderId = base64_encode($data['orderId']);
             $link = '<a href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html';
             $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $orderId . '">';
-            $widget = '<img border="0" alt="" src="' . $baseUrl . $data['imageLocalPath'] . $data['widgetName'] . '"/></a>';
+            $widgetSrc = $baseUrl . $data['imageLocalPath'] . $data['widgetName'];
+            $widget = '<img border="0" alt="" src="' . $widgetSrc . '"/></a>';
             
             return $link . $params . $widget;
         } else {
