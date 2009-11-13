@@ -17,19 +17,16 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
      */
     protected function _toHtml()
     {
-        Mage::log("aklsdfjlkadsfjadsflkjdlksjflks");
         if ($data = $this->getDataForWidget('EMAIL')) {
-            Mage::log('data');
             $buyerEmail = base64_encode($data['buyerEmail']);
             $baseUrl = Mage::getBaseUrl('web');
             $orderId = base64_encode($data['orderId']);
             $link = '<a href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html';
             $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $orderId . '">';
-            $widget = '<img src="' . $baseUrl . $data['imageLocalPath'] . $data['widgetName'] . '"/></a>';
+            $widget = '<img border="0" alt="" src="' . $baseUrl . $data['imageLocalPath'] . $data['widgetName'] . '"/></a>';
             
             return $link . $params . $widget;
         } else {
-            Mage::log("EEEEEEELSE");
             return null;
         }
     }
