@@ -59,7 +59,7 @@
                 <data translate="label">
                     <label>Data</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>1</sort_order>
+                    <sort_order>3</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -86,7 +86,7 @@
                 <status translate="label">
                     <label>Activation</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>1</sort_order>
+                    <sort_order>4</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -103,15 +103,15 @@
                         </fields>
                 </status>
                 <trustedrating_email translate="label">
-                    <label>E-Mail</label>
+                    <label>E-Mail zur Bewertungsaufforderung</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>99</sort_order>
+                    <sort_order>5</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                         <fields>
                             <days translate="label">
-                                <label>Tage nachdem die E-mail rausgeht:</label>
+                                <label>Tage nach Sendung</label>
                                 <frontend_type>text</frontend_type>
                                 <sort_order>1</sort_order>
                                 <show_in_default>1</show_in_default>
@@ -123,7 +123,7 @@
                 <trustedrating_registration translate="label comment">
                         <label>Now register free of charge!</label>
                         <frontend_type>text</frontend_type>
-                        <sort_order>0</sort_order>
+                        <sort_order>2</sort_order>
                         <show_in_default>1</show_in_default>
                         <show_in_website>1</show_in_website>
                         <show_in_store>1</show_in_store>
