@@ -1,13 +1,37 @@
 <?php
 /**
- * Symmetrics_TrustedRating_Model_Observer
+ * Magento
  *
- * @category Symmetrics
- * @package Symmetrics_TrustedRating
- * @author symmetrics gmbh <info@symmetrics.de>, Siegfried Schmitz <ss@symmetrics.de>
- * @copyright symmetrics gmbh
- * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category  Symmetrics
+ * @package   Symmetrics_TrustedRating
+ * @author    symmetrics gmbh <info@symmetrics.de>
+ * @author    Siegfried Schmitz <ss@symmetrics.de>
+ * @copyright 2009 Symmetrics Gmbh
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      http://www.symmetrics.de/
  */
+ 
+ /**
+  * Symmetrics_TrustedRating_Model_Observer
+  *
+  * @category  Symmetrics
+  * @package   Symmetrics_TrustedRating
+  * @author    symmetrics gmbh <info@symmetrics.de>
+  * @author    Siegfried Schmitz <ss@symmetrics.de>
+  * @copyright 2009 Symmetrics Gmbh
+  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+  * @link      http://www.symmetrics.de/
+  */
 class Symmetrics_TrustedRating_Model_Observer
 {
     /**
@@ -23,7 +47,8 @@ class Symmetrics_TrustedRating_Model_Observer
     /**
      * Get table name
      *
-     * @param string $tableName
+     * @param string $tableName Name of Table
+     *
      * @return string
      */
     public function getTable($tableName) 
@@ -34,7 +59,8 @@ class Symmetrics_TrustedRating_Model_Observer
     /**
      * change the activity status (active, inactive) by sending an api call to trusted rating
      *
-     * @param Varien_Event_Observer $observer
+     * @param Varien_Event_Observer $observer Observer
+     *
      * @return void
      */
     public function changeTrustedRatingStatus($observer) 
@@ -50,7 +76,8 @@ class Symmetrics_TrustedRating_Model_Observer
     /**
      * checks the shippings who needs an email
      * 
-     * @param Varien_Event_Observer $observer
+     * @param Varien_Event_Observer $observer Observer
+     *
      * @return void
      */
      public function checkSendRatingEmail($observer) 
@@ -89,7 +116,8 @@ class Symmetrics_TrustedRating_Model_Observer
       /**
        * sending mail
        * 
-       * @param array $shippmentIds
+       * @param array $shippmentIds shippmentId
+       *
        * @return void
        */
        private function _sendTrustedRatingMails($shippmentIds) 
@@ -121,8 +149,10 @@ class Symmetrics_TrustedRating_Model_Observer
        /**
         * gets email widget
         * 
-        * @param int $orderId
-        * @param string $customerEmail
+        * @param int    $orderId       Order Id
+        *
+        * @param string $customerEmail Customer Email
+        *
         * @return string
         */
         private function _getEmailWidgetLink($orderId, $customerEmail) 
@@ -143,7 +173,8 @@ class Symmetrics_TrustedRating_Model_Observer
        /**
         * saves shipping-id to table who gots an email
         * 
-        * @param int $shipmentId
+        * @param int $shipmentId Shipping Id
+        *
         * @return void
         */
         private function _saveShippmentIdToTable($shipmentId) 
@@ -203,6 +234,8 @@ class Symmetrics_TrustedRating_Model_Observer
         /**
          * collect the data for sending to trusted rating
          *
+         * @param int $storeId storeID
+         *
          * @return array
          */ 
         private function _getSendData($storeId) 
@@ -221,8 +254,10 @@ class Symmetrics_TrustedRating_Model_Observer
         /**
          * calling the soap api from trusted rating
          * 
-         * @param array $send_data
-         * @param array $soap_url
+         * @param array $sendData data to send
+         *
+         * @param array $soapUrl  soap url
+         *
          * @return string
          */
         private function _callTrustedShopsApi($sendData, $soapUrl) 
