@@ -20,7 +20,7 @@ class Symmetrics_TrustedRating_Block_Registrationlink extends Symmetrics_Trusted
         if (!strpos($_SERVER['PHP_SELF'], 'section/trustedrating')) {
             return null;
         }
-        
+        $languageLabel = $this->getLanguageLabel();
         $registrationlinkData = $this->getRegistrationLink();
         $target = $registrationlinkData['target'];
         $text = $registrationlinkData['text'];
@@ -31,6 +31,8 @@ class Symmetrics_TrustedRating_Block_Registrationlink extends Symmetrics_Trusted
             document.observe(\'dom:loaded\', function() {
                 var comment = $$(\'#trustedrating_trustedrating_registration div\')[0];
                 comment.innerHTML = \'' . $link . '\';
+                var languageLabel = $$(\'#trustedrating_data label\')[1];
+                languageLabel.innerHTML = \'' . $languageLabel . '\';
             });
         </script>';
         

@@ -50,4 +50,9 @@ class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Tem
         
         return $registrationLink;
     }
+    
+    public function getLanguageLabel()
+    {
+        return $this->__('Shop Language'). '<font color="red">*</font>';
+    }
 }

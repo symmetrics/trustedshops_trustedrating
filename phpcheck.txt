@@ -1,0 +1,280 @@
+
+FILE: ...ng/build/app/code/local/Symmetrics/TrustedRating/Block/Email/Widget.php
+--------------------------------------------------------------------------------
+FOUND 8 ERROR(S) AFFECTING 7 LINE(S)
+--------------------------------------------------------------------------------
+  2 | ERROR | Missing file doc comment
+  5 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces but
+    |       | found 1.
+  6 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+  7 | ERROR | Content of the @author tag must be in the form "Display Name
+    |       | <username@example.com>"
+  7 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+    |       | found 1.
+  8 | ERROR | @copyright tag must contain a year and the name of the copyright
+    |       | holder
+  9 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+ 10 | ERROR | Missing @link tag in class comment
+--------------------------------------------------------------------------------
+
+
+FILE: ...uild/app/code/local/Symmetrics/TrustedRating/Block/Registrationlink.php
+--------------------------------------------------------------------------------
+FOUND 8 ERROR(S) AFFECTING 7 LINE(S)
+--------------------------------------------------------------------------------
+  2 | ERROR | Missing file doc comment
+  5 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces but
+    |       | found 1.
+  6 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+  7 | ERROR | Content of the @author tag must be in the form "Display Name
+    |       | <username@example.com>"
+  7 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+    |       | found 1.
+  8 | ERROR | @copyright tag must contain a year and the name of the copyright
+    |       | holder
+  9 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+ 10 | ERROR | Missing @link tag in class comment
+--------------------------------------------------------------------------------
+
+
+FILE: ...build/app/code/local/Symmetrics/TrustedRating/Block/Widget/Abstract.php
+--------------------------------------------------------------------------------
+FOUND 10 ERROR(S) AFFECTING 8 LINE(S)
+--------------------------------------------------------------------------------
+  2 | ERROR | Missing file doc comment
+  5 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces but
+    |       | found 1.
+  6 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+  7 | ERROR | Content of the @author tag must be in the form "Display Name
+    |       | <username@example.com>"
+  7 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+    |       | found 1.
+  8 | ERROR | @copyright tag must contain a year and the name of the copyright
+    |       | holder
+  9 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+ 10 | ERROR | Missing @link tag in class comment
+ 16 | ERROR | Last parameter comment requires a blank newline after it
+ 16 | ERROR | Missing comment for param "$type" at position 1
+--------------------------------------------------------------------------------
+
+
+FILE: ...edrating/build/app/code/local/Symmetrics/TrustedRating/Block/Widget.php
+--------------------------------------------------------------------------------
+FOUND 8 ERROR(S) AFFECTING 7 LINE(S)
+--------------------------------------------------------------------------------
+  2 | ERROR | Missing file doc comment
+  5 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces but
+    |       | found 1.
+  6 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+  7 | ERROR | Content of the @author tag must be in the form "Display Name
+    |       | <username@example.com>"
+  7 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+    |       | found 1.
+  8 | ERROR | @copyright tag must contain a year and the name of the copyright
+    |       | holder
+  9 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+ 10 | ERROR | Missing @link tag in class comment
+--------------------------------------------------------------------------------
+
+
+FILE: ...l/Symmetrics/TrustedRating/controllers/Admin/RegistrationController.php
+--------------------------------------------------------------------------------
+FOUND 8 ERROR(S) AFFECTING 7 LINE(S)
+--------------------------------------------------------------------------------
+  2 | ERROR | Missing file doc comment
+  5 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces but
+    |       | found 1.
+  6 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+  7 | ERROR | Content of the @author tag must be in the form "Display Name
+    |       | <username@example.com>"
+  7 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+    |       | found 1.
+  8 | ERROR | @copyright tag must contain a year and the name of the copyright
+    |       | holder
+  9 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+ 10 | ERROR | Missing @link tag in class comment
+--------------------------------------------------------------------------------
+
+
+FILE: ...tedrating/build/app/code/local/Symmetrics/TrustedRating/Helper/Data.php
+--------------------------------------------------------------------------------
+FOUND 13 ERROR(S) AFFECTING 9 LINE(S)
+--------------------------------------------------------------------------------
+  2 | ERROR | Missing file doc comment
+  3 | ERROR | There must be exactly one blank line before the tags in class
+    |       | comments
+  3 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces but
+    |       | found 1.
+  4 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+  5 | ERROR | Content of the @author tag must be in the form "Display Name
+    |       | <username@example.com>"
+  5 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+    |       | found 1.
+  6 | ERROR | @copyright tag must contain a year and the name of the copyright
+    |       | holder
+  7 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+  8 | ERROR | Missing @link tag in class comment
+ 14 | ERROR | Missing comment for param "$node" at position 1
+ 15 | ERROR | Last parameter comment requires a blank newline after it
+ 15 | ERROR | The comments for parameters $node (1) and $key (2) do not align
+ 15 | ERROR | Missing comment for param "$key" at position 2
+--------------------------------------------------------------------------------
+
+
+FILE: ...rating/build/app/code/local/Symmetrics/TrustedRating/Model/Observer.php
+--------------------------------------------------------------------------------
+FOUND 30 ERROR(S) AFFECTING 17 LINE(S)
+--------------------------------------------------------------------------------
+   2 | ERROR | Missing file doc comment
+   5 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces
+     |       | but found 1.
+   6 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+     |       | found 1.
+   7 | ERROR | Content of the @author tag must be in the form "Display Name
+     |       | <username@example.com>"
+   7 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+     |       | found 1.
+   8 | ERROR | @copyright tag must contain a year and the name of the copyright
+     |       | holder
+   9 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+     |       | found 1.
+  10 | ERROR | Missing @link tag in class comment
+  26 | ERROR | Last parameter comment requires a blank newline after it
+  26 | ERROR | Missing comment for param "$tableName" at position 1
+  37 | ERROR | Last parameter comment requires a blank newline after it
+  37 | ERROR | Missing comment for param "$observer" at position 1
+  53 | ERROR | Last parameter comment requires a blank newline after it
+  53 | ERROR | Missing comment for param "$observer" at position 1
+  92 | ERROR | Last parameter comment requires a blank newline after it
+  92 | ERROR | Missing comment for param "$shippmentIds" at position 1
+ 124 | ERROR | Missing comment for param "$orderId" at position 1
+ 125 | ERROR | Last parameter comment requires a blank newline after it
+ 125 | ERROR | The variable names for parameters $orderId (1) and
+     |       | $customerEmail (2) do not align
+ 125 | ERROR | The comments for parameters $orderId (1) and $customerEmail (2)
+     |       | do not align
+ 125 | ERROR | Missing comment for param "$customerEmail" at position 2
+ 146 | ERROR | Last parameter comment requires a blank newline after it
+ 146 | ERROR | Missing comment for param "$shipmentId" at position 1
+ 203 | ERROR | Doc comment for "$storeId" missing
+ 224 | ERROR | Doc comment var "$send_data" does not match actual variable name
+     |       | "$sendData" at position 1
+ 224 | ERROR | Missing comment for param "$send_data" at position 1
+ 225 | ERROR | Last parameter comment requires a blank newline after it
+ 225 | ERROR | The comments for parameters $send_data (1) and $soap_url (2) do
+     |       | not align
+ 225 | ERROR | Doc comment var "$soap_url" does not match actual variable name
+     |       | "$soapUrl" at position 2
+ 225 | ERROR | Missing comment for param "$soap_url" at position 2
+--------------------------------------------------------------------------------
+
+
+FILE: ...tedrating/build/app/code/local/Symmetrics/TrustedRating/Model/Setup.php
+--------------------------------------------------------------------------------
+FOUND 16 ERROR(S) AFFECTING 11 LINE(S)
+--------------------------------------------------------------------------------
+  2 | ERROR | Missing file doc comment
+  5 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces but
+    |       | found 1.
+  6 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+  7 | ERROR | Content of the @author tag must be in the form "Display Name
+    |       | <username@example.com>"
+  7 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+    |       | found 1.
+  8 | ERROR | @copyright tag must contain a year and the name of the copyright
+    |       | holder
+  9 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+ 10 | ERROR | Missing @link tag in class comment
+ 26 | ERROR | Missing comment for param "$node" at position 1
+ 27 | ERROR | Last parameter comment requires a blank newline after it
+ 27 | ERROR | The comments for parameters $node (1) and $nextNode (2) do not
+    |       | align
+ 27 | ERROR | Missing comment for param "$nextNode" at position 2
+ 53 | ERROR | Last parameter comment requires a blank newline after it
+ 53 | ERROR | Missing comment for param "$filename" at position 1
+ 64 | ERROR | Last parameter comment requires a blank newline after it
+ 64 | ERROR | Missing comment for param "$emailData" at position 1
+--------------------------------------------------------------------------------
+
+
+FILE: ...g/build/app/code/local/Symmetrics/TrustedRating/Model/System/Rating.php
+--------------------------------------------------------------------------------
+FOUND 8 ERROR(S) AFFECTING 7 LINE(S)
+--------------------------------------------------------------------------------
+  2 | ERROR | Missing file doc comment
+  5 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces but
+    |       | found 1.
+  6 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+  7 | ERROR | Content of the @author tag must be in the form "Display Name
+    |       | <username@example.com>"
+  7 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+    |       | found 1.
+  8 | ERROR | @copyright tag must contain a year and the name of the copyright
+    |       | holder
+  9 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+ 10 | ERROR | Missing @link tag in class comment
+--------------------------------------------------------------------------------
+
+
+FILE: ...g/build/app/code/local/Symmetrics/TrustedRating/Model/Trustedrating.php
+--------------------------------------------------------------------------------
+FOUND 14 ERROR(S) AFFECTING 11 LINE(S)
+--------------------------------------------------------------------------------
+   2 | ERROR | Missing file doc comment
+   5 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces
+     |       | but found 1.
+   6 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+     |       | found 1.
+   7 | ERROR | Content of the @author tag must be in the form "Display Name
+     |       | <username@example.com>"
+   7 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+     |       | found 1.
+   8 | ERROR | @copyright tag must contain a year and the name of the copyright
+     |       | holder
+   9 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+     |       | found 1.
+  10 | ERROR | Missing @link tag in class comment
+  79 | ERROR | Last parameter comment requires a blank newline after it
+  79 | ERROR | Missing comment for param "$type" at position 1
+ 181 | ERROR | Missing comment for param "$type" at position 1
+ 182 | ERROR | Last parameter comment requires a blank newline after it
+ 182 | ERROR | Missing comment for param "$tsId" at position 2
+ 217 | ERROR | Doc comment for "$tsId" missing
+--------------------------------------------------------------------------------
+
+
+FILE: ...mmetrics/TrustedRating/sql/trustedrating_setup/mysql4-install-0.1.5.php
+--------------------------------------------------------------------------------
+FOUND 7 ERROR(S) AFFECTING 6 LINE(S)
+--------------------------------------------------------------------------------
+  5 | ERROR | @category tag comment indented incorrectly. Expected 2 spaces but
+    |       | found 1.
+  6 | ERROR | @package tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+  7 | ERROR | Content of the @author tag must be in the form "Display Name
+    |       | <username@example.com>"
+  7 | ERROR | @author tag comment indented incorrectly. Expected 4 spaces but
+    |       | found 1.
+  8 | ERROR | @copyright tag must contain a year and the name of the copyright
+    |       | holder
+  9 | ERROR | @license tag comment indented incorrectly. Expected 3 spaces but
+    |       | found 1.
+ 10 | ERROR | Missing @link tag in file comment
+--------------------------------------------------------------------------------
+
