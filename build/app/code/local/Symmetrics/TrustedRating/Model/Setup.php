@@ -100,13 +100,13 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
                 Mage::log($e->getMessage());
         }
         $model = Mage::getModel('core/email_template');
-            $template = $model->setTemplateSubject($emailData['template_subject'])
-                ->setTemplateCode($emailData['template_code'])
-                ->setTemplateText($this->getTemplateContent($emailData['text']))
-                ->setTemplateType($emailData['template_type'])
-                ->setModifiedAt(Mage::getSingleton('core/date')->gmtDate())
-                ->save();
+        $template = $model->setTemplateSubject($emailData['template_subject'])
+            ->setTemplateCode($emailData['template_code'])
+            ->setTemplateText($this->getTemplateContent($emailData['text']))
+            ->setTemplateType($emailData['template_type'])
+            ->setModifiedAt(Mage::getSingleton('core/date')->gmtDate())
+            ->save();
 
-            $this->setConfigData($emailData['config_data_path'], $template->getId());
+        $this->setConfigData($emailData['config_data_path'], $template->getId());
     }
 }

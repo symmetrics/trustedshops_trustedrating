@@ -37,7 +37,7 @@ class Symmetrics_TrustedRating_Model_System_Rating
     /**
      * options
      *
-     * @var null
+     * @var array
      */
     protected $_options = null;
 
