@@ -45,7 +45,7 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
             $buyerEmail = base64_encode($data['buyerEmail']);
             $baseUrl = Mage::getBaseUrl('web');
             $orderId = base64_encode($data['orderId']);
-            $link = '<a href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html';
+            $link = '<a target="_blank" href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html';
             $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $orderId . '">';
             $widgetSrc = $baseUrl . $data['imageLocalPath'] . $data['widgetName'];
             $widget = '<img border="0" alt="" src="' . $widgetSrc . '"/></a>';

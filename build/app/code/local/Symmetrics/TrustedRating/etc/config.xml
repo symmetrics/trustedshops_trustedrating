@@ -176,7 +176,7 @@
                         <execute>1</execute>
                         <template_code>Trustedrating Mail</template_code>
                         <template_type>2</template_type>
-                        <template_subject>Bewertung für TrustedShops</template_subject>
+                        <template_subject>Trusted Shops Kundenbewertung</template_subject>
                         <config_data_path>sales_email/trustedrating/template</config_data_path>
                         <text>app/locale/de_DE/template/trustedrating/email/trustedrating_email.html</text>
                     </trustedrating_mail>
