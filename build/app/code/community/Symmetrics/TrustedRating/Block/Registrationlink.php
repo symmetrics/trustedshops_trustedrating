@@ -48,10 +48,10 @@ class Symmetrics_TrustedRating_Block_Registrationlink extends Mage_Core_Block_Te
             return null;
         }
 
-        $languageLabel = $this->_getLanguageLabel();
-        $registrationlinkData = $this->_getRegistrationLink();
+        $registrationlinkData = $this->_getRegistrationLinkData();
         $target = $registrationlinkData['target'];
         $text = $registrationlinkData['text'];
+        $languageLabel = $this->__('Shop Language'). '<font color="red">*</font>';
 
         $link = '<a href = "' . $target . '" target = "_blank">' . $text . '</a>';
 
@@ -68,27 +68,15 @@ class Symmetrics_TrustedRating_Block_Registrationlink extends Mage_Core_Block_Te
     }
     
     /**
-     * gets the translated label for shop language tab
-     *
-     * @return string
-     */
-    private function _getLanguageLabel()
-    {
-        return $this->__('Shop Language'). '<font color="red">*</font>';
-    }
-    
-    /**
      * Returns the data for the registration link
      * 
      * @return array
      */
-    private function _getRegistrationLink()
+    private function _getRegistrationLinkData()
     {
-        $registrationLink = array(
+        return array(
             'target' => Mage::getBaseUrl() . 'admin/registration',
             'text' => $this->__('Link to the registration on Trusted Shops Rating'),
         );
-        
-        return $registrationLink;
     }
 }

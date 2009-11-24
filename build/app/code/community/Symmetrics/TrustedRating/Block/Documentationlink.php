@@ -41,7 +41,7 @@ class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_T
      */
     protected function _toHtml()
     {
-        $documentationlinkData = $this->_getDocumentationLink();
+        $documentationlinkData = $this->_getDocumentationLinkData();
         $target = $documentationlinkData['target'];
         $text = $documentationlinkData['text'];
         $link = '<a href = "' . $target . '" target = "_blank">' . $text . '</a>';
@@ -61,13 +61,11 @@ class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_T
      * 
      * @return array
      */
-    private function _getDocumentationLink()
+    private function _getDocumentationLinkData()
     {
-        $documentationlink = array(
+        return array(
             'target' => Mage::getBaseUrl('web') . 'media/TS_Kundenbewertung_Magento_v1_0.pdf',
             'text' => $this->__('Trusted Shops Documentation'),
         );
-        
-        return $documentationlink;
     }
 }
