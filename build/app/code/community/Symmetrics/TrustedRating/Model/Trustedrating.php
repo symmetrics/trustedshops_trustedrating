@@ -104,12 +104,12 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      *
      * @return string
      */
-     public function getRatingLinkData($type) 
-     {
+    public function getRatingLinkData($type) 
+    {
         $optionValue = Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage');
         $link = Mage::helper('trustedrating')->getConfig($type, $optionValue);
         return $link;
-     }
+    }
         
     /**
      * returns true, if the current language is choosen in the trusted rating config
@@ -253,8 +253,8 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      * 
      * @return string
      */
-     public function getRegistrationLink() 
-     {
+    public function getRegistrationLink() 
+    {
         $link = self::REGISTRATION_LINK;
         $link .= 'partnerPackage=' . Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage');
 
@@ -262,7 +262,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         if (!$data = Mage::getStoreConfig('general/impressum')) {
             return false;
         }
-        
+
         $params = array(
             'company' => $data['company1'],
             'website' => $data['web'],
@@ -279,5 +279,5 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         }
 
         return $link;
-     }
+    }
 }
