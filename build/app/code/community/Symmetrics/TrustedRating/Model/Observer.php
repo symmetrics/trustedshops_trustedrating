@@ -99,6 +99,7 @@ class Symmetrics_TrustedRating_Model_Observer
         if (!$dayInterval = $this->_getDayInterval()) {
             return false;
         }
+        
         $from = $dayInterval['from'];
         $to = $dayInterval['to'];
         
@@ -114,7 +115,7 @@ class Symmetrics_TrustedRating_Model_Observer
       }
       
       /**
-       * sending mail
+       * sending mail and saves entry to db
        * 
        * @param array $shippmentIds shippmentId
        *
@@ -123,34 +124,69 @@ class Symmetrics_TrustedRating_Model_Observer
        private function _sendTrustedRatingMails($shippmentIds) 
        {
            foreach ($shippmentIds as $shipmentId) {
-               $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
-               $orderId = $shipment->getData('order_id');
-               $customerId = $shipment->getData('customer_id');
-               $customer = Mage::getModel('customer/customer')->load($customerId);
-               $customerEmail = $customer->getData('email');
+               $orderId = $this->_getOrderId($shipmentId);
+               $customerEmail = $this->_getCustomerEmail($shipmentId);
                
-               $mailTemplate = Mage::getModel('core/email_template');
-               $template = Mage::getStoreConfig(self::XML_PATH_SYMMETRICS_TRUSTEDRATING_EMAIL_TEMPLATE);
-               
-               $mailTemplate->sendTransactional(
-                   $template,
-                   Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY),
-                   $customerEmail, //replace through your own when you want to test it
-                   $customerEmail,
-                   array (
-                       'emailwidget' => $this->_getEmailWidgetLink($orderId, $customerEmail)
-                    )		
-               );
-            $this->_saveShippmentIdToTable($shipmentId);
+               $this->_sendTransactionalMail($orderId, $customerEmail);
+               $this->_saveShippmentIdToTable($shipmentId);
            }
-            
        }
+        
+        /**
+         * sending Transactional Email
+         * 
+         * @param int    $orderId       Order Id
+         * @param string $customerEmail Customer Email
+         *
+         * @return void
+         */
+         private function _sendTransactionalMail($orderId, $customerEmail) 
+         {
+             $mailTemplate = Mage::getModel('core/email_template');
+             $template = Mage::getStoreConfig(self::XML_PATH_SYMMETRICS_TRUSTEDRATING_EMAIL_TEMPLATE);
+             
+             $mailTemplate->sendTransactional(
+                 $template,
+                 Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY),
+                 $customerEmail, //replace through your own when you want to test it
+                 $customerEmail,
+                 array('emailwidget' => $this->_getEmailWidgetLink($orderId, $customerEmail))      
+             );
+         }
+        /**
+         * gets Customer Email by Shippment Id
+         * 
+         * @param int $shipmentId Shippment Id
+         *
+         * @return string
+         */
+         private function _getCustomerEmail($shipmentId) 
+         {
+             $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
+             $customerId = $shipment->getData('customer_id');
+             $customer = Mage::getModel('customer/customer')->load($customerId);
+             
+             return $customer->getData('email');
+         }
+         
+         /**
+          * get Order id by Shippment Id
+          * 
+          * @param int $shipmentId Shippment Id
+          *
+          * @return int
+          */
+          private function _getOrderId($shipmentId) 
+          {
+              $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
+              
+              return $shipment->getData('order_id');
+          }
        
        /**
         * gets email widget
         * 
         * @param int    $orderId       Order Id
-        *
         * @param string $customerEmail Customer Email
         *
         * @return string
@@ -214,7 +250,7 @@ class Symmetrics_TrustedRating_Model_Observer
          */
          private function _getDayInterval() 
          {
-             $from = '2009-01-01 00:00:00';
+             $from = '1970-01-01 00:00:00';
              
              if (!$dayInterval = Mage::getStoreConfig('trustedrating/trustedrating_email/days')) {
                  return false;

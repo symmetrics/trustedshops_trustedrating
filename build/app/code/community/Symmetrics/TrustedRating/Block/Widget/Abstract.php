@@ -61,28 +61,4 @@ class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Tem
                 break;
         }
     }
-    
-    /**
-     * Returns the data for the registration link
-     * 
-     * @return array
-     */
-    public function getRegistrationLink()
-    {
-        $registrationLink = array ('target' => Mage::getBaseUrl() . 'admin/registration',
-                                   'text' => $this->__('Link to the registration on Trusted Shops Rating')
-        );
-        
-        return $registrationLink;
-    }
-    
-    /**
-     * gets the translated label for shop language tab
-     *
-     * @return string
-     */
-    public function getLanguageLabel()
-    {
-        return $this->__('Shop Language'). '<font color="red">*</font>';
-    }
 }

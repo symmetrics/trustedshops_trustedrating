@@ -41,11 +41,15 @@ class Symmetrics_TrustedRating_Block_Registrationlink extends Symmetrics_Trusted
      */
     protected function _toHtml()
     {   
-        if (!strpos($_SERVER['PHP_SELF'], 'section/trustedrating')) {
+        $request = Mage::app()->getFrontController()->getRequest();
+        $currentUrl = $request->getServer('PATH_INFO');
+
+        if (!strpos($currentUrl, 'section/trustedrating')) {
             return null;
         }
-        $languageLabel = $this->getLanguageLabel();
-        $registrationlinkData = $this->getRegistrationLink();
+
+        $languageLabel = $this->_getLanguageLabel();
+        $registrationlinkData = $this->_getRegistrationLink();
         $target = $registrationlinkData['target'];
         $text = $registrationlinkData['text'];
 
@@ -59,6 +63,31 @@ class Symmetrics_TrustedRating_Block_Registrationlink extends Symmetrics_Trusted
                 languageLabel.innerHTML = \'' . $languageLabel . '\';
             });
         </script>';
+        
+        return $registrationLink;
+    }
+    
+    /**
+     * gets the translated label for shop language tab
+     *
+     * @return string
+     */
+    private function _getLanguageLabel()
+    {
+        return $this->__('Shop Language'). '<font color="red">*</font>';
+    }
+    
+    /**
+     * Returns the data for the registration link
+     * 
+     * @return array
+     */
+    private function _getRegistrationLink()
+    {
+        $registrationLink = array(
+            'target' => Mage::getBaseUrl() . 'admin/registration',
+            'text' => $this->__('Link to the registration on Trusted Shops Rating'),
+        );
         
         return $registrationLink;
     }
