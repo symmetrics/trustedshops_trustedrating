@@ -32,63 +32,42 @@
   * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
   * @link      http://www.symmetrics.de/
   */
-class Symmetrics_TrustedRating_Block_Registrationlink extends Mage_Core_Block_Template
+class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_Template
 {
     /**
-     * return the Trusted Rating Registration Link and the js-function to put it into the comment-field
+     * return the Documentation - Pdf -Link and the js-function to put it into the comment-field
      * 
      * @return string
      */
     protected function _toHtml()
-    {   
-        $request = Mage::app()->getFrontController()->getRequest();
-        $currentUrl = $request->getServer('PATH_INFO');
-
-        if (!strpos($currentUrl, 'section/trustedrating')) {
-            return null;
-        }
-
-        $languageLabel = $this->_getLanguageLabel();
-        $registrationlinkData = $this->_getRegistrationLink();
-        $target = $registrationlinkData['target'];
-        $text = $registrationlinkData['text'];
-
+    {
+        $documentationlinkData = $this->_getDocumentationLink();
+        $target = $documentationlinkData['target'];
+        $text = $documentationlinkData['text'];
         $link = '<a href = "' . $target . '" target = "_blank">' . $text . '</a>';
 
-        $registrationLink = '<script type="text/javascript">
+        $pdflink = '<script type="text/javascript">
             document.observe(\'dom:loaded\', function() {
-                var comment = $$(\'#trustedrating_trustedrating_registration div\')[0];
-                comment.innerHTML = \'' . $link . '\';
-                var languageLabel = $$(\'#trustedrating_data label\')[1];
-                languageLabel.innerHTML = \'' . $languageLabel . '\';
+                $(\'trustedrating_info\').style.display=\'block\';
+                $(\'pdflink\').innerHTML = \'' . $link . '\';
             });
         </script>';
         
-        return $registrationLink;
+        return $pdflink;
     }
     
     /**
-     * gets the translated label for shop language tab
-     *
-     * @return string
-     */
-    private function _getLanguageLabel()
-    {
-        return $this->__('Shop Language'). '<font color="red">*</font>';
-    }
-    
-    /**
-     * Returns the data for the registration link
+     * Returns the data for the pdf link
      * 
      * @return array
      */
-    private function _getRegistrationLink()
+    private function _getDocumentationLink()
     {
-        $registrationLink = array(
-            'target' => Mage::getBaseUrl() . 'admin/registration',
-            'text' => $this->__('Link to the registration on Trusted Shops Rating'),
+        $documentationlink = array(
+            'target' => Mage::getBaseUrl('web') . 'media/TS_Kundenbewertung_Magento_v1_0.pdf',
+            'text' => $this->__('Trusted Shops Documentation'),
         );
         
-        return $registrationLink;
+        return $documentationlink;
     }
 }
