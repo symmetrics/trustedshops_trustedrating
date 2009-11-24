@@ -21,17 +21,17 @@
  * @link      http://www.symmetrics.de/
  */
  
- /**
-  * Symmetrics_TrustedRating_Model_System_Rating
-  *
-  * @category  Symmetrics
-  * @package   Symmetrics_TrustedRating
-  * @author    symmetrics gmbh <info@symmetrics.de>
-  * @author    Siegfried Schmitz <ss@symmetrics.de>
-  * @copyright 2009 Symmetrics Gmbh
-  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-  * @link      http://www.symmetrics.de/
-  */
+/**
+ * Symmetrics_TrustedRating_Model_System_Rating
+ *
+ * @category  Symmetrics
+ * @package   Symmetrics_TrustedRating
+ * @author    symmetrics gmbh <info@symmetrics.de>
+ * @author    Siegfried Schmitz <ss@symmetrics.de>
+ * @copyright 2009 Symmetrics Gmbh
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      http://www.symmetrics.de/
+ */
 class Symmetrics_TrustedRating_Model_System_Rating
 {
     /**

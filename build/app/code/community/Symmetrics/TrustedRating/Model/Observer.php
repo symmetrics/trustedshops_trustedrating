@@ -21,17 +21,17 @@
  * @link      http://www.symmetrics.de/
  */
  
- /**
-  * Symmetrics_TrustedRating_Model_Observer
-  *
-  * @category  Symmetrics
-  * @package   Symmetrics_TrustedRating
-  * @author    symmetrics gmbh <info@symmetrics.de>
-  * @author    Siegfried Schmitz <ss@symmetrics.de>
-  * @copyright 2009 Symmetrics Gmbh
-  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-  * @link      http://www.symmetrics.de/
-  */
+/**
+ * Symmetrics_TrustedRating_Model_Observer
+ *
+ * @category  Symmetrics
+ * @package   Symmetrics_TrustedRating
+ * @author    symmetrics gmbh <info@symmetrics.de>
+ * @author    Siegfried Schmitz <ss@symmetrics.de>
+ * @copyright 2009 Symmetrics Gmbh
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      http://www.symmetrics.de/
+ */
 class Symmetrics_TrustedRating_Model_Observer
 {
     /**
@@ -180,8 +180,7 @@ class Symmetrics_TrustedRating_Model_Observer
     private function _getOrderId($shipmentId) 
     {
         $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
-          
-         return $shipment->getData('order_id');
+        return $shipment->getData('order_id');
     }
        
     /**
@@ -254,8 +253,9 @@ class Symmetrics_TrustedRating_Model_Observer
         $from = '1970-01-01 00:00:00';
 
         if (!$dayInterval = Mage::getStoreConfig('trustedrating/trustedrating_email/days')) {
-         return false;
+            return false;
         }
+
         $intervalSeconds = $dayInterval * 24 * 60 * 60;
         $date = new Zend_Date();
         $timestamp = $date->get();
@@ -263,8 +263,8 @@ class Symmetrics_TrustedRating_Model_Observer
         $diff = $timestamp - $intervalSeconds;
 
         return array(
-        'from' => $from,
-        'to' => date("Y-m-d H:i:s", $diff)
+            'from' => $from,
+            'to' => date("Y-m-d H:i:s", $diff)
         );
     }
     
