@@ -36,11 +36,15 @@ class Symmetrics_TrustedRating_Model_Observer
 {
     /**
      * config path to email template
+     *
+     * @var string
      */
     const XML_PATH_SYMMETRICS_TRUSTEDRATING_EMAIL_TEMPLATE = 'sales_email/trustedrating/template';
     
     /**
      * email identity path
+     *
+     * @var string
      */
     const XML_PATH_EMAIL_IDENTITY = 'sales_email/order/identity';
     
