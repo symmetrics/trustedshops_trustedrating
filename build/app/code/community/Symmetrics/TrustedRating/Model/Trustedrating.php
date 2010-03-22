@@ -93,7 +93,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
     public function getIsActive()
     {
-        return Mage::getStoreConfig('trustedrating/status/trustedrating_active');
+        return Mage::helper('trustedrating')->getIsActive();
     }
     
     /**

@@ -86,7 +86,7 @@ class Symmetrics_TrustedRating_Model_Observer
      */
     public function checkSendRatingEmail($observer) 
     {
-        if ($shippmentIds = $this->_checkShippings()) {
+        if ($this->isActive() && $shippmentIds = $this->_checkShippings()) {
             $this->_sendTrustedRatingMails($shippmentIds);
         } else {
             Mage::log('nothing to send');
@@ -254,8 +254,13 @@ class Symmetrics_TrustedRating_Model_Observer
      */
     private function _getDayInterval() 
     {
-        $from = '1970-01-01 00:00:00';
-
+        $from = $this->getHelper()->getActiveSince();
+        $dateValidation = new Zend_Validate_Date();
+        $dateValidation->setFormat(Varien_Date::DATETIME_INTERNAL_FORMAT);
+        if (!$dateValidation->isValid($from)) {
+            $from = '1970-01-01 00:00:00';
+        }
+        
         if (!$dayInterval = Mage::getStoreConfig('trustedrating/trustedrating_email/days')) {
             return false;
         }
@@ -296,7 +301,6 @@ class Symmetrics_TrustedRating_Model_Observer
      * calling the soap api from trusted rating
      * 
      * @param array $sendData data to send
-     *
      * @param array $soapUrl  soap url
      *
      * @return string
@@ -320,5 +324,25 @@ class Symmetrics_TrustedRating_Model_Observer
         }
 
         return $returnValue;
+    }
+    
+    /**
+     * Return helper object
+     * 
+     * @return Symmetrics_TrustedRating_Helper_Data
+     */
+    public function getHelper()
+    {
+        return Mage::helper('trustedrating');
+    }
+    
+    /**
+     * Check wether module is active or not
+     * 
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return (bool)$this->getHelper()->getIsActive();
     }
 }

@@ -114,6 +114,15 @@
                                 <show_in_website>1</show_in_website>
                                 <show_in_store>1</show_in_store>
                             </trustedrating_active>
+                            <trustedrating_datelimit translate="label comment">
+                                <label>Include orders (shipments) which are after</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>30</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                                <comment>Please note that if you enter some date in the past, all customers which ordered something from than on will receive an email from this module. Format: yyyy-MM-dd HH:mm:ss NOTE: If the date is not in the given format, all orders will be included.</comment>
+                            </trustedrating_datelimit>
                         </fields>
                 </status>
                 <trustedrating_email translate="label">
