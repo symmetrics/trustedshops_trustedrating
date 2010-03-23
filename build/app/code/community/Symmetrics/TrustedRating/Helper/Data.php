@@ -76,6 +76,12 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getActiveSince()
     {
-        return $this->getModuleConfig('trustedrating_datelimit');
+        $dateconfig = $this->getConfig('trustedrating', 'status');
+        $activeDate = $dateconfig['datelimit_y'] . '-';
+        $activeDate .= $dateconfig['datelimit_m'] . '-';
+        $activeDate .= $dateconfig['datelimit_d'] . ' ';
+        $activeDate .= $dateconfig['datelimit_h'] . ':';
+        $activeDate .= $dateconfig['datelimit_i'];
+        return $activeDate;
     }
 }
