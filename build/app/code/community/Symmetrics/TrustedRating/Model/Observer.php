@@ -257,8 +257,9 @@ class Symmetrics_TrustedRating_Model_Observer
         $from = $this->getHelper()->getActiveSince();
         $dateValidation = new Zend_Validate_Date();
         $dateValidation->setFormat(Varien_Date::DATETIME_INTERNAL_FORMAT);
+        // If date is in the wrong format, use now + 3 days
         if (!$dateValidation->isValid($from)) {
-            $from = '1970-01-01 00:00:00';
+            $from = date('Y-m-d H:i:s', time() + 103680);
         }
         
         if (!$dayInterval = Mage::getStoreConfig('trustedrating/trustedrating_email/days')) {
