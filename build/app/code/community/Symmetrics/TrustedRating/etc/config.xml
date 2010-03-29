@@ -37,7 +37,16 @@
         <models>
             <trustedrating>
                 <class>Symmetrics_TrustedRating_Model</class>
+                <resourceModel>trustedrating_mysql4</resourceModel>
             </trustedrating>
+            <trustedrating_mysql4>
+                <class>Symmetrics_TrustedRating_Model_Mysql4</class>
+                <entities>
+                    <mail>
+                        <table>symmetrics_trustedrating_emails</table>
+                    </mail>
+                </entities>
+            </trustedrating_mysql4>
         </models>
         <blocks>
             <trustedrating>

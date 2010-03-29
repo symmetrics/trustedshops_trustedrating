@@ -47,18 +47,6 @@ class Symmetrics_TrustedRating_Model_Observer
      * @var string
      */
     const XML_PATH_EMAIL_IDENTITY = 'sales_email/order/identity';
-    
-    /**
-     * Get table name
-     *
-     * @param string $tableName Name of Table
-     *
-     * @return string
-     */
-    public function getTable($tableName) 
-    {
-        return Mage::getSingleton('core/resource')->getTableName($tableName);
-    }
         
     /**
      * Change the status (active, inactive) by sending an api call to Trusted Shops
@@ -86,8 +74,8 @@ class Symmetrics_TrustedRating_Model_Observer
      */
     public function checkSendRatingEmail($observer) 
     {
-        if ($this->isActive() && $shippmentIds = $this->_checkShippings()) {
-            $this->_sendTrustedRatingMails($shippmentIds);
+        if ($this->isActive() && $shipmentIds = $this->_checkShippings()) {
+            $this->_sendTrustedRatingMails($shipmentIds);
         } else {
             Mage::log('nothing to send');
         }
@@ -121,18 +109,18 @@ class Symmetrics_TrustedRating_Model_Observer
     /**
      * Send mail and save entry to db
      * 
-     * @param array $shippmentIds shippmentId
+     * @param array $shipmentIds Shipment IDs
      *
      * @return void
      */
-    private function _sendTrustedRatingMails($shippmentIds) 
+    private function _sendTrustedRatingMails($shipmentIds) 
     { 
-       foreach ($shippmentIds as $shipmentId) {
+       foreach ($shipmentIds as $shipmentId) {
            $orderId = $this->_getOrderId($shipmentId);
            $customerEmail = $this->_getCustomerEmail($shipmentId);
        
            $this->_sendTransactionalMail($orderId, $customerEmail);
-           $this->_saveShippmentIdToTable($shipmentId);
+           $this->_saveShipmentIdToTable($shipmentId);
        }
     }
         
@@ -175,9 +163,9 @@ class Symmetrics_TrustedRating_Model_Observer
     }
          
     /**
-     * Get order ID by shippment ID
+     * Get order ID by shipment ID
      * 
-     * @param int $shipmentId Shippment Id
+     * @param int $shipmentId Shipment Id
      *
      * @return int
      */
@@ -217,12 +205,11 @@ class Symmetrics_TrustedRating_Model_Observer
      *
      * @return void
      */
-    private function _saveShippmentIdToTable($shipmentId) 
+    private function _saveShipmentIdToTable($shipmentId) 
     {
-        $write = Mage::getSingleton('core/resource')->getConnection('core_write');
-        $table = $this->getTable('symmetrics_trustedrating_emails');
-        $sql = 'INSERT INTO ' . $table . ' (shippment_id) VALUES (' . $shipmentId . ');';
-        $write->query($sql);
+        $mailModel = Mage::getModel('trustedrating/mail');
+        $mailModel->setShippmentId($shipmentId)
+            ->save();
     }
        
     /**
@@ -232,19 +219,11 @@ class Symmetrics_TrustedRating_Model_Observer
      */
     private function _getSentIds() 
     {
-        $read = Mage::getSingleton('core/resource')->getConnection('core_read');
-        $table = $this->getTable('symmetrics_trustedrating_emails');
-        $sql = 'SELECT shippment_id FROM ' . $table . ';';
-        $readresult = $read->query($sql);
-        if (!$result = $readresult->fetchAll()) {
-            return array('');
-        }
+        $mailModel = Mage::getModel('trustedrating/mail');
+        $collection = $mailModel->getCollection()->load();
+        $shipmentIds = $collection->getAllIds();
         
-        foreach ($result as $id) {
-            $shippmentIds[] = $id['shippment_id'];
-        }
-        
-        return $shippmentIds;
+        return $shipmentIds;
     }
         
     /**
