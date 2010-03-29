@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Model_System_Date
+ * Drop Down for Hour
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -32,38 +32,15 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
-class Symmetrics_TrustedRating_Model_System_Date_Hour extends Mage_Eav_Model_Entity_Attribute_Source_Abstract
+class Symmetrics_TrustedRating_Model_System_Date_Hour extends Symmetrics_TrustedRating_Model_System_Date_Abstract
 {
     /**
-     * return option array
-     * 
-     * @return array
-     */
-    public function getOptionArray()
-    {
-        return $this->getAllOptions();
-    }
-    
-    /**
-     * return option array
+     * Generate array with 0 to 23
      * 
      * @return array
      */
     public function getAllOptions()
     {
-        for ($option=0;$option<=23;$option++) {
-            $options[$option] = $option;
-        }
-        return $options;
-    }
-    
-    /**
-     * return option array
-     * 
-     * @return array
-     */
-    public function toOptionArray()
-    {
-        return $this->getAllOptions();
+        return $this->buildNumericOptions(0, 23);
     }
 }

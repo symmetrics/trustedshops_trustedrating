@@ -22,7 +22,7 @@
  */
  
 /**
- * Drop-Down for minute
+ * Symmetrics_TrustedRating_Model_System_Date
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -32,15 +32,38 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
-class Symmetrics_TrustedRating_Model_System_Date_Minute extends Symmetrics_TrustedRating_Model_System_Date_Abstract
+class Symmetrics_TrustedRating_Model_System_Date_Abstract extends Mage_Eav_Model_Entity_Attribute_Source_Abstract
 {
     /**
-     * Generate array with 0 to 59
+     * return option array
      * 
      * @return array
      */
-    public function getAllOptions()
+    public function getOptionArray()
     {
-        return $this->buildNumericOptions(0, 59);
+        return $this->getAllOptions();
+    }
+	
+    /**
+     * return option array
+     * 
+     * @return array
+     */
+    public function buildNumericOptions($start, $end)
+    {
+        for ($option=$start;$option<=$end;$option++) {
+            $options[$option] = $option;
+        }
+        return $options;
+    }
+	
+    /**
+     * return option array
+     * 
+     * @return array
+     */
+    public function toOptionArray()
+    {
+        return $this->getAllOptions();
     }
 }

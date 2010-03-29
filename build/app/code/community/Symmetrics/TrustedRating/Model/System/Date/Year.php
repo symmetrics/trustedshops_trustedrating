@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Model_System_Date
+ * Drop-Down for years
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -32,38 +32,15 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
-class Symmetrics_TrustedRating_Model_System_Date_Year extends Mage_Eav_Model_Entity_Attribute_Source_Abstract
+class Symmetrics_TrustedRating_Model_System_Date_Year extends Symmetrics_TrustedRating_Model_System_Date_Abstract
 {
     /**
-     * return option array
-     * 
-     * @return array
-     */
-    public function getOptionArray()
-    {
-        return $this->getAllOptions();
-    }
-    
-    /**
-     * return option array
+     * Generate array with 1970 to next year (e.g. 2011)
      * 
      * @return array
      */
     public function getAllOptions()
     {
-        for ($option=1970;$option<=(date('Y') + 1);$option++) {
-            $options[$option] = $option;
-        }
-        return $options;
-    }
-    
-    /**
-     * return option array
-     * 
-     * @return array
-     */
-    public function toOptionArray()
-    {
-        return $this->getAllOptions();
+        return $this->buildNumericOptions(1970, (date('Y') + 1));
     }
 }
