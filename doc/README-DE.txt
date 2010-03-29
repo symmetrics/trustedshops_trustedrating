@@ -22,10 +22,11 @@ Dieses Modul implementiert das Bewertungssystem von Trusted Shops (Trusted Ratin
 	eingebunden, das das Widget darstellt. In <checkout_onepage_success> wird ein neuer Block
 	hinzugefügt der die Grafik für die Bewertung darstellt (das ist eine andere Grafik und
 	verweist auf eine andere Bewertungsseite, hier wird gleichzeitig die email und die OrderId übertragen.)
-    Wenn sich jemand ins backend einloggt wird ein Event ausgelöst das alle Bestellungen die mindestens x
-    (Tage in der config einstellbar) Tage her sind (aber nach dem eingestellen Datum liegen) überprüft
+    Wenn sich jemand ins Backend einloggt wird ein Event ausgelöst das alle Bestellungen die mindestens x
+    (Tage in der config einstellbar) Tage her sind, aber nach dem eingestellen Datum liegen, überprüft
     ob sie schon eine TR-Mail bekommen haben. Wenn nein, wird eine versendet und die shipping-ID der
     Sendung in einer eigenen Tabelle gespeichert.
+    Der Zugriff auf diese Tabelle funktioniert über 3 Resource-Models (Data, Mysql, Collection).
     Per Javascript werden im Backend 2 links hinzugefügt (siehe F)
 
 ** PROBLEMS
