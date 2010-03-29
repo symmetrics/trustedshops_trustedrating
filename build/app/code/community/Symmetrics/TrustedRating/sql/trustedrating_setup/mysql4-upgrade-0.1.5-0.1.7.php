@@ -12,6 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@magentocommerce.com so we can send you a copy immediately.
  *
+ * Set the "include shippings after" date
+ *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
@@ -27,14 +29,14 @@ $installer->startSetup();
 $todayDate = Mage::app()->getLocale()->date();
 
 $config = array(
-    'datelimit_y' => $todayDate->toString('yyyy'),
-    'datelimit_m' => $todayDate->toString('MM'),
-    'datelimit_d' => $todayDate->toString('dd'),
-    'datelimit_h' => $todayDate->toString('HH'),
-    'datelimit_i' => $todayDate->toString('mm'),
+    'datelimit_y' => 'yyyy',
+    'datelimit_m' => 'MM',
+    'datelimit_d' => 'dd',
+    'datelimit_h' => 'HH',
+    'datelimit_i' => 'mm',
 );
 foreach ($config as $key => $value) {
-    $installer->setConfigData('trustedrating/status/' . $key, $value);
+    $installer->setConfigData('trustedrating/status/' . $key, $todayDate->toString($value));
 }
 
 $installer->endSetup();

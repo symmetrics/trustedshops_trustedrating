@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Block_Widget
+ * Generate the rating widget
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -35,7 +35,7 @@
 class Symmetrics_TrustedRating_Block_Widget extends Symmetrics_TrustedRating_Block_Widget_Abstract
 {
     /**
-     * returns the widget 
+     * Generate rating widget
      *
      * @return string
      */

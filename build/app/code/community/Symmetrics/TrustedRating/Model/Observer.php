@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Model_Observer
+ * Observer model
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -35,14 +35,14 @@
 class Symmetrics_TrustedRating_Model_Observer
 {
     /**
-     * config path to email template
+     * Config path to email template
      *
      * @var string
      */
     const XML_PATH_SYMMETRICS_TRUSTEDRATING_EMAIL_TEMPLATE = 'sales_email/trustedrating/template';
     
     /**
-     * email identity path
+     * Email identity path
      *
      * @var string
      */
@@ -61,7 +61,7 @@ class Symmetrics_TrustedRating_Model_Observer
     }
         
     /**
-     * change the activity status (active, inactive) by sending an api call to trusted rating
+     * Change the status (active, inactive) by sending an api call to Trusted Shops
      *
      * @param Varien_Event_Observer $observer Observer
      *
@@ -78,7 +78,7 @@ class Symmetrics_TrustedRating_Model_Observer
     }
     
     /**
-     * checks the shippings who needs an email
+     * Checks the shippings which will get an email
      * 
      * @param Varien_Event_Observer $observer Observer
      *
@@ -94,7 +94,7 @@ class Symmetrics_TrustedRating_Model_Observer
     }
      
     /**
-     * gets all shippings who are older then x days and are not in table
+     * Get all shippings which are older than x days and are not in table
      * 
      * @return boolean|array 
      */
@@ -119,7 +119,7 @@ class Symmetrics_TrustedRating_Model_Observer
     }
   
     /**
-     * sending mail and saves entry to db
+     * Send mail and save entry to db
      * 
      * @param array $shippmentIds shippmentId
      *
@@ -137,7 +137,7 @@ class Symmetrics_TrustedRating_Model_Observer
     }
         
     /**
-     * sending Transactional Email
+     * Send transactional email
      * 
      * @param int    $orderId       Order Id
      * @param string $customerEmail Customer Email
@@ -159,9 +159,9 @@ class Symmetrics_TrustedRating_Model_Observer
     }
      
     /**
-     * gets Customer Email by Shippment Id
+     * Get customer email by shipment Id
      * 
-     * @param int $shipmentId Shippment Id
+     * @param int $shipmentId Shipment Id
      *
      * @return string
      */
@@ -175,7 +175,7 @@ class Symmetrics_TrustedRating_Model_Observer
     }
          
     /**
-     * get Order id by Shippment Id
+     * Get order ID by shippment ID
      * 
      * @param int $shipmentId Shippment Id
      *
@@ -188,7 +188,7 @@ class Symmetrics_TrustedRating_Model_Observer
     }
        
     /**
-     * gets email widget
+     * Generate email widget code
      * 
      * @param int    $orderId       Order Id
      * @param string $customerEmail Customer Email
@@ -211,7 +211,7 @@ class Symmetrics_TrustedRating_Model_Observer
     }
        
     /**
-     * saves shipping-id to table who gots an email
+     * Save shipping ID of customers which got an email to table
      * 
      * @param int $shipmentId Shipping Id
      *
@@ -226,7 +226,7 @@ class Symmetrics_TrustedRating_Model_Observer
     }
        
     /**
-     * get all ids from trusted_rating - table who gots an email
+     * Get all IDs from trusted_rating table of customers which already got an email
      * 
      * @return array
      */
@@ -248,7 +248,8 @@ class Symmetrics_TrustedRating_Model_Observer
     }
         
     /**
-     * subs the days in the config (3 for default) from the actually date und returns the diff
+     * Substract the days in the config (3 for default) from the current date for upper limit
+     * and get the "include since" date (default: setup date) for lower limit; return both in array
      * 
      * @return array
      */
@@ -257,7 +258,7 @@ class Symmetrics_TrustedRating_Model_Observer
         $from = $this->getHelper()->getActiveSince();
         $dateValidation = new Zend_Validate_Date();
         $dateValidation->setFormat(Varien_Date::DATETIME_INTERNAL_FORMAT);
-        // If date is in the wrong format, use now + 3 days
+        // If date is in the wrong format, use now + 3 days to prevent anything from being sent
         if (!$dateValidation->isValid($from)) {
             $from = date('Y-m-d H:i:s', time() + 103680);
         }
@@ -279,7 +280,7 @@ class Symmetrics_TrustedRating_Model_Observer
     }
     
     /**
-     * collect the data for sending to trusted rating
+     * Collect the data for sending to Trusted Shops
      *
      * @param int $storeId storeID
      *
@@ -290,16 +291,16 @@ class Symmetrics_TrustedRating_Model_Observer
         $sendData = array();
 
         $sendData['tsId'] = Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
-        $sendData['activation'] = Mage::getStoreConfig('trustedrating/status/trustedrating_active', $storeId);
-        $sendData['wsUser'] = Mage::helper('trustedrating')->getConfig('soapapi', 'wsuser');
-        $sendData['wsPassword'] = Mage::helper('trustedrating')->getConfig('soapapi', 'wspassword');
-        $sendData['partnerPackage'] = Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage');
+        $sendData['activation'] = $this->isActive();
+        $sendData['wsUser'] = $this->getHelper()->getConfig('soapapi', 'wsuser');
+        $sendData['wsPassword'] = $this->getHelper()->getConfig('soapapi', 'wspassword');
+        $sendData['partnerPackage'] = $this->getHelper()->getConfig('soapapi', 'partnerpackage');
 
         return $sendData;   
     }
     
     /**
-     * calling the soap api from trusted rating
+     * Call the SOAP API of Trusted Shops
      * 
      * @param array $sendData data to send
      * @param array $soapUrl  soap url

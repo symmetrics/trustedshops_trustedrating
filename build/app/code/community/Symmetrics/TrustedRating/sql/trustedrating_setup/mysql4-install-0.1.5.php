@@ -12,6 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@magentocommerce.com so we can send you a copy immediately.
  *
+ * Get email templates and put them into the database
+ *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
@@ -23,7 +25,6 @@
 
 $installer = $this;
 $installer->startSetup();
-// execute emails
 
 foreach ($this->getConfigEmails() as $name => $data) {
     if ($data['execute'] == 1) {

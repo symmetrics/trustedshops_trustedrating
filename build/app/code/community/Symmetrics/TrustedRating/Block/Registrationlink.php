@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Block_Registrationlink
+ * Generate registration link
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -35,7 +35,7 @@
 class Symmetrics_TrustedRating_Block_Registrationlink extends Mage_Core_Block_Template
 {
     /**
-     * return the Trusted Rating Registration Link and the js-function to put it into the comment-field
+     * Generate the Trusted Rating registration link and the JS-function to put it into the comment-field
      * 
      * @return string
      */
@@ -68,7 +68,7 @@ class Symmetrics_TrustedRating_Block_Registrationlink extends Mage_Core_Block_Te
     }
     
     /**
-     * Returns the data for the registration link
+     * Generate the data for the registration link
      * 
      * @return array
      */

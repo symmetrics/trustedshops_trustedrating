@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Block_Email_Widget
+ * Generate the email widget
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -35,7 +35,7 @@
 class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRating_Block_Widget_Abstract
 {
     /**
-     * returns the email widget 
+     * Generate the email widget code
      *
      * @return string
      */
@@ -51,8 +51,7 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
             $widget = '<img border="0" alt="" src="' . $widgetSrc . '"/></a>';
             
             return $link . $params . $widget;
-        } else {
-            return null;
         }
+        return null;
     }
 }

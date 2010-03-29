@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Block_Registrationlink
+ * Generate documentation links for backend
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -35,7 +35,7 @@
 class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_Template
 {
     /**
-     * return the Documentation - Pdf -Link and the js-function to put it into the comment-field
+     * Generate the Documentation - Pdf -Link and the JS-function to put it into the comment-field
      * 
      * @return string
      */
@@ -57,7 +57,7 @@ class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_T
     }
     
     /**
-     * Returns the data for the pdf link
+     * Generate the data for the pdf link
      * 
      * @return array
      */
