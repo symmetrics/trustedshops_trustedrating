@@ -22,7 +22,7 @@
  */
  
 /**
- * Drop Down for Hour
+ * Drop-Down for Hours
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating

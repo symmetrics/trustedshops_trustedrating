@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Admin_RegistrationController
+ * Controller for Trusted Shops registration
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -35,7 +35,7 @@
 class Symmetrics_TrustedRating_Admin_RegistrationController extends Mage_Adminhtml_Controller_Action
 {
     /**
-     * gets the registration link and redirect to it 
+     * Get the registration link and redirect to it 
      *
      * @return void
      */

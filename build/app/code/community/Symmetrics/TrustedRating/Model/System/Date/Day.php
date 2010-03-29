@@ -22,7 +22,7 @@
  */
  
 /**
- * Drop-Down for Day of month
+ * Drop-Down for day of month
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating

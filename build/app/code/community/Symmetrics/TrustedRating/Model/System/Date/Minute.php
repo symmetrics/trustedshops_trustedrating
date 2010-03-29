@@ -22,7 +22,7 @@
  */
  
 /**
- * Drop-Down for minute
+ * Drop-Down for minutes
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating

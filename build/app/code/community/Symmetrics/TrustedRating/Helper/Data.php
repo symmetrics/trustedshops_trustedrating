@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Helper_Data
+ * Default helper class, return config values
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -35,7 +35,7 @@
 class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
 {
     /**
-     * get store config by node and key
+     * Get store config by node and key
      *
      * @param string $node node
      * @param string $key  key
@@ -48,7 +48,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     }
     
     /**
-     * get module specific config from system configuration
+     * Get module specific config from system configuration
      * 
      * @param string $key config key
      * 
@@ -60,7 +60,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * get the activity status from store config
+     * Get the activity status from store config
      *
      * @return string
      */
@@ -70,7 +70,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     }
     
     /**
-     * get the "incluce orders since" setting from store config
+     * Get the "incluce orders since" setting from store config
      *
      * @return string
      */

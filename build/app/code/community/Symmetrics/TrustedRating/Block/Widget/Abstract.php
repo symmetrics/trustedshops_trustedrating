@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Block_Widget_Abstract
+ * Abstract widget class for coomon use
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -35,9 +35,9 @@
 class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Template
 {
     /**
-     * Returns the widget link data if trusted rating status is active and data are present for the current language
+     * Generate the widget link data if trusted rating status is active and data are present for the current language
      * 
-     * @param boolean $type mixed
+     * @param boolean $type RATING|EMAIL widget type
      *
      * @return array
      */

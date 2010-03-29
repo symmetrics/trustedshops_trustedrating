@@ -35,7 +35,7 @@
 class Symmetrics_TrustedRating_Model_System_Date_Abstract extends Mage_Eav_Model_Entity_Attribute_Source_Abstract
 {
     /**
-     * return option array
+     * Return option array
      * 
      * @return array
      */
@@ -45,7 +45,10 @@ class Symmetrics_TrustedRating_Model_System_Date_Abstract extends Mage_Eav_Model
     }
 	
     /**
-     * return option array
+     * Return array of progressive numbers
+     *
+     * @param int $start start the for-loop at
+     * @param int $end   end the for-loop at
      * 
      * @return array
      */
@@ -58,7 +61,7 @@ class Symmetrics_TrustedRating_Model_System_Date_Abstract extends Mage_Eav_Model
     }
 	
     /**
-     * return option array
+     * Return option array
      * 
      * @return array
      */

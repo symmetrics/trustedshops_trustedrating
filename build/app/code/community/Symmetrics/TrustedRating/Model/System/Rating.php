@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Model_System_Rating
+ * Return array with German, English and French codes
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating

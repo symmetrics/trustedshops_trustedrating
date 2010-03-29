@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Model_Trustedrating
+ * Main model
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -35,49 +35,49 @@
 class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstract
 {
     /**
-     * fixed part of the link for the rating-site for the widget
+     * Fixed part of the link for the rating-site for the widget
      *
      * @var string
      */
     const WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/widgets/';
     
     /**
-     * fixed part of the link for the rating-site for the email - widget
+     * Fixed part of the link for the rating-site for the email - widget
      *
      * @var string
      */
     const EMAIL_WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/img/';
 
     /**
-     * fixed part of the registration link
+     * Fixed part of the registration link
      * 
      * @var string
      */
     const REGISTRATION_LINK = 'https://www.trustedshops.com/bewertung/anmeldung.html?';
     
     /**
-     * fixed part of the widget path
+     * Fixed part of the widget path
      *
      * @var string
      */
     const IMAGE_LOCAL_PATH = 'media/';
     
     /**
-     * the cacheid to cache the widget
+     * The cacheid to cache the widget
      *
      * @var string
      */
     const CACHEID = 'trustedratingimage';
     
     /**
-     * the cacheid to cache the email widget
+     * The cacheid to cache the email widget
      *
      * @var string
      */
     const EMAIL_CACHEID = 'trustedratingemailimage';
     
     /**
-     * get the trusted rating id from store config
+     * Get the trusted rating id from store config
      *
      * @return string
      */
@@ -87,7 +87,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
     
     /**
-     * get the activity status from store config
+     * Get the module status from store config
      *
      * @return string
      */
@@ -97,8 +97,8 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
     
     /**
-     * gets the selected language (for the rating - site) from the store config and returns
-     * the link for the widget, which stands in the module config for each language
+     * Get the selected language (for the rating - site) from the store config and returns
+     * the link for the widget, which is stored in the module config for each language
      * 
      * @param string $type type
      *
@@ -112,7 +112,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
         
     /**
-     * returns true, if the current language is choosen in the trusted rating config
+     * Check if the current language is chosen in the trusted rating config
      * 
      * @return boolean
      */
@@ -128,7 +128,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
     
     /**
-     * returns the rating link
+     * Get the rating link
      *
      * @return string
      */
@@ -138,7 +138,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
     
     /**
-     * returns the email rating link
+     * Get the email rating link
      *
      * @return string
      */
@@ -148,7 +148,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
     
     /**
-     * gets the link data for the widget image from cache
+     * Get the link data for the widget-image from cache
      *
      * @return array
      */
@@ -168,7 +168,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
     
     /**
-     * gets the link data for the email widget image from cache
+     * Get the link data for the email-widget-image from cache
      *
      * @return array
      */
@@ -196,10 +196,9 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
     
     /**
-     * caches the widget images
+     * Cache the widget images
      * 
      * @param string $type type
-     *
      * @param string $tsId Trusted Rating Id
      *
      * @return void
@@ -227,7 +226,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
     
     /**
-     * caches the email image 
+     * Cache the email image 
      *
      * @return void
      */
@@ -237,7 +236,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
     
     /**
-     * caches the widget image 
+     * Cache the widget image 
      *
      * @param int $tsId Trusted Rating Id
      *
@@ -249,7 +248,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
     
     /**
-     * returns Registration Link
+     * Return registration Link
      * 
      * @return string
      */
@@ -258,7 +257,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         $link = self::REGISTRATION_LINK;
         $link .= 'partnerPackage=' . Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage');
 
-        /*if symmetrics_impressum is installed, get Data from here*/
+        /* if symmetrics_impressum is installed, get data from there */
         if (!$data = Mage::getStoreConfig('general/impressum')) {
             return false;
         }
