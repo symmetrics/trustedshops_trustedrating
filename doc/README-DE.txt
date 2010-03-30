@@ -40,7 +40,9 @@ keine bekannt.
 	        wenn ja hat die Kommunikation mit Trusted Shops geklappt, das heißt die Daten sind korrekt
 	        (diese Meldung muß auch kommen wenn Sie den Status auf "Nein" stellen).
 *** B:  1. Das Datum unter "Verkäufe => Trusted Shops Kundenbewertung => Freischaltung" sollte dem Installationszeitpunkt
-            gleichen. Prüfen Sie dies.
+            gleichen. Prüfen Sie dies. Beachten Sie hierbei, dass dort die Magento interne Zeit benutzt wird, welche
+            GMT entspricht. Zeitzonenabweichungen und/oder DST (Sommerzeit) wird hier nicht berücksichtigt um eine einheitliche
+            Rechengrundlage zu haben.
 *** C:  1. Prüfen Sie ob auf der Startseite das Trusted Rating Widget erscheint [SCREENSHOT: trustedrating-widget.png].
 		2. Prüfen Sie ob das Widget nur erscheint wenn im Backend der Status auf Ja gestellt ist, bei Nein muß es verschwinden.
         3. Prüfen Sie ob Sie beim Klick auf das Widget zu der Bewertungsseite weitergeleitet werden [SCREENSHOT: trustedratingsite.png]
