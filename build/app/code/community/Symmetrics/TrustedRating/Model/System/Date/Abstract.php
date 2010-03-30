@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Model_System_Date
+ * Abstract class which provides some methods for drop-downs in the backend
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
