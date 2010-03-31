@@ -20,7 +20,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * Generate the email widget
  *
@@ -33,25 +33,37 @@
  * @link      http://www.symmetrics.de/
  */
 class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRating_Block_Widget_Abstract
-{
+{   
     /**
-     * Generate the email widget code
-     *
+     * Generate rating link
+     * 
      * @return string
      */
-    protected function _toHtml()
+    public function getRatingLink()
     {
+        $link = '';
         if ($data = $this->getDataForWidget('EMAIL')) {
             $buyerEmail = base64_encode($data['buyerEmail']);
-            $baseUrl = Mage::getBaseUrl('web');
             $orderId = base64_encode($data['orderId']);
-            $link = '<a target="_blank" href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html';
-            $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $orderId . '">';
-            $widgetSrc = $baseUrl . $data['imageLocalPath'] . $data['widgetName'];
-            $widget = '<img border="0" alt="" src="' . $widgetSrc . '"/></a>';
-            
-            return $link . $params . $widget;
+            $link = $data['ratingLink'] . '_' . $data['tsId'] . '.html&buyerEmail=';
+            $link .= $buyerEmail . '&shopOrderID=' . $orderId;
         }
-        return null;
+        return $link;
+    }
+    
+    /**
+     * Generate widget image source
+     * 
+     * @return string
+     */
+    public function getWidgetSource()
+    {
+        $widgetSrc = '';
+        if ($data = $this->getDataForWidget('EMAIL')) {
+            $baseUrl = Mage::getBaseUrl('web');
+            $widgetSrc = $baseUrl . $data['imageLocalPath'] . $data['widgetName'];
+            
+        }
+        return $widgetSrc;
     }
 }

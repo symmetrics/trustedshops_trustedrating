@@ -35,21 +35,31 @@
 class Symmetrics_TrustedRating_Block_Widget extends Symmetrics_TrustedRating_Block_Widget_Abstract
 {
     /**
-     * Generate rating widget
-     *
+     * Generate rating link
+     * 
      * @return string
      */
-    protected function _toHtml()
+    public function getRatingLink()
     {
+        $link = '';
+        if ($data = $this->getDataForWidget('RATING')) {
+            $link = $data['ratingLink'] . '_' . $data['tsId'] . '.html';
+        } 
+        return $link;
+    }
+    
+    /**
+     * Generate widget image source
+     * 
+     * @return string
+     */
+    public function getWidgetSource()
+    {
+        $widgetSrc = '';
         if ($data = $this->getDataForWidget('RATING')) {
             $baseUrl = Mage::getBaseUrl('web');
-            $wrapper = '<div class="trustedrating-widget">';
-            $link = '<a target="_blank" href="' . $data['ratingLink'] . '_' . $data['tsId'] . '.html">';
             $widgetSrc = $baseUrl . $data['imageLocalPath'] . $data['tsId'] . '.gif';
-            $widget = '<img alt="" border="0" src="' . $widgetSrc .  '" /></a>';
-            return $wrapper . $link . $widget . '</div>';
-        } else {
-            return '';
         }
+        return $widgetSrc;
     }
 }
