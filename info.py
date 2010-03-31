@@ -46,7 +46,8 @@ NOTES = ''''''
 # relations
 # =============================================================================
 REQUIRES = [
-	{'magento': '*', 'magento_enterprise': '*'}
+	{'magento': '*', 'magento_enterprise': '*'},
+	{'symmetrics_module_impressum': '*'}
 ]
 
 EXCLUDES = {}

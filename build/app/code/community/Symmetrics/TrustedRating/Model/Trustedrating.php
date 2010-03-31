@@ -259,6 +259,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 
         /* if symmetrics_impressum is installed, get data from there */
         if (!$data = Mage::getStoreConfig('general/impressum')) {
+            throw new Exception('Symmetrics Impressum module is not installed.');
             return false;
         }
 

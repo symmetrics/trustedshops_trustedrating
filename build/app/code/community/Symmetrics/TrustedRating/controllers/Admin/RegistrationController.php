@@ -42,6 +42,7 @@ class Symmetrics_TrustedRating_Admin_RegistrationController extends Mage_Adminht
     public function indexAction()
     {
         $model = Mage::getModel('trustedrating/trustedrating');
-        $this->getResponse()->setRedirect($model->getRegistrationLink());
+        $registrationLink = $model->getRegistrationLink();
+        $this->getResponse()->setRedirect($registrationLink);
     }
 }
