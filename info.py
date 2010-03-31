@@ -59,4 +59,5 @@ PEAR_KEY = ''
 
 COMPATIBLE_WITH = {
      'magento': ['1.3.2.3'],
+     'magento_enterprise': ['1.3.2.4'],
 }

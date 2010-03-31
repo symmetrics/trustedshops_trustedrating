@@ -22,7 +22,7 @@
  */
  
 /**
- * Symmetrics_TrustedRating_Model_System_Date
+ * Abstract class which provides some methods for drop-downs in the backend
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -32,7 +32,8 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
-class Symmetrics_TrustedRating_Model_System_Date_Abstract extends Mage_Eav_Model_Entity_Attribute_Source_Abstract
+abstract class Symmetrics_TrustedRating_Model_System_Date_Abstract
+    extends Mage_Eav_Model_Entity_Attribute_Source_Abstract
 {
     /**
      * Return option array
@@ -43,7 +44,7 @@ class Symmetrics_TrustedRating_Model_System_Date_Abstract extends Mage_Eav_Model
     {
         return $this->getAllOptions();
     }
-	
+    
     /**
      * Return array of progressive numbers
      *
@@ -59,7 +60,7 @@ class Symmetrics_TrustedRating_Model_System_Date_Abstract extends Mage_Eav_Model
         }
         return $options;
     }
-	
+    
     /**
      * Return option array
      * 

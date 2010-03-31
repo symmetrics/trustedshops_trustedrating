@@ -41,11 +41,13 @@ keine bekannt.
 	        wenn ja hat die Kommunikation mit Trusted Shops geklappt, das heißt die Daten sind korrekt
 	        (diese Meldung muß auch kommen wenn Sie den Status auf "Nein" stellen).
 *** B:  1. Das Datum unter "Verkäufe => Trusted Shops Kundenbewertung => Freischaltung" sollte dem Installationszeitpunkt
-            gleichen. Prüfen Sie dies.
+            gleichen. Prüfen Sie dies. Beachten Sie hierbei, dass dort die Magento interne Zeit benutzt wird, welche
+            GMT entspricht. Zeitzonenabweichungen und/oder DST (Sommerzeit) wird hier nicht berücksichtigt um eine einheitliche
+            Rechengrundlage zu haben.
 *** C:  1. Prüfen Sie ob auf der Startseite das Trusted Rating Widget erscheint [SCREENSHOT: trustedrating-widget.png].
 		2. Prüfen Sie ob das Widget nur erscheint wenn im Backend der Status auf Ja gestellt ist, bei Nein muß es verschwinden.
         3. Prüfen Sie ob Sie beim Klick auf das Widget zu der Bewertungsseite weitergeleitet werden [SCREENSHOT: trustedratingsite.png]
-		4. Führen Sie eine Bewertung durch, bestätigen sie die Bewertung per e-mail (Sie bekommen einen Link zugeschickt).
+		4. Führen Sie eine Bewertung durch, bestätigen sie die Bewertung per E-mail (Sie bekommen einen Link zugeschickt).
 		5. Loggen Sie sich auf https://qa.trustedshops.de/shop/login.html (Testumgebung) oder
 		    https://www.trustedshops.de/shop/login.html (Live-Umgebung) in Ihren Account ein und prüfen sie ob die Bewertung
 		    angekommen ist, bestätigen sie die Bewertung.
@@ -61,14 +63,13 @@ keine bekannt.
             E-Mail - Widget.
 *** F: 1. Stellen Sie in der Trusted-Rating Konfiguration den Wert 0.0001 bei "Tagen" ein.
        2. Gegebenenfalls kann man das Datum unter "Verkäufe => Trusted Shops Kundenbewertung => Freischaltung" anpassen, um 
-            Bestellungen aus der Vergangenheit zu berücksichtigen.
+            Sendungen aus der Vergangenheit zu berücksichtigen.
        2. Tätigen Sie eine Bestellung
        3. Versenden Sie sie
-       4. loggen Sie sich erneut ein und wieder aus und prüfen Sie ob sie eine E-Mail mit dem Bewertungs-Widget bekommen haben.
-            Achtung, alle User die eine Bestellung in Ihrem Shop getätigt haben, bekommen dann so eine mail.
+       4. Loggen Sie sich aus und wieder ein und prüfen Sie, ob Sie eine E-Mail mit dem Bewertungs-Widget bekommen haben.
 *** G: Prüfen Sie ob unter im Konfigurationsbereich unter "Verkäufe => Trusted Shops Kundenbewertung" im Info-Block unten ein
-        Link zur PDF existiert und ob dieser auch funktioniert. Prüfen sie ebenfalls ob in dem Tab "Jetzt kostenlos registrieren!"
+        Link zur PDF existiert und ob dieser auch funktioniert. Prüfen Sie ebenfalls ob in dem Tab "Jetzt kostenlos registrieren!"
         ein Link existiert der Sie zur Registrierung führt. 
 
 ** CATCHABLE
-Bei einem ungültigen Datum (sollte aufgrund der drop-down nicht möglich sein), werden keine Mails verschickt.
+Bei einem ungültigen Datum (sollte aufgrund der drop-down nicht möglich sein) werden keine Mails verschickt.

@@ -72,16 +72,19 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Get the "incluce orders since" setting from store config
      *
-     * @return string
+     * @return Zend_Date
      */
     public function getActiveSince()
     {
         $dateconfig = $this->getConfig('trustedrating', 'status');
-        $activeDate = $dateconfig['datelimit_y'] . '-';
-        $activeDate .= $dateconfig['datelimit_m'] . '-';
-        $activeDate .= $dateconfig['datelimit_d'] . ' ';
-        $activeDate .= $dateconfig['datelimit_h'] . ':';
-        $activeDate .= $dateconfig['datelimit_i'];
+        $datearray = array(
+            'year' => $dateconfig['datelimit_y'],
+            'month' => $dateconfig['datelimit_m'],
+            'day' => $dateconfig['datelimit_d'],
+            'hour' => $dateconfig['datelimit_h'],
+            'minute' => $dateconfig['datelimit_i'],
+            'second' => 0);
+        $activeDate = new Zend_Date($datearray);
         return $activeDate;
     }
 }

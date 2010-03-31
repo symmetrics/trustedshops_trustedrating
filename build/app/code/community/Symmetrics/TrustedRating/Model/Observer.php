@@ -235,13 +235,7 @@ class Symmetrics_TrustedRating_Model_Observer
     private function _getDayInterval() 
     {
         $from = $this->getHelper()->getActiveSince();
-        $dateValidation = new Zend_Validate_Date();
-        $dateValidation->setFormat(Varien_Date::DATETIME_INTERNAL_FORMAT);
-        // If date is in the wrong format, use now + 3 days to prevent anything from being sent
-        if (!$dateValidation->isValid($from)) {
-            $from = date('Y-m-d H:i:s', time() + 103680);
-        }
-        
+        $fromString = $from->toString(Varien_Date::DATETIME_INTERNAL_FORMAT);
         if (!$dayInterval = Mage::getStoreConfig('trustedrating/trustedrating_email/days')) {
             return false;
         }
@@ -253,7 +247,7 @@ class Symmetrics_TrustedRating_Model_Observer
         $diff = $timestamp - $intervalSeconds;
 
         return array(
-            'from' => $from,
+            'from' => $fromString,
             'to' => date("Y-m-d H:i:s", $diff)
         );
     }
