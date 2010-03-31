@@ -48,15 +48,15 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
      * Get config node
      * 
      * @param string $node     node
-     * @param string $nextNode next Node
+     * @param string $childNode child Node
      *
      * @return string
      */
-    private function getConfigNode($node, $nextNode = null)
+    private function getConfigNode($node, $childNode = null)
     {
         $configData = $this->getConfigData();
-        if ($nextNode) {
-            return $configData[$node][$nextNode];
+        if ($childNode) {
+            return $configData[$node][$childNode];
         } else {
             return $configData[$node];
         }

@@ -39,7 +39,7 @@ class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Tem
      * 
      * @param boolean $type RATING|EMAIL widget type
      *
-     * @return array
+     * @return array|null
      */
     public function getDataForWidget($type) 
     {

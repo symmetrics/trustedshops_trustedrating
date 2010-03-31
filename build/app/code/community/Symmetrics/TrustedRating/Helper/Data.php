@@ -35,6 +35,11 @@
 class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
 {
     /**
+     * @const CONFIG_STATUS_PATH system config path to status settings
+     */
+    const CONFIG_STATUS_PATH = 'trustedrating/status';
+    
+    /**
      * Get store config by node and key
      *
      * @param string $node node
@@ -56,7 +61,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getModuleConfig($key)
     {
-        return $this->getConfig('trustedrating/status', $key);
+        return $this->getConfig(CONFIG_STATUS_PATH, $key);
     }
 
     /**

@@ -37,7 +37,7 @@ class Symmetrics_TrustedRating_Block_Registrationlink extends Mage_Core_Block_Te
     /**
      * Generate the Trusted Rating registration link and the JS-function to put it into the comment-field
      * 
-     * @return string
+     * @return string|null
      */
     protected function _toHtml()
     {   

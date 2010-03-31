@@ -55,7 +55,8 @@ abstract class Symmetrics_TrustedRating_Model_System_Date_Abstract
      */
     public function buildNumericOptions($start, $end)
     {
-        for ($option=$start;$option<=$end;$option++) {
+        $options = array();
+        for ($option = $start; $option <= $end; $option++) {
             $options[$option] = $option;
         }
         return $options;

@@ -76,8 +76,6 @@ class Symmetrics_TrustedRating_Model_Observer
     {
         if ($this->isActive() && $shipmentIds = $this->_checkShippings()) {
             $this->_sendTrustedRatingMails($shipmentIds);
-        } else {
-            Mage::log('nothing to send');
         }
     }
      

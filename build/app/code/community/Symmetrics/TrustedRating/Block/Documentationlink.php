@@ -35,6 +35,11 @@
 class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_Template
 {
     /**
+     * @const PDFPATH directory path to Trusted Shops PDF
+     */
+    const PDFPATH = 'media/TS_Kundenbewertung_Magento_v1_0.pdf';
+    
+    /**
      * Generate the Documentation - Pdf -Link and the JS-function to put it into the comment-field
      * 
      * @return string
@@ -64,7 +69,7 @@ class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_T
     private function _getDocumentationLinkData()
     {
         return array(
-            'target' => Mage::getBaseUrl('web') . 'media/TS_Kundenbewertung_Magento_v1_0.pdf',
+            'target' => Mage::getBaseUrl('web') . self::PDFPATH,
             'text' => $this->__('Trusted Shops Documentation'),
         );
     }
