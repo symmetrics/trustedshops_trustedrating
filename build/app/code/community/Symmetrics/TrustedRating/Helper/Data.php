@@ -61,7 +61,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getModuleConfig($key)
     {
-        return $this->getConfig(CONFIG_STATUS_PATH, $key);
+        return $this->getConfig(self::CONFIG_STATUS_PATH, $key);
     }
 
     /**
