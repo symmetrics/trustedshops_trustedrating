@@ -40,37 +40,12 @@ class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_T
     const PDFPATH = 'media/TS_Kundenbewertung_Magento_v1_0.pdf';
     
     /**
-     * Generate the Documentation - Pdf -Link and the JS-function to put it into the comment-field
+     * Generate the documentation-Pdf link
      * 
      * @return string
      */
-    protected function _toHtml()
+    public function getLinkTarget()
     {
-        $documentationlinkData = $this->_getDocumentationLinkData();
-        $target = $documentationlinkData['target'];
-        $text = $documentationlinkData['text'];
-        $link = '<a href = "' . $target . '" target = "_blank">' . $text . '</a>';
-
-        $pdflink = '<script type="text/javascript">
-            document.observe(\'dom:loaded\', function() {
-                $(\'trustedrating_info\').style.display=\'block\';
-                $(\'pdflink\').innerHTML = \'' . $link . '\';
-            });
-        </script>';
-        
-        return $pdflink;
-    }
-    
-    /**
-     * Generate the data for the pdf link
-     * 
-     * @return array
-     */
-    private function _getDocumentationLinkData()
-    {
-        return array(
-            'target' => Mage::getBaseUrl('web') . self::PDFPATH,
-            'text' => $this->__('Trusted Shops Documentation'),
-        );
+        return Mage::getBaseUrl('web') . self::PDFPATH;
     }
 }

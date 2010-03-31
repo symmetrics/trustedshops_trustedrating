@@ -35,48 +35,21 @@
 class Symmetrics_TrustedRating_Block_Registrationlink extends Mage_Core_Block_Template
 {
     /**
-     * Generate the Trusted Rating registration link and the JS-function to put it into the comment-field
-     * 
-     * @return string|null
+     * Check if the Trusted Rating section is selected 
      */
-    protected function _toHtml()
-    {   
+    public function isActive()
+    {
         $request = Mage::app()->getFrontController()->getRequest();
         $currentUrl = $request->getServer('PATH_INFO');
 
         if (!strpos($currentUrl, 'section/trustedrating')) {
-            return null;
+            return false;
         }
-
-        $registrationlinkData = $this->_getRegistrationLinkData();
-        $target = $registrationlinkData['target'];
-        $text = $registrationlinkData['text'];
-        $languageLabel = $this->__('Shop Language'). '<font color="red">*</font>';
-
-        $link = '<a href = "' . $target . '" target = "_blank">' . $text . '</a>';
-
-        $registrationLink = '<script type="text/javascript">
-            document.observe(\'dom:loaded\', function() {
-                var comment = $$(\'#trustedrating_trustedrating_registration div\')[0];
-                comment.innerHTML = \'' . $link . '\';
-                var languageLabel = $$(\'#trustedrating_data label\')[1];
-                languageLabel.innerHTML = \'' . $languageLabel . '\';
-            });
-        </script>';
-        
-        return $registrationLink;
+        return true;
     }
     
-    /**
-     * Generate the data for the registration link
-     * 
-     * @return array
-     */
-    private function _getRegistrationLinkData()
+    public function getRegistrationLinkTarget()
     {
-        return array(
-            'target' => Mage::getBaseUrl() . 'admin/registration',
-            'text' => $this->__('Link to the registration on Trusted Shops Rating'),
-        );
+        return Mage::getBaseUrl() . 'admin/registration';
     }
 }
