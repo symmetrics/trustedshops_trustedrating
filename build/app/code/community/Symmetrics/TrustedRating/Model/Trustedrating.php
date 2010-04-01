@@ -258,26 +258,22 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         $link .= 'partnerPackage=' . Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage');
 
         /* if symmetrics_impressum is installed, get data from there */
-        if (!$data = Mage::getStoreConfig('general/impressum')) {
-            throw new Exception('Symmetrics Impressum module is not installed.');
-            return false;
-        }
+        if ($data = Mage::getStoreConfig('general/impressum')) {
+            $params = array(
+                'company' => $data['company1'],
+                'website' => $data['web'],
+                'street' => $data['street'],
+                'zip' => $data['zip'],
+                'city' => $data['city'],
+                'buyerEmail' => $data['email'],
+            );
 
-        $params = array(
-            'company' => $data['company1'],
-            'website' => $data['web'],
-            'street' => $data['street'],
-            'zip' => $data['zip'],
-            'city' => $data['city'],
-            'buyerEmail' => $data['email'],
-        );
-
-        foreach ($params as $key => $param) {
-            if ($param) {
-                $link .= '&' . $key . '=' . urlencode($param);
+            foreach ($params as $key => $param) {
+                if ($param) {
+                    $link .= '&' . $key . '=' . urlencode($param);
+                }
             }
         }
-
         return $link;
     }
 }
