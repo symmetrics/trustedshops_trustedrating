@@ -9,13 +9,13 @@ Dieses Modul implementiert das Bewertungssystem von Trusted Shops (Trusted Ratin
 ** FUNCTIONALITY
 *** A: Im Konfigurationsbereich im Backend kann man Trusted Rating aktivieren / deaktiveren.
 *** B: Man kann einstellen, ab welchem Datum Bestellungen bzw. Sendungen berücksichtigt werden
-*** C: Über das eingebundene Widget kann der Kunde die Anzahl der bisherigen Bewertungen
+*** C: Man kann einstellen nach wieviel Tagen einer Bestellung der User eine mail mit Bewerten-Button bekommt.
+*** D: Über das eingebundene Widget kann der Kunde die Anzahl der bisherigen Bewertungen
         sehen sowie beim klick auf das Image eine Bewertung vornehmen.
-*** D: Auf der Bestellbestätigungsseite erscheint ein "Bewerten" - Button mit dem gleichzeitig
+*** E: Auf der Bestellbestätigungsseite erscheint ein "Bewerten" - Button mit dem gleichzeitig
         die Kunden-email sowie die OrderId übergeben wird.
-*** E: Je nach eingestellter Sprache im Shop wird das dazugehörige Widget geladen. Achtung: Die TrustedRating
+*** F: Je nach eingestellter Sprache im Shop wird das dazugehörige Widget geladen. Achtung: Die TrustedRating
         Sprache muss der Shop-Sprache gleichen!
-*** F: Man kann einstellen nach wieviel Tagen einer Bestellung der User eine mail mit Bewerten-Button bekommt.
 *** G: Im Backend stehen 2 links zur Verfügung, einmal zur Registrierung, einmal zu der Dokumentation als PDF.
 
 ** TECHNINCAL
@@ -45,7 +45,13 @@ keine bekannt.
             gleichen. Prüfen Sie dies. Beachten Sie hierbei, dass dort die Magento interne Zeit benutzt wird, welche
             GMT entspricht. Zeitzonenabweichungen und/oder DST (Sommerzeit) wird hier nicht berücksichtigt um eine einheitliche
             Rechengrundlage zu haben.
-*** C:  1. Prüfen Sie ob auf der Startseite das Trusted Rating Widget erscheint [SCREENSHOT: trustedrating-widget.png].
+*** C: 1. Stellen Sie in der Trusted-Rating Konfiguration den Wert 0.0001 bei "Tagen" ein.
+       2. Gegebenenfalls kann man das Datum unter "Verkäufe => Trusted Shops Kundenbewertung => Freischaltung" anpassen, um 
+            Sendungen aus der Vergangenheit zu berücksichtigen.
+       2. Tätigen Sie eine Bestellung
+       3. Versenden Sie sie
+       4. Loggen Sie sich aus und wieder ein und prüfen Sie, ob Sie eine E-Mail mit dem Bewertungs-Widget bekommen haben.
+*** D:  1. Prüfen Sie ob auf der Startseite das Trusted Rating Widget erscheint [SCREENSHOT: trustedrating-widget.png].
 		2. Prüfen Sie ob das Widget nur erscheint wenn im Backend der Status auf Ja gestellt ist, bei Nein muß es verschwinden.
         3. Prüfen Sie ob Sie beim Klick auf das Widget zu der Bewertungsseite weitergeleitet werden [SCREENSHOT: trustedratingsite.png]
 		4. Führen Sie eine Bewertung durch, bestätigen sie die Bewertung per E-mail (Sie bekommen einen Link zugeschickt).
@@ -56,18 +62,12 @@ keine bekannt.
 		    "Bewertungen" => "Widget Einstellungen" geht, den Shop auswählt und bei dem Bild einmal auf "ändern" und dann
 		    wieder auf "speichern" klickt. Das Widget sollte sich jetzt ändern und den Kommentar der letzten Bewertung zeigen
 		    sowie die neue Anzahl der Bewertungen.
-*** D:	1. Prüfen sie ob auf der Bestellbestätigungsseite eine "Bewerten" - Grafik erscheint und in dem Formular auf das der
+*** E:	1. Prüfen sie ob auf der Bestellbestätigungsseite eine "Bewerten" - Grafik erscheint und in dem Formular auf das der
             Link verweist, bereits die Kunden-Emailadresse sowie die OrderID eingetragen ist.
-*** E: Schalten Sie in der Konfiguration auf eine andere StoreView mit englischer, spanischer oder französischer Sprache um,
+*** F: Schalten Sie in der Konfiguration auf eine andere StoreView mit englischer, spanischer oder französischer Sprache um,
             trage Sie eine neue (gültige) TS-ID ein und stellen Sie die Sprache entsprechend ein. Prüfen Sie ob im Frontend,
             wenn Sie auf die jeweilige StoreView umschalten, das richtige Widget geladen wird, das gleiche gilt für das
             E-Mail - Widget.
-*** F: 1. Stellen Sie in der Trusted-Rating Konfiguration den Wert 0.0001 bei "Tagen" ein.
-       2. Gegebenenfalls kann man das Datum unter "Verkäufe => Trusted Shops Kundenbewertung => Freischaltung" anpassen, um 
-            Sendungen aus der Vergangenheit zu berücksichtigen.
-       2. Tätigen Sie eine Bestellung
-       3. Versenden Sie sie
-       4. Loggen Sie sich aus und wieder ein und prüfen Sie, ob Sie eine E-Mail mit dem Bewertungs-Widget bekommen haben.
 *** G: Prüfen Sie ob unter im Konfigurationsbereich unter "Verkäufe => Trusted Shops Kundenbewertung" im Info-Block unten ein
         Link zur PDF existiert und ob dieser auch funktioniert. Prüfen Sie ebenfalls ob in dem Tab "Jetzt kostenlos registrieren!"
         ein Link existiert der Sie zur Registrierung führt. 
