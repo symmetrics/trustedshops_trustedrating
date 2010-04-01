@@ -61,8 +61,8 @@ class Symmetrics_TrustedRating_Model_Observer
         $soapUrl = Mage::helper('trustedrating')->getConfig('soapapi', 'url');
         $sendData = $this->_getSendData($storeId);
         $returnValue = $this->_callTrustedShopsApi($sendData, $soapUrl);
-        
-        Mage::getSingleton('core/session')->addNotice('returnValue: ' . $returnValue);
+        $returnString = Mage::helper('trustedrating')->__('TrustedShops return value: ');
+        Mage::getSingleton('core/session')->addNotice($returnString . $returnValue);
     }
     
     /**
