@@ -13,7 +13,8 @@ Dieses Modul implementiert das Bewertungssystem von Trusted Shops (Trusted Ratin
         sehen sowie beim klick auf das Image eine Bewertung vornehmen.
 *** D: Auf der Bestellbestätigungsseite erscheint ein "Bewerten" - Button mit dem gleichzeitig
         die Kunden-email sowie die OrderId übergeben wird.
-*** E: Je nach eingestellter Sprache im Shop wird das dazugehörige Widget geladen.
+*** E: Je nach eingestellter Sprache im Shop wird das dazugehörige Widget geladen. Achtung: Die TrustedRating
+        Sprache muss der Shop-Sprache gleichen!
 *** F: Man kann einstellen nach wieviel Tagen einer Bestellung der User eine mail mit Bewerten-Button bekommt.
 *** G: Im Backend stehen 2 links zur Verfügung, einmal zur Registrierung, einmal zu der Dokumentation als PDF.
 
