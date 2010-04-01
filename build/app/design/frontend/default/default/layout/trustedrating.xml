@@ -25,7 +25,7 @@
 <layout version="0.1.0">
     <default>
         <reference name="right">
-             <block type="trustedrating/widget" after="cart_sidebar" name="trustedrating_widget" template="trustedrating/trustedrating.phtml"/>
+             <block type="trustedrating/widget" after="cart_sidebar" name="trustedrating_widget" template="trustedrating/trustedrating.phtml" />
         </reference>        
     </default>
     <checkout_onepage_success>
