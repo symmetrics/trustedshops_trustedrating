@@ -96,7 +96,7 @@ class Symmetrics_TrustedRating_Model_Observer
         $shipments = Mage::getResourceModel('sales/order_shipment_collection');
         if ($sentIds = $this->_getSentIds()) {
             if (!is_null($sentIds)) {
-                $shipments->addAttributeToFilter('entity_id', array('nin' => ));
+                $shipments->addAttributeToFilter('entity_id', array('nin' => $sentIds));
             }
         }
         $shipments->addAttributeToFilter('created_at', array('from' => $from, 'to' => $to))
