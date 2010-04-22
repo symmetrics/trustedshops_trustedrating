@@ -19,14 +19,17 @@ INSTALL_PATH = ''
 # responsibilities
 # =============================================================================
 TEAM_LEADER = {
-    'Sergej Braznikov': 'sb@symmetrics.de'}
+    'Sergej Braznikov': 'sb@symmetrics.de'
+}
 
 MAINTAINER = {
-    'Siegfried Schmitz': 'ss@symmetrics.de'}
+    'Siegfried Schmitz': 'ss@symmetrics.de'
+}
 
 AUTHORS = {
     'Siegfried Schmitz': 'ss@symmetrics.de',
-    'Eric Reiche': 'er@symmetrics.de'}
+	'Eric Reiche': 'er@symmetrics.de'
+}
 
 # =============================================================================
 # additional infos
@@ -34,7 +37,7 @@ AUTHORS = {
 INFO = 'Trusted Shops Rating System'
 
 SUMMARY = '''
-    Implementiert das Trusted Shops Rating System
+	Implementiert das Trusted Shops Rating System
 '''
 
 NOTES = ''''''
@@ -42,7 +45,9 @@ NOTES = ''''''
 # =============================================================================
 # relations
 # =============================================================================
-REQUIRES = [{'magento': '*', 'magento_enterprise': '*'}]
+REQUIRES = [
+	{'magento': '*', 'magento_enterprise': '*'}
+]
 
 EXCLUDES = {}
 
@@ -53,5 +58,6 @@ DEPENDS_ON_FILES = ()
 PEAR_KEY = ''
 
 COMPATIBLE_WITH = {
-    'magento': ['1.3.2.3'],
-    'magento_enterprise': ['1.3.2.4']}
+     'magento': ['1.3.2.3'],
+     'magento_enterprise': ['1.3.2.4'],
+}
