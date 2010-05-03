@@ -52,15 +52,15 @@ class Symmetrics_TrustedRating_Model_System_Rating
             $this->_options = array();
             $this->_options[0] = array(
                 'value' => 'de',
-                'label' => Mage::helper('trustedrating')->__('german'),
+                'label' => Mage::helper('trustedrating')->__('German'),
             );
             $this->_options[1] = array(
                 'value' => 'en',
-                'label' => Mage::helper('trustedrating')->__('english'),
+                'label' => Mage::helper('trustedrating')->__('English'),
             );
             $this->_options[2] = array(
                 'value' => 'fr',
-                'label' => Mage::helper('trustedrating')->__('french'),
+                'label' => Mage::helper('trustedrating')->__('French'),
             );
         }
         return $this->_options;
