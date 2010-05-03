@@ -35,7 +35,14 @@
 class Symmetrics_TrustedRating_Block_Registrationlink extends Mage_Core_Block_Template
 {
     /**
+     * @const REGISTRATIONPATH request path to registration controller
+     */
+    const REGISTRATIONPATH = 'trustedrating/registration';
+    
+    /**
      * Check if the Trusted Rating section is selected 
+     * 
+     * @return bool
      */
     public function isActive()
     {
@@ -43,13 +50,28 @@ class Symmetrics_TrustedRating_Block_Registrationlink extends Mage_Core_Block_Te
         $currentUrl = $request->getServer('PATH_INFO');
 
         if (!strpos($currentUrl, 'section/trustedrating')) {
+            
             return false;
         }
+        
         return true;
     }
     
+    /**
+     * Generate registration link target
+     * 
+     * @return string
+     */
     public function getRegistrationLinkTarget()
     {
-        return Mage::getBaseUrl() . 'admin/registration';
+        $urlModel = Mage::getModel('adminhtml/url');
+        if ($urlModel->useSecretKey()) {
+            $url = $urlModel->addSessionParam()
+                ->getUrl(self::REGISTRATIONPATH);
+        } else {
+            $url = Mage::getUrl(self::REGISTRATIONPATH);
+        }
+        
+        return $url;
     }
 }

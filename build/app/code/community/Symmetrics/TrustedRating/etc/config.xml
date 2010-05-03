@@ -144,13 +144,13 @@
     </adminhtml>
     <admin>
         <routers>
-            <adminhtml>
+            <trustedrating>
+                <use>admin</use>
                 <args>
-                    <modules>                   
-                        <Symmetrics_TrustedRating_Admin before="Mage_Adminhtml">Symmetrics_TrustedRating_Admin</Symmetrics_TrustedRating_Admin>
-                    </modules>
+                    <module>Symmetrics_TrustedRating</module>
+                    <frontName>trustedrating</frontName>
                 </args>
-            </adminhtml>
+            </trustedrating>
         </routers>
     </admin>
     <default>
