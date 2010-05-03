@@ -31,7 +31,7 @@ Dieses Modul implementiert das Bewertungssystem von Trusted Shops (Trusted Ratin
     Per Javascript werden im Backend 2 links hinzugefügt (siehe F)
 
 ** PROBLEMS
-keine bekannt.
+Es sind keine Probleme bekannt.
 
 * TESTCASES
 ** BASIC

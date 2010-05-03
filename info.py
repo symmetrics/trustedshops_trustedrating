@@ -6,7 +6,8 @@
 # =============================================================================
 NAME = 'symmetrics_module_trustedrating'
 
-TAGS = ('symmetrics', 'magento', 'module', 'trustedshops', 'trustedrating')
+TAGS = ('symmetrics', 'magento', 'module', 'trustedshops', 'trustedrating',
+        'php')
 
 LICENSE = 'AFL 3.0'
 
@@ -19,16 +20,16 @@ INSTALL_PATH = ''
 # responsibilities
 # =============================================================================
 TEAM_LEADER = {
-    'Sergej Braznikov': 'sb@symmetrics.de'
+    'Torsten Walluhn': 'tw@symmetrics.de',
 }
 
 MAINTAINER = {
-    'Siegfried Schmitz': 'ss@symmetrics.de'
+    'Siegfried Schmitz': 'ss@symmetrics.de',
 }
 
 AUTHORS = {
     'Siegfried Schmitz': 'ss@symmetrics.de',
-	'Eric Reiche': 'er@symmetrics.de'
+	'Eric Reiche': 'er@symmetrics.de',
 }
 
 # =============================================================================
@@ -46,7 +47,7 @@ NOTES = ''''''
 # relations
 # =============================================================================
 REQUIRES = [
-	{'magento': '*', 'magento_enterprise': '*'}
+	{'magento': '*', 'magento_enterprise': '*'},
 ]
 
 EXCLUDES = {}
