@@ -73,4 +73,4 @@ Es sind keine Probleme bekannt.
         ein Link existiert der Sie zur Registrierung führt. 
 
 ** CATCHABLE
-Bei einem ungültigen Datum (sollte aufgrund der drop-down nicht möglich sein) werden keine Mails verschickt.
+*** B: Bei einem ungültigen Datum (sollte aufgrund der drop-down nicht möglich sein) werden keine Mails verschickt.
