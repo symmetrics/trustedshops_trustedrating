@@ -29,7 +29,7 @@ MAINTAINER = {
 
 AUTHORS = {
     'Siegfried Schmitz': 'ss@symmetrics.de',
-	'Eric Reiche': 'er@symmetrics.de',
+    'Eric Reiche': 'er@symmetrics.de',
 }
 
 # =============================================================================
@@ -38,7 +38,7 @@ AUTHORS = {
 INFO = 'Trusted Shops Rating System'
 
 SUMMARY = '''
-	Implementiert das Trusted Shops Rating System
+    Implementiert das Trusted Shops Rating System
 '''
 
 NOTES = ''''''
@@ -47,7 +47,7 @@ NOTES = ''''''
 # relations
 # =============================================================================
 REQUIRES = [
-	{'magento': '*', 'magento_enterprise': '*'},
+    {'magento': '*', 'magento_enterprise': '*'},
 ]
 
 EXCLUDES = {}

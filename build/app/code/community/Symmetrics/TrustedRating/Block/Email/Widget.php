@@ -33,7 +33,7 @@
  * @link      http://www.symmetrics.de/
  */
 class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRating_Block_Widget_Abstract
-{   
+{
     /**
      * Generate rating link
      * 

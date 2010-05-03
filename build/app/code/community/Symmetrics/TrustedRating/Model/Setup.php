@@ -47,7 +47,7 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     /**
      * Get config node
      * 
-     * @param string $node     node
+     * @param string $node      main node
      * @param string $childNode child Node
      *
      * @return string
