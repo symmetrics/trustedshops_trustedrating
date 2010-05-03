@@ -18,7 +18,7 @@ Dieses Modul implementiert das Bewertungssystem von Trusted Shops (Trusted Ratin
         Sprache muss der Shop-Sprache gleichen!
 *** G: Im Backend stehen 2 links zur Verfügung, einmal zur Registrierung, einmal zu der Dokumentation als PDF.
 
-** TECHNINCAL
+** TECHNICAL
 	Per layout modifikator wird ein eigenes Template über eine eigene Blockklasse auf der Startseite
 	eingebunden, das das Widget darstellt. In <checkout_onepage_success> wird ein neuer Block
 	hinzugefügt der die Grafik für die Bewertung darstellt (das ist eine andere Grafik und
@@ -62,7 +62,7 @@ Es sind keine Probleme bekannt.
 		    "Bewertungen" => "Widget Einstellungen" geht, den Shop auswählt und bei dem Bild einmal auf "ändern" und dann
 		    wieder auf "speichern" klickt. Das Widget sollte sich jetzt ändern und den Kommentar der letzten Bewertung zeigen
 		    sowie die neue Anzahl der Bewertungen.
-*** E:	1. Prüfen sie ob auf der Bestellbestätigungsseite eine "Bewerten" - Grafik erscheint und in dem Formular auf das der
+*** E: 1. Prüfen sie ob auf der Bestellbestätigungsseite eine "Bewerten" - Grafik erscheint und in dem Formular auf das der
             Link verweist, bereits die Kunden-Emailadresse sowie die OrderID eingetragen ist.
 *** F: Schalten Sie in der Konfiguration auf eine andere StoreView mit englischer, spanischer oder französischer Sprache um,
             trage Sie eine neue (gültige) TS-ID ein und stellen Sie die Sprache entsprechend ein. Prüfen Sie ob im Frontend,
