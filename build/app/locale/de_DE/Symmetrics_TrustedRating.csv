@@ -17,3 +17,5 @@
 "Please note that if you enter some date in the past, all customers which ordered something from than on will receive an email from this module.","Bitte beachten Sie, dass wenn Sie ein Datum in der Vergangenheit eintragen, dass alle Kunden, die seitdem etwas bestellt haben, sofort eine Email von diesem Modul bekommen werden."
 "Please note: This is Magento internal time, which is in GMT.","Interne Magento-Zeit (GMT)"
 "TrustedShops return value: ","TrustedShops Antwort: "
+"E-mail for prompt assessment","E-Mail zur Bewertungsaufforderung"
+"Days after shipment","Tage nach Sendung"

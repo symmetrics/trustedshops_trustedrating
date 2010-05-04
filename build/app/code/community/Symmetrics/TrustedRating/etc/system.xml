@@ -164,7 +164,7 @@
                         </fields>
                 </status>
                 <trustedrating_email translate="label">
-                    <label>E-Mail zur Bewertungsaufforderung</label>
+                    <label>E-mail for prompt assessment</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>5</sort_order>
                     <show_in_default>1</show_in_default>
@@ -172,7 +172,7 @@
                     <show_in_store>1</show_in_store>
                         <fields>
                             <days translate="label">
-                                <label>Tage nach Sendung</label>
+                                <label>Days after shipment</label>
                                 <frontend_type>text</frontend_type>
                                 <sort_order>1</sort_order>
                                 <show_in_default>1</show_in_default>
@@ -181,14 +181,13 @@
                             </days>
                         </fields>
                 </trustedrating_email>
-                <trustedrating_registration translate="label comment">
+                <trustedrating_registration translate="label">
                         <label>Register now free of charge!</label>
                         <frontend_type>text</frontend_type>
                         <sort_order>2</sort_order>
                         <show_in_default>1</show_in_default>
                         <show_in_website>1</show_in_website>
                         <show_in_store>1</show_in_store>
-                        <comment>_</comment>
                 </trustedrating_registration>
             </groups>
         </trustedrating>
