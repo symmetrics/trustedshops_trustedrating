@@ -219,14 +219,18 @@ class Symmetrics_TrustedRating_Model_Observer
      * 
      * @return array
      */
-    private function _getSentIds() 
-    {
-        $mailModel = Mage::getModel('trustedrating/mail');
-        $collection = $mailModel->getCollection()->load();
-        $shipmentIds = $collection->getAllIds();
-        
-        return $shipmentIds;
-    }
+     private function _getSentIds() 
+     {
+         $mailModel = Mage::getModel('trustedrating/mail');
+         $shipmentIds = array();
+         $model = $mailModel->getCollection();
+         $items = $model->getItems();      
+         foreach ($items as $item) {
+             $shipmentIds[] = $item->getShippmentId();
+         }
+         
+         return $shipmentIds;
+     }
         
     /**
      * Substract the days in the config (3 for default) from the current date for upper limit
