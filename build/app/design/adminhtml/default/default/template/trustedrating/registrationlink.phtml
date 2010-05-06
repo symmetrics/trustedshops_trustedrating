@@ -24,8 +24,8 @@
 <?php if ($this->isActive()) : ?>
     <script type="text/javascript">
         document.observe('dom:loaded', function() {
-            var comment = $$('#trustedrating_trustedrating_registration div').first();
-            comment.innerHTML = '<a href = "<?php echo $this->getRegistrationLinkTarget() ?>" target = "_blank"><?php echo $this->__('Link to the registration on Trusted Shops Rating') ?></a>';
+            var comment = $$('#trustedrating_trustedrating_registration table').first();
+            comment.insert({ 'before':'<a href = "<?php echo $this->getRegistrationLinkTarget() ?>" target = "_blank"><?php echo $this->__('Link to the registration on Trusted Shops Rating') ?></a>' });
             var languageLabel = $$('#trustedrating_data label')[1];
             languageLabel.innerHTML = '<?php echo $this->__('Shop Language') ?><font color="red">*</font>';
         });
