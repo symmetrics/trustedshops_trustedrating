@@ -7,7 +7,7 @@
 NAME = 'symmetrics_module_trustedrating'
 
 TAGS = ('symmetrics', 'magento', 'module', 'trustedshops', 'trustedrating',
-        'php')
+        'php', 'mrg')
 
 LICENSE = 'AFL 3.0'
 
