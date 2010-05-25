@@ -16,6 +16,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
+ * @author    Yauhen Yakimovich <yy@symmetrics.de>
  * @copyright 2010 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
@@ -28,6 +29,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
+ * @author    Yauhen Yakimovich <yy@symmetrics.de>
  * @copyright 2010 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
@@ -73,7 +75,17 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return $this->getModuleConfig('trustedrating_active');
     }
-    
+
+    /**
+     * Get the trusted rating id from store config
+     *
+     * @return string
+     */
+    public function getTsId()
+    {
+        return Mage::getStoreConfig('trustedrating/data/trustedrating_id');
+    }
+
     /**
      * Get the "incluce orders since" setting from store config
      *
