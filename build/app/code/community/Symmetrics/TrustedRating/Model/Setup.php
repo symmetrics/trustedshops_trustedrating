@@ -95,8 +95,8 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     {
         try {
             Mage::getModel('core/email_template')->loadByCode($emailData['template_code'])->delete();
-        } catch (Exception $e) {
-            Mage::log($e->getMessage());
+        } catch (Exception $exception) {
+            Mage::logException($exception);
         }
         $model = Mage::getModel('core/email_template');
         $template = $model->setTemplateSubject($emailData['template_subject'])

@@ -50,7 +50,7 @@ Es sind keine Probleme bekannt.
             Sendungen aus der Vergangenheit zu berücksichtigen.
        2. Tätigen Sie eine Bestellung
        3. Versenden Sie sie
-       4. Loggen Sie sich aus und wieder ein und prüfen Sie, ob Sie eine E-Mail mit dem Bewertungs-Widget bekommen haben.
+       4. Loggen Sie sich aus dem Back-End und wieder ein und prüfen Sie, ob Sie eine E-Mail mit dem Bewertungs-Widget bekommen haben.
 *** D:  1. Prüfen Sie ob auf der Startseite das Trusted Rating Widget erscheint [SCREENSHOT: trustedrating-widget.png].
 		2. Prüfen Sie ob das Widget nur erscheint wenn im Backend der Status auf Ja gestellt ist, bei Nein muß es verschwinden.
         3. Prüfen Sie ob Sie beim Klick auf das Widget zu der Bewertungsseite weitergeleitet werden [SCREENSHOT: trustedratingsite.png]

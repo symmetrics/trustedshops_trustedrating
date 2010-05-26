@@ -102,14 +102,16 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      * Get the selected language (for the rating - site) from the store config and returns
      * the link for the widget, which is stored in the module config for each language
      *
-     * @param string $type type
+     * @param string $type    type
+     * @param int    $storeId store id
      *
      * @return string
      */
-    public function getRatingLinkData($type)
+    public function getRatingLinkData($type, $storeId = null)
     {
-        $optionValue = Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage');
+        $optionValue = Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage', $storeId);
         $link = Mage::helper('trustedrating')->getConfig($type, $optionValue);
+
         return $link;
     }
 
@@ -126,6 +128,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         if (Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage') == $countryCode) {
             return true;
         }
+
         return false;
     }
 
@@ -136,7 +139,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
     public function getRatingLink()
     {
-        return $this->getRatingLinkData('overwiewlanguagelink');
+        return $this->getRatingLinkData('overviewlanguagelink');
     }
 
     /**
@@ -276,6 +279,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
                 }
             }
         }
+
         return $link;
     }
 }

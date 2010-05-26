@@ -16,7 +16,8 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Yauhen Yakimovich <yy@symmetrics.de>
+ * * @copyright 2010 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -28,6 +29,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
+ * @author    Yauhen Yakimovich <yy@symmetrics.de>
  * @copyright 2010 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
@@ -136,15 +138,20 @@ class Symmetrics_TrustedRating_Model_Observer
      */
     private function _sendTransactionalMail($orderId, $customerEmail)
     {
-        $mailTemplate = Mage::getModel('core/email_template');
-        $template = Mage::getStoreConfig(self::XML_PATH_SYMMETRICS_TRUSTEDRATING_EMAIL_TEMPLATE);
+        $orderStoreId = Mage::getModel('sales/order')->load($orderId)->getStoreId();
+        $countryCode = substr(Mage::getStoreConfig('general/locale/code', $orderStoreId), 0, 2);
 
-        $mailTemplate->sendTransactional(
+        $templateConfigPath = self::XML_PATH_SYMMETRICS_TRUSTEDRATING_EMAIL_TEMPLATE . '/' . $countryCode;
+        $template = Mage::getStoreConfig($templateConfigPath, $orderStoreId);
+        $emailWidgetLink = $this->_getEmailWidgetLink($orderId, $customerEmail, $orderStoreId);
+
+        Mage::getModel('core/email_template')->sendTransactional(
             $template,
             Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY),
             $customerEmail, //replace through your own when you want to test it
             $customerEmail,
-            array('emailwidget' => $this->_getEmailWidgetLink($orderId, $customerEmail))
+            array('emailwidget' => $emailWidgetLink),
+            $orderStoreId
         );
     }
 
@@ -182,10 +189,11 @@ class Symmetrics_TrustedRating_Model_Observer
      *
      * @param int    $orderId       Order Id
      * @param string $customerEmail Customer Email
+     * @param int    $orderStoreId  Order store id, used for multistore logic
      *
      * @return string
      */
-    private function _getEmailWidgetLink($orderId, $customerEmail)
+    private function _getEmailWidgetLink($orderId, $customerEmail, $orderStoreId)
     {
         $model = Mage::getModel('trustedrating/trustedrating');
 
@@ -195,7 +203,8 @@ class Symmetrics_TrustedRating_Model_Observer
         $link = '<a href="' . $model->getEmailRatingLink() . '_' . $model->getTsId() . '.html';
         $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $orderId . '">';
         $widgetPath = Symmetrics_TrustedRating_Model_Trustedrating::IMAGE_LOCAL_PATH;
-        $widget = '<img src="' . $baseUrl . $widgetPath . $model->getRatingLinkData('emailratingimage') . '"/></a>';
+        $ratingLinkData = $model->getRatingLinkData('emailratingimage', $orderStoreId);
+        $widget = '<img src="' . $baseUrl . $widgetPath . $ratingLinkData . '"/></a>';
 
         return $link . $params . $widget;
     }

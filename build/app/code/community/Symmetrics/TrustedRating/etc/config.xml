@@ -154,12 +154,12 @@
         </routers>
     </admin>
     <default>
-        <overwiewlanguagelink>
+        <overviewlanguagelink>
             <de>https://www.trustedshops.com/bewertung/info</de>
             <en>https://www.trustedshops.com/buyerrating/info</en>
             <fr>https://www.trustedshops.com/evaluation/info</fr>
             <es>https://www.trustedshops.com/evaluacion/info</es>
-        </overwiewlanguagelink>
+        </overviewlanguagelink>
         <ratinglanguagelink>
             <de>https://www.trustedshops.com/bewertung/bewerten</de>
             <en>https://www.trustedshops.com/buyerrating/rate</en>
@@ -181,14 +181,30 @@
         <trustedratingmail>
             <emails>
                 <default>
-                    <trustedrating_mail>
+                    <trustedrating_mail_de>
+                        <execute>1</execute>
+                        <template_code>Trustedrating Post</template_code>
+                        <template_type>2</template_type>
+                        <template_subject>Trusted Shops Kundenbewertung</template_subject>
+                        <config_data_path>sales_email/trustedrating/template/de</config_data_path>
+                        <text>app/locale/de_DE/template/trustedrating/email/trustedrating_email.html</text>
+                    </trustedrating_mail_de>
+                    <trustedrating_mail_en>
                         <execute>1</execute>
                         <template_code>Trustedrating Mail</template_code>
                         <template_type>2</template_type>
                         <template_subject>Trusted Shops Kundenbewertung</template_subject>
-                        <config_data_path>sales_email/trustedrating/template</config_data_path>
-                        <text>app/locale/de_DE/template/trustedrating/email/trustedrating_email.html</text>
-                    </trustedrating_mail>
+                        <config_data_path>sales_email/trustedrating/template/en</config_data_path>
+                        <text>app/locale/en_US/template/trustedrating/email/trustedrating_email.html</text>
+                    </trustedrating_mail_en>
+                    <trustedrating_mail_fr>
+                        <execute>1</execute>
+                        <template_code>Trustedrating Poste</template_code>
+                        <template_type>2</template_type>
+                        <template_subject>Trusted Shops Kundenbewertung</template_subject>
+                        <config_data_path>sales_email/trustedrating/template/fr</config_data_path>
+                        <text>app/locale/fr_FR/template/trustedrating/email/trustedrating_email.html</text>
+                    </trustedrating_mail_fr>
                 </default>
             </emails>
         </trustedratingmail>
