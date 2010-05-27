@@ -4,7 +4,15 @@
 Extrahieren Sie den Inhalt dieses Archivs in Ihr Magento Verzeichnis.
 
 ** USAGE
-Dieses Modul implementiert das Bewertungssystem von Trusted Shops (Trusted Ratings) in einen Magento Shop.
+Dieses Modul implementiert das Bewertungssystem von Trusted Shops 
+(Trusted Ratings) in einen Magento Shop.
+
+Um mehrere Sprachen pro Shop zu unterstützen, benötigt man eine 
+eindeutige Trusted Shops ID für jede Sprache bzw. pro StoreView. 
+Es ist auch wichtig, dass die ausgewählte Sprache unter "Verkäufe => 
+Trusted Shops Kundenbewertung => Freischaltung => Shop Sprache" der 
+Lokalisierung unter "Allgemein => Option für Lokalisierungen => 
+Lokalisierung" gleicht.
 
 ** FUNCTIONALITY
 *** A: Im Konfigurationsbereich im Backend kann man Trusted Rating aktivieren / deaktiveren.
