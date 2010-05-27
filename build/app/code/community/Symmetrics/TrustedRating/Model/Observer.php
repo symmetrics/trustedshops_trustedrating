@@ -251,14 +251,15 @@ class Symmetrics_TrustedRating_Model_Observer
     {
         $from = $this->getHelper()->getActiveSince();
         $fromString = $from->toString(Varien_Date::DATETIME_INTERNAL_FORMAT);
-        if (!$dayInterval = Mage::getStoreConfig('trustedrating/trustedrating_email/days')) {
+        $dayInterval = (float) Mage::getStoreConfig('trustedrating/trustedrating_email/days');
+        if (is_null($dayInterval) || $dayInterval < 0) {
             return false;
         }
-
+        
         $intervalSeconds = $dayInterval * 24 * 60 * 60;
         $date = new Zend_Date();
         $timestamp = $date->get();
-
+        
         $diff = $timestamp - $intervalSeconds;
 
         return array(
