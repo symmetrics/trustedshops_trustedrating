@@ -4,12 +4,26 @@
 Extrahieren Sie den Inhalt dieses Archivs in Ihr Magento Verzeichnis.
 
 ** USAGE
-Dieses Modul implementiert das Bewertungssystem von Trusted Shops (Trusted Ratings) in einen Magento Shop.
+Dieses Modul implementiert das Bewertungssystem von Trusted Shops 
+(Trusted Ratings) in einem Magento Shop. Das Moduls beschäftigt sich mit
+der Anzeige des Bewertungswidgets und Email-Versand für die Kundenbewertung.
+Im Konfigurationsbereich im Backend kann man Trusted Rating aktivieren / 
+deaktiveren. Man kann einstellen, nach wieviel Tagen einer Bestellung, der Kunde
+eine Mail mit Bewerten-Button bekommt. Die Kunden, die vor der Installation 
+des Moduls im Shop eingekauft haben, werden nicht angeschrieben werden.
+Um mehrere Sprachen pro Shop zu unterstützen, benötigt man eine 
+eindeutige Trusted Shops ID für jede Sprache bzw. pro StoreView. 
+Es ist auch wichtig, dass die ausgewählte Sprache unter "Verkäufe => 
+Trusted Shops Kundenbewertung => Freischaltung => Shop Sprache" der 
+Lokalisierung unter "Allgemein => Option für Lokalisierungen => 
+Lokalisierung" gleicht.
 
 ** FUNCTIONALITY
 *** A: Im Konfigurationsbereich im Backend kann man Trusted Rating aktivieren / deaktiveren.
-*** B: Man kann einstellen, ab welchem Datum Bestellungen bzw. Sendungen berücksichtigt werden
-*** C: Man kann einstellen nach wieviel Tagen einer Bestellung der User eine mail mit Bewerten-Button bekommt.
+*** B: Email-Versand berücksichtigt die Bestellungen, die ab Aktivierungsdatum des Moduls 
+        getätigt wurden.
+*** C: Man kann einstellen, nach wieviel Tagen einer Bestellung, der Kunde
+        eine Mail mit Bewerten-Button bekommt. Der sinvolleste minimalle Wert ist ein Tag.
 *** D: Über das eingebundene Widget kann der Kunde die Anzahl der bisherigen Bewertungen
         sehen sowie beim klick auf das Image eine Bewertung vornehmen.
 *** E: Auf der Bestellbestätigungsseite erscheint ein "Bewerten" - Button mit dem gleichzeitig
@@ -50,7 +64,7 @@ Es sind keine Probleme bekannt.
             Sendungen aus der Vergangenheit zu berücksichtigen.
        2. Tätigen Sie eine Bestellung
        3. Versenden Sie sie
-       4. Loggen Sie sich aus und wieder ein und prüfen Sie, ob Sie eine E-Mail mit dem Bewertungs-Widget bekommen haben.
+       4. Loggen Sie sich aus dem Back-End und wieder ein und prüfen Sie, ob Sie eine E-Mail mit dem Bewertungs-Widget bekommen haben.
 *** D:  1. Prüfen Sie ob auf der Startseite das Trusted Rating Widget erscheint [SCREENSHOT: trustedrating-widget.png].
 		2. Prüfen Sie ob das Widget nur erscheint wenn im Backend der Status auf Ja gestellt ist, bei Nein muß es verschwinden.
         3. Prüfen Sie ob Sie beim Klick auf das Widget zu der Bewertungsseite weitergeleitet werden [SCREENSHOT: trustedratingsite.png]
@@ -62,15 +76,15 @@ Es sind keine Probleme bekannt.
 		    "Bewertungen" => "Widget Einstellungen" geht, den Shop auswählt und bei dem Bild einmal auf "ändern" und dann
 		    wieder auf "speichern" klickt. Das Widget sollte sich jetzt ändern und den Kommentar der letzten Bewertung zeigen
 		    sowie die neue Anzahl der Bewertungen.
-*** E: 1. Prüfen sie ob auf der Bestellbestätigungsseite eine "Bewerten" - Grafik erscheint und in dem Formular auf das der
-            Link verweist, bereits die Kunden-Emailadresse sowie die OrderID eingetragen ist.
+*** E: Prüfen sie ob auf der Bestellbestätigungsseite eine "Bewerten" - Grafik erscheint und in dem Formular auf das der
+        Link verweist, bereits die Kunden-Emailadresse sowie die OrderID eingetragen ist.
 *** F: Schalten Sie in der Konfiguration auf eine andere StoreView mit englischer, spanischer oder französischer Sprache um,
-            trage Sie eine neue (gültige) TS-ID ein und stellen Sie die Sprache entsprechend ein. Prüfen Sie ob im Frontend,
-            wenn Sie auf die jeweilige StoreView umschalten, das richtige Widget geladen wird, das gleiche gilt für das
-            E-Mail - Widget.
+        trage Sie eine neue (gültige) TS-ID ein und stellen Sie die Sprache entsprechend ein. Prüfen Sie ob im Frontend,
+        wenn Sie auf die jeweilige StoreView umschalten, das richtige Widget geladen wird, das gleiche gilt für das
+        E-Mail - Widget.
 *** G: Prüfen Sie ob unter im Konfigurationsbereich unter "Verkäufe => Trusted Shops Kundenbewertung" im Info-Block unten ein
-        Link zur PDF existiert und ob dieser auch funktioniert. Prüfen Sie ebenfalls ob in dem Tab "Jetzt kostenlos registrieren!"
-        ein Link existiert der Sie zur Registrierung führt. 
+        Button "Sondernkonditionen jetzt nutzen!" gibt und zur Registrierung führt. Es muss auch ein Dokumentation-Block mit 
+        dem Link zur PDF geben und auch funktionieren.
 
 ** CATCHABLE
 *** B: Bei einem ungültigen Datum (sollte aufgrund der drop-down nicht möglich sein) werden keine Mails verschickt.

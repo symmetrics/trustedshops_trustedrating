@@ -20,7 +20,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * Abstract widget class for coomon use
  *
@@ -36,22 +36,22 @@ class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Tem
 {
     /**
      * Generate the widget link data if trusted rating status is active and data are present for the current language
-     * 
+     *
      * @param boolean $type RATING|EMAIL widget type
      *
      * @return array|null
      */
-    public function getDataForWidget($type) 
+    public function getDataForWidget($type)
     {
         $model = Mage::getModel('trustedrating/trustedrating');
-        
-        if (!$model->getIsActive() || !$model->checkLocaleData()) {
+
+        if (!$model->getIsActive() || !$model->checkLocaleData()) {        
             return null;
         }
 
         switch ($type) {
             case 'RATING':
-                return $model->getRatingWidgetData();   
+                return $model->getRatingWidgetData();
                 break;
             case 'EMAIL':
                 return $model->getEmailWidgetData();

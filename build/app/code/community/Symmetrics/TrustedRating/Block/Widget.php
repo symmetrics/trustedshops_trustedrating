@@ -20,7 +20,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * Generate the rating widget
  *
@@ -36,7 +36,7 @@ class Symmetrics_TrustedRating_Block_Widget extends Symmetrics_TrustedRating_Blo
 {
     /**
      * Generate rating link
-     * 
+     *
      * @return string
      */
     public function getRatingLink()
@@ -44,13 +44,13 @@ class Symmetrics_TrustedRating_Block_Widget extends Symmetrics_TrustedRating_Blo
         $link = '';
         if ($data = $this->getDataForWidget('RATING')) {
             $link = $data['ratingLink'] . '_' . $data['tsId'] . '.html';
-        } 
+        }
         return $link;
     }
-    
+
     /**
      * Generate widget image source
-     * 
+     *
      * @return string
      */
     public function getWidgetSource()

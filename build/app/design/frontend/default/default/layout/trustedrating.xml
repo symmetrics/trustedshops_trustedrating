@@ -24,9 +24,12 @@
 -->
 <layout version="0.1.0">
     <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/symmetrics/trustedrating.css</stylesheet></action>
+        </reference>
         <reference name="right">
              <block type="trustedrating/widget" after="cart_sidebar" name="trustedrating_widget" template="trustedrating/trustedrating.phtml" />
-        </reference>        
+        </reference>
     </default>
     <checkout_onepage_success>
         <reference name="content">

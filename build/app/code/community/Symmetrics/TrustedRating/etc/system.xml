@@ -17,6 +17,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
+ * @author    Yauhen Yakimovich <yy@symmetrics.de>
  * @copyright 2009 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
@@ -67,9 +68,17 @@
 <br><br>
                         1.&nbsp;Sie melden sich auf dieser Seite für die Trusted Shops Kundenbewertungen an.<br>
                         2.&nbsp;Sie erhalten Ihre Zugangsdaten und Ihre persönliche Trusted Shops ID per E-Mail, die <br>Sie dann bitte in das Eingabefeld eingeben. Das Widget integriert sich dann<br>automatisch in das Shop-Template und die Bewertungsauffoderung in die System E-Mails.<br>
-                        3.&nbsp;Ihre Käufer geben Bewertungen ab, die Sie prüfen und bestätigen können.<br>Im geschützten Bereich können Sie die Kundenbewertungen analysieren.<br><br><div id="pdflink"></div>
+                        3.&nbsp;Ihre Käufer geben Bewertungen ab, die Sie prüfen und bestätigen können.<br>Im geschützten Bereich können Sie die Kundenbewertungen analysieren.<br><br><div id="reglink"></div>
                     ]]></comment>
                 </info>
+                <trustedrating_documentation translate="label">
+                        <label>Documentation</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>2</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                </trustedrating_documentation>
                 <data translate="label">
                     <label>Data</label>
                     <frontend_type>text</frontend_type>
@@ -114,53 +123,6 @@
                                 <show_in_website>1</show_in_website>
                                 <show_in_store>1</show_in_store>
                             </trustedrating_active>
-                            <datelimit_y translate="label">
-                                <label>Include shipments after (Year)</label>
-                                <frontend_type>select</frontend_type>
-                                <source_model>trustedrating/system_date_year</source_model>
-                                <sort_order>30</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <show_in_website>1</show_in_website>
-                                <show_in_store>1</show_in_store>
-                            </datelimit_y>
-                            <datelimit_m translate="label">
-                                <label>Month</label>
-                                <frontend_type>select</frontend_type>
-                                <source_model>trustedrating/system_date_month</source_model>
-                                <sort_order>31</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <show_in_website>1</show_in_website>
-                                <show_in_store>1</show_in_store>
-                            </datelimit_m>
-                            <datelimit_d translate="label">
-                                <label>Day</label>
-                                <frontend_type>select</frontend_type>
-                                <source_model>trustedrating/system_date_day</source_model>
-                                <sort_order>32</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <show_in_website>1</show_in_website>
-                                <show_in_store>1</show_in_store>
-                            </datelimit_d>
-                            <datelimit_h translate="label comment">
-                                <label>Hour</label>
-                                <frontend_type>select</frontend_type>
-                                <source_model>trustedrating/system_date_hour</source_model>
-                                <sort_order>33</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <show_in_website>1</show_in_website>
-                                <show_in_store>1</show_in_store>
-                                <comment>Please note: This is Magento internal time, which is in GMT.</comment>
-                            </datelimit_h>
-                            <datelimit_i translate="label comment">
-                                <label>Minute</label>
-                                <frontend_type>select</frontend_type>
-                                <source_model>trustedrating/system_date_minute</source_model>
-                                <sort_order>34</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <show_in_website>1</show_in_website>
-                                <show_in_store>1</show_in_store>
-                                <comment>Please note that if you enter some date in the past, all customers which ordered something from than on will receive an email from this module.</comment>
-                            </datelimit_i>
                         </fields>
                 </status>
                 <trustedrating_email translate="label">
@@ -171,8 +133,9 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                         <fields>
-                            <days translate="label">
+                            <days translate="label comment">
                                 <label>Days after shipment</label>
+                                <comment>0 = immediately after oder was wade</comment>
                                 <frontend_type>text</frontend_type>
                                 <sort_order>1</sort_order>
                                 <show_in_default>1</show_in_default>
@@ -181,14 +144,6 @@
                             </days>
                         </fields>
                 </trustedrating_email>
-                <trustedrating_registration translate="label">
-                        <label>Register now free of charge!</label>
-                        <frontend_type>text</frontend_type>
-                        <sort_order>2</sort_order>
-                        <show_in_default>1</show_in_default>
-                        <show_in_website>1</show_in_website>
-                        <show_in_store>1</show_in_store>
-                </trustedrating_registration>
             </groups>
         </trustedrating>
     </sections>

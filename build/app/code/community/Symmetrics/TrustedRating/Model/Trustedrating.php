@@ -16,11 +16,12 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
+ * @author    Yauhen Yakimovich <yy@symmetrics.de>
  * @copyright 2010 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * Main model
  *
@@ -28,6 +29,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
+ * @author    Yauhen Yakimovich <yy@symmetrics.de>
  * @copyright 2010 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
@@ -40,7 +42,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      * @var string
      */
     const WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/widgets/';
-    
+
     /**
      * Fixed part of the link for the rating-site for the email - widget
      *
@@ -50,42 +52,42 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 
     /**
      * Fixed part of the registration link
-     * 
+     *
      * @var string
      */
     const REGISTRATION_LINK = 'https://www.trustedshops.com/bewertung/anmeldung.html?';
-    
+
     /**
      * Fixed part of the widget path
      *
      * @var string
      */
     const IMAGE_LOCAL_PATH = 'media/';
-    
+
     /**
      * The cacheid to cache the widget
      *
      * @var string
      */
     const CACHEID = 'trustedratingimage';
-    
+
     /**
      * The cacheid to cache the email widget
      *
      * @var string
      */
     const EMAIL_CACHEID = 'trustedratingemailimage';
-    
+
     /**
      * Get the trusted rating id from store config
      *
      * @return string
      */
-    public function getTsId() 
-    {   
-        return Mage::getStoreConfig('trustedrating/data/trustedrating_id');
+    public function getTsId()
+    {
+        return Mage::helper('trustedrating')->getTsId();
     }
-    
+
     /**
      * Get the module status from store config
      *
@@ -95,28 +97,30 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     {
         return Mage::helper('trustedrating')->getIsActive();
     }
-    
+
     /**
      * Get the selected language (for the rating - site) from the store config and returns
      * the link for the widget, which is stored in the module config for each language
-     * 
-     * @param string $type type
+     *
+     * @param string $type    type
+     * @param int    $storeId store id
      *
      * @return string
      */
-    public function getRatingLinkData($type) 
+    public function getRatingLinkData($type, $storeId = null)
     {
-        $optionValue = Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage');
+        $optionValue = Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage', $storeId);
         $link = Mage::helper('trustedrating')->getConfig($type, $optionValue);
+
         return $link;
     }
-        
+
     /**
      * Check if the current language is chosen in the trusted rating config
-     * 
+     *
      * @return boolean
      */
-    public function checkLocaleData() 
+    public function checkLocaleData()
     {
         $storeId = Mage::app()->getStore()->getId();
         $countryCode = substr(Mage::getStoreConfig('general/locale/code', $storeId), 0, 2);
@@ -124,9 +128,10 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         if (Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage') == $countryCode) {
             return true;
         }
+
         return false;
     }
-    
+
     /**
      * Get the rating link
      *
@@ -134,9 +139,9 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
     public function getRatingLink()
     {
-        return $this->getRatingLinkData('overwiewlanguagelink');
+        return $this->getRatingLinkData('overviewlanguagelink');
     }
-    
+
     /**
      * Get the email rating link
      *
@@ -146,7 +151,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     {
         return $this->getRatingLinkData('ratinglanguagelink');
     }
-    
+
     /**
      * Get the link data for the widget-image from cache
      *
@@ -166,7 +171,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
             'imageLocalPath' => self::IMAGE_LOCAL_PATH
         );
     }
-    
+
     /**
      * Get the link data for the email-widget-image from cache
      *
@@ -194,20 +199,20 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 
         return $array;
     }
-    
+
     /**
      * Cache the widget images
-     * 
+     *
      * @param string $type type
      * @param string $tsId Trusted Rating Id
      *
      * @return void
      */
-    private function _cacheImageData($type, $tsId = null) 
+    private function _cacheImageData($type, $tsId = null)
     {
         $ioObject = new Varien_Io_File();
         $ioObject->open();
-        
+
         if ($type == 'emailWidget') {
             $emailWidgetName = $this->getRatingLinkData('emailratingimage');
             $readPath = self::EMAIL_WIDGET_LINK . $emailWidgetName;
@@ -218,15 +223,15 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
             $writePath = self::IMAGE_LOCAL_PATH . $tsId . '.gif';
             $cacheId = self::CACHEID;
         }
-        
+
         $result = $ioObject->read($readPath);
         $ioObject->write($writePath, $result);
         Mage::app()->saveCache($writePath, $cacheId, array(), 1);
         $ioObject->close();
     }
-    
+
     /**
-     * Cache the email image 
+     * Cache the email image
      *
      * @return void
      */
@@ -234,9 +239,9 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     {
         $this->_cacheImageData('emailWidget');
     }
-    
+
     /**
-     * Cache the widget image 
+     * Cache the widget image
      *
      * @param int $tsId Trusted Rating Id
      *
@@ -246,13 +251,13 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     {
         $this->_cacheImageData('mainWidget', $tsId);
     }
-    
+
     /**
      * Return registration Link
-     * 
+     *
      * @return string
      */
-    public function getRegistrationLink() 
+    public function getRegistrationLink()
     {
         $link = self::REGISTRATION_LINK;
         $link .= 'partnerPackage=' . Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage');
@@ -274,6 +279,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
                 }
             }
         }
+
         return $link;
     }
 }
