@@ -56,7 +56,7 @@ VIRTUAL = {}
 
 DEPENDS_ON_FILES = ()
 
-PEAR_KEY = ''
+PEAR_KEY = 'magento-community/symmetrics_trustedrating'
 
 COMPATIBLE_WITH = {
      'magento': ['1.3.2.3', '1.4.0.0', '1.4.0.1'],
