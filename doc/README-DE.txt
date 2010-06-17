@@ -49,19 +49,24 @@ Es sind keine Probleme bekannt.
 
 * TESTCASES
 ** BASIC
-*** A:	1. Geben Sie im Konfigurationsbereich "Verkäufe => Trusted Shops Kundenbewertung => Freischaltung"
+*** A:	1. Geben Sie im Konfigurationsbereich "System -> Konfiguration
+            -> Verkäufe -> Trusted Shops Kundenbewertung -> Freischaltung"
             die Trusted Shops ID und die Sprache ein.
-	    2. Stellen Sie im Tab "Status" "Trusted Rating aktivieren?" auf Ja
-	    3. Speichern Sie die Konfiguration und prüfen sie ob die Meldung (notice) "returnValue: OK" erscheint,
-	        wenn ja hat die Kommunikation mit Trusted Shops geklappt, das heißt die Daten sind korrekt
-	        (diese Meldung muß auch kommen wenn Sie den Status auf "Nein" stellen).
-*** B:  1. Das Datum unter "Verkäufe => Trusted Shops Kundenbewertung => Freischaltung" sollte dem Installationszeitpunkt
-            gleichen. Prüfen Sie dies. Beachten Sie hierbei, dass dort die Magento interne Zeit benutzt wird, welche
-            GMT entspricht. Zeitzonenabweichungen und/oder DST (Sommerzeit) wird hier nicht berücksichtigt um eine einheitliche
-            Rechengrundlage zu haben.
-*** C: 1. Stellen Sie in der Trusted-Rating Konfiguration den Wert 0.0001 bei "Tagen" ein.
-       2. Gegebenenfalls kann man das Datum unter "Verkäufe => Trusted Shops Kundenbewertung => Freischaltung" anpassen, um 
-            Sendungen aus der Vergangenheit zu berücksichtigen.
+	    2. Stellen Sie im Tab "Aktivierung" "Trusted Rating aktivieren?" auf Ja
+	    3. Speichern Sie die Konfiguration und prüfen sie ob die Meldung (notice)
+            "TrustedShops Antwort: OK" erscheint, wenn ja hat die Kommunikation mit 
+            Trusted Shops geklappt, das heißt die Daten sind korrekt (diese 
+            Meldung muß auch kommen wenn Sie den Status auf "Nein" stellen).
+*** B:  1. Das Datum, das mit folgende SQL Abfrage zu bekommen ist
+            "select * from core_config_data where path like '%trusted%';"
+            sollte dem Installationszeitpunkt gleichen. Prüfen Sie dies. 
+            Beachten Sie hierbei, dass dort die Magento interne Zeit 
+            benutzt wird, welche GMT entspricht. Zeitzonenabweichungen 
+            und/oder DST (Sommerzeit) wird hier nicht berücksichtigt um 
+            eine einheitliche Rechengrundlage zu haben.
+*** C: 1. Stellen Sie in der Trusted-Rating Konfiguration den Wert "0" unter "
+           System -> Konfiguration -> Verkäufe -> Trusted Shops Kundenbewertun -> 
+           E-Mail zur Bewertungsaufforderung -> Tage nach Sendung" ein.
        2. Tätigen Sie eine Bestellung
        3. Versenden Sie sie
        4. Loggen Sie sich aus dem Back-End und wieder ein und prüfen Sie, ob Sie eine E-Mail mit dem Bewertungs-Widget bekommen haben.
@@ -72,19 +77,15 @@ Es sind keine Probleme bekannt.
 		5. Loggen Sie sich auf https://qa.trustedshops.de/shop/login.html (Testumgebung) oder
 		    https://www.trustedshops.de/shop/login.html (Live-Umgebung) in Ihren Account ein und prüfen sie ob die Bewertung
 		    angekommen ist, bestätigen sie die Bewertung.
-		6. Das Widget wird von Trusted Shops nur einmal am Tag neu gecached, man kann das cachen aber erzwingen indem man auf
-		    "Bewertungen" => "Widget Einstellungen" geht, den Shop auswählt und bei dem Bild einmal auf "ändern" und dann
-		    wieder auf "speichern" klickt. Das Widget sollte sich jetzt ändern und den Kommentar der letzten Bewertung zeigen
-		    sowie die neue Anzahl der Bewertungen.
 *** E: Prüfen sie ob auf der Bestellbestätigungsseite eine "Bewerten" - Grafik erscheint und in dem Formular auf das der
         Link verweist, bereits die Kunden-Emailadresse sowie die OrderID eingetragen ist.
 *** F: Schalten Sie in der Konfiguration auf eine andere StoreView mit englischer, spanischer oder französischer Sprache um,
         trage Sie eine neue (gültige) TS-ID ein und stellen Sie die Sprache entsprechend ein. Prüfen Sie ob im Frontend,
         wenn Sie auf die jeweilige StoreView umschalten, das richtige Widget geladen wird, das gleiche gilt für das
         E-Mail - Widget.
-*** G: Prüfen Sie ob unter im Konfigurationsbereich unter "Verkäufe => Trusted Shops Kundenbewertung" im Info-Block unten ein
-        Button "Sondernkonditionen jetzt nutzen!" gibt und zur Registrierung führt. Es muss auch ein Dokumentation-Block mit 
-        dem Link zur PDF geben und auch funktionieren.
+*** G: Prüfen Sie ob unter im Konfigurationsbereich unter "Verkäufe -> Trusted Shops Kundenbewertung -> Info" im Info-Block unten ein
+        Button "Sondernkonditionen jetzt nutzen!" gibt und zur Registrierung führt. Es muss auch ein Dokumentation-Block unter 
+        "Verkäufe -> Trusted Shops Kundenbewertung -> Dokumentation" mit dem Link zur PDF geben und auch funktionieren.
 
 ** CATCHABLE
 *** B: Bei einem ungültigen Datum (sollte aufgrund der drop-down nicht möglich sein) werden keine Mails verschickt.
