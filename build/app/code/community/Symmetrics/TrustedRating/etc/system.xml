@@ -104,6 +104,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </trustedrating_ratinglanguage>
+                        <active_since translate="label comment">
+                            <label><![CDATA[Installation date (GMT)]]></label>
+                            <comment><![CDATA[This module will only send mails for orders after this point of time]]></comment>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active_since>
                     </fields>
                 </data>
                 <status translate="label">

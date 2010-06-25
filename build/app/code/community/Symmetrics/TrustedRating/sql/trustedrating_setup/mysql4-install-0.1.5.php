@@ -41,7 +41,5 @@ $query = <<< EOF
 EOF;
 
 $installer->run($query);
-$installer->setConfigData('trustedrating/trustedrating_email/days', '3');
-$installer->setConfigData('trustedrating/status/trustedrating_active', '0');
 
 $installer->endSetup();

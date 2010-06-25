@@ -23,20 +23,4 @@
  * @link      http://www.symmetrics.de/
  */
 
-$installer = $this;
-$installer->startSetup();
-
-$todayDate = Mage::app()->getLocale()->date();
-
-$config = array(
-    'datelimit_y' => 'yyyy',
-    'datelimit_m' => 'MM',
-    'datelimit_d' => 'dd',
-    'datelimit_h' => 'HH',
-    'datelimit_i' => 'mm',
-);
-foreach ($config as $key => $value) {
-    $installer->setConfigData('trustedrating/status/' . $key, $todayDate->toString($value));
-}
-
-$installer->endSetup();
+// file no longer in use
