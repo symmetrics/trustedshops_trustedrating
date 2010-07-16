@@ -119,13 +119,15 @@ class Symmetrics_TrustedRating_Model_Observer
      */
     private function _sendTrustedRatingMails($shipmentIds)
     {
-       foreach ($shipmentIds as $shipmentId) {
-           $orderId = $this->_getOrderId($shipmentId);
-           $customerEmail = $this->_getCustomerEmail($shipmentId);
+        foreach ($shipmentIds as $shipmentId) {
+            $orderId = $this->_getOrderId($shipmentId);
+            $customerEmail = $this->_getCustomerEmail($shipmentId);
 
-           $this->_sendTransactionalMail($orderId, $customerEmail);
-           $this->_saveShipmentIdToTable($shipmentId);
-       }
+            if (strlen($customerEmail) > 0) {
+                $this->_sendTransactionalMail($orderId, $customerEmail);
+            }
+            $this->_saveShipmentIdToTable($shipmentId);
+        }
     }
 
     /**
