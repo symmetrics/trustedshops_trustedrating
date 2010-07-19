@@ -169,8 +169,12 @@ class Symmetrics_TrustedRating_Model_Observer
         $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
         $customerId = $shipment->getData('customer_id');
         $customer = Mage::getModel('customer/customer')->load($customerId);
+        $customerEmail = $customer->getData('email');
+        if ($customerEmail == NULL) {
+            $customerEmail = $shipment->getOrder()->getData('customer_email');
+        }
 
-        return $customer->getData('email');
+        return $customerEmail;
     }
 
     /**
