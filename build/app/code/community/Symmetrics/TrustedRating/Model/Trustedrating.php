@@ -182,6 +182,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         $tsId = $this->getTsId();
         $orderId = Mage::getSingleton('checkout/type_onepage')->getCheckout()->getLastOrderId();
         $order = Mage::getModel('sales/order')->load($orderId);
+        $incrementId = $order->getRealOrderId();
         $buyerEmail = $order->getData('customer_email');
 
         if (!Mage::app()->loadCache(self::EMAIL_CACHEID)) {
@@ -192,7 +193,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
             'tsId' => $tsId,
             'ratingLink' => $this->getEmailRatingLink(),
             'imageLocalPath' => self::IMAGE_LOCAL_PATH,
-            'orderId' => $orderId,
+            'orderId' => $incrementId,
             'buyerEmail' => $buyerEmail,
             'widgetName' => $this->getRatingLinkData('emailratingimage')
         );

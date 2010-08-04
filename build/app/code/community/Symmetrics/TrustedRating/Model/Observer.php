@@ -121,9 +121,11 @@ class Symmetrics_TrustedRating_Model_Observer
     {
        foreach ($shipmentIds as $shipmentId) {
            $orderId = $this->_getOrderId($shipmentId);
+           $order = Mage::getModel('sales/order')->load($orderId);
+           $incrementId = $order->getRealOrderId();
            $customerEmail = $this->_getCustomerEmail($shipmentId);
 
-           $this->_sendTransactionalMail($orderId, $customerEmail);
+           $this->_sendTransactionalMail($incrementId, $customerEmail);
            $this->_saveShipmentIdToTable($shipmentId);
        }
     }
