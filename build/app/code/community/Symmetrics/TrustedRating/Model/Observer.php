@@ -70,8 +70,6 @@ class Symmetrics_TrustedRating_Model_Observer
     /**
      * Checks the shippings which will get an email
      *
-     * @param Varien_Event_Observer $observer Observer
-     *
      * @return void
      */
     public function checkSendRatingEmail()
