@@ -98,4 +98,34 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
         
         return $activeDate;
     }
+    
+    /**
+     * Get order ID by shipment ID
+     *
+     * @param int $shipmentId Shipment Id
+     *
+     * @return int
+     */
+    public function getOrderId($shipmentId)
+    {
+        $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
+        
+        return $shipment->getData('order_id');
+    }
+    
+    /**
+     * Get customer email by shipment Id
+     *
+     * @param int $shipmentId Shipment Id
+     *
+     * @return string
+     */
+    public function getCustomerEmail($shipmentId)
+    {
+        $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
+        $customerId = $shipment->getData('customer_id');
+        $customer = Mage::getModel('customer/customer')->load($customerId);
+
+        return $customer->getData('email');
+    }
 }

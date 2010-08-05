@@ -74,40 +74,12 @@ class Symmetrics_TrustedRating_Model_Observer
      *
      * @return void
      */
-    public function checkSendRatingEmail($observer)
+    public function checkSendRatingEmail()
     {
-        if ($this->isActive() && $shipmentIds = $this->_checkShippings()) {
+        $model = Mage::getModel('trustedrating/trustedrating');
+        if ($this->isActive() && $shipmentIds = $model->checkShippings()) {
             $this->_sendTrustedRatingMails($shipmentIds);
         }
-    }
-
-    /**
-     * Get all shippings which are older than x days and are not in table
-     *
-     * @return boolean|array
-     */
-    private function _checkShippings()
-    {
-        if (!$dayInterval = $this->_getDayInterval()) {
-            return false;
-        }
-
-        $from = $dayInterval['from'];
-        $to = $dayInterval['to'];
-
-        $shipments = Mage::getResourceModel('sales/order_shipment_collection');
-        if ($sentIds = $this->_getSentIds()) {
-            if (!is_null($sentIds)) {
-                $shipments->addAttributeToFilter('entity_id', array('nin' => $sentIds));
-            }
-        }
-        $shipments->addAttributeToFilter('created_at', array('from' => $from, 'to' => $to))
-            ->load();
-
-        if (!$shipments) {
-            return false;
-        }
-        return $shipments->getAllIds();
     }
 
     /**
@@ -120,10 +92,10 @@ class Symmetrics_TrustedRating_Model_Observer
     private function _sendTrustedRatingMails($shipmentIds)
     {
        foreach ($shipmentIds as $shipmentId) {
-           $orderId = $this->_getOrderId($shipmentId);
+           $orderId = $this->getHelper()->getOrderId($shipmentId);
            $order = Mage::getModel('sales/order')->load($orderId);
            $incrementId = $order->getRealOrderId();
-           $customerEmail = $this->_getCustomerEmail($shipmentId);
+           $customerEmail = $this->getHelper()->getCustomerEmail($shipmentId);
 
            $this->_sendTransactionalMail($incrementId, $customerEmail);
            $this->_saveShipmentIdToTable($shipmentId);
@@ -157,34 +129,7 @@ class Symmetrics_TrustedRating_Model_Observer
         );
     }
 
-    /**
-     * Get customer email by shipment Id
-     *
-     * @param int $shipmentId Shipment Id
-     *
-     * @return string
-     */
-    private function _getCustomerEmail($shipmentId)
-    {
-        $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
-        $customerId = $shipment->getData('customer_id');
-        $customer = Mage::getModel('customer/customer')->load($customerId);
 
-        return $customer->getData('email');
-    }
-
-    /**
-     * Get order ID by shipment ID
-     *
-     * @param int $shipmentId Shipment Id
-     *
-     * @return int
-     */
-    private function _getOrderId($shipmentId)
-    {
-        $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
-        return $shipment->getData('order_id');
-    }
 
     /**
      * Generate email widget code
@@ -223,51 +168,6 @@ class Symmetrics_TrustedRating_Model_Observer
         $mailModel = Mage::getModel('trustedrating/mail');
         $mailModel->setShippmentId($shipmentId)
             ->save();
-    }
-
-    /**
-     * Get all IDs from trusted_rating table of customers which already got an email
-     *
-     * @return array
-     */
-     private function _getSentIds()
-     {
-         $mailModel = Mage::getModel('trustedrating/mail');
-         $shipmentIds = array();
-         $model = $mailModel->getCollection();
-         $items = $model->getItems();
-         foreach ($items as $item) {
-             $shipmentIds[] = $item->getShippmentId();
-         }
-
-         return $shipmentIds;
-     }
-
-    /**
-     * Substract the days in the config (3 for default) from the current date for upper limit
-     * and get the "include since" date (default: setup date) for lower limit; return both in array
-     *
-     * @return array
-     */
-    private function _getDayInterval()
-    {
-        $from = $this->getHelper()->getActiveSince();
-        $fromString = $from->toString(Varien_Date::DATETIME_INTERNAL_FORMAT);
-        $dayInterval = (float) Mage::getStoreConfig('trustedrating/trustedrating_email/days');
-        if (is_null($dayInterval) || $dayInterval < 0) {
-            return false;
-        }
-        
-        $intervalSeconds = $dayInterval * 24 * 60 * 60;
-        $date = new Zend_Date();
-        $timestamp = $date->get();
-        
-        $diff = $timestamp - $intervalSeconds;
-
-        return array(
-            'from' => $fromString,
-            'to' => date("Y-m-d H:i:s", $diff)
-        );
     }
 
     /**
