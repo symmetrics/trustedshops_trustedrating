@@ -26,7 +26,7 @@
 <config>
     <sections>
         <trustedrating translate="label" module="trustedrating">
-            <label>Trusted Shops Rating</label>
+            <label>Customer Rating</label>
             <tab>sales</tab>
             <frontend_type>text</frontend_type>
             <sort_order>1000</sort_order>
@@ -78,7 +78,7 @@
                         </trustedrating_ratinglanguage>
                         <active_since translate="label comment">
                             <label><![CDATA[Installation date (GMT)]]></label>
-                            <comment><![CDATA[This module will only send mails for orders after this point of time]]></comment>
+                            <comment><![CDATA[Mail can be sent only for orders placed after installation of this module.]]></comment>
                             <frontend_type>label</frontend_type>
                             <sort_order>100</sort_order>
                             <show_in_default>1</show_in_default>
@@ -107,7 +107,7 @@
                         </fields>
                 </status>
                 <trustedrating_email translate="label">
-                    <label>E-mail for prompt assessment</label>
+                    <label>Email with rating request</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>5</sort_order>
                     <show_in_default>1</show_in_default>
@@ -116,7 +116,7 @@
                         <fields>
                             <days translate="label comment">
                                 <label>Days after shipment</label>
-                                <comment>0 = immediately after oder was wade</comment>
+                                <comment>0 = Immediately after placement of the order</comment>
                                 <frontend_type>text</frontend_type>
                                 <sort_order>1</sort_order>
                                 <show_in_default>1</show_in_default>
