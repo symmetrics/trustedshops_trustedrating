@@ -37,39 +37,11 @@
                 <info translate="label">
                     <label>Info</label>
                     <frontend_type>text</frontend_type>
+                    <frontend_model>trustedrating/adminhtml_system_config_info</frontend_model>
                     <sort_order>0</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <!--TODO: in English please -->
-                    <comment><![CDATA[
-                        <b>Trusted Shops Kundenbewertungen</b>
-                        <br><br>
-                        Positive und nachprüfbare Kundenbewertungen sind für Online-Käufer ein wichtiger Hinweis<br>für die Vertrauenswürdigkeit eines Online-Shops. Die notwendige Software ist bereits in Ihrer<br>Shoplösung vorhanden, sodass Sie mit wenigen Klicks auch in Ihrem Shop<br>Kundenbewertungen einholen können.<br><br>
-                        Die Nutzer bewerten die Qualität der Webseite, der Lieferung, der Ware und des<br> Kundenservices. Zusätzlich können die Käufer ihrer Bewertung einen freien Kommentar<br>hinzufügen.
-<br><br>
-                        <img src="http://www.trustedshops.de/shop-info/wp-content/uploads/2009/08/grafik-kundenbewertungen-kundenmeinungen.jpg"/>
-<br><br>
-                        <b>Ihre Vorteile</b>
-<br><br>
-                        Lernen Sie die Wünsche Ihrer Kunden besser kennen und verbessern Sie Ihren Service.<br> Machen Sie so zufriedene Kunden zu Ihren besten Verkäufern!
-<br><br>
-    <ul style="list-style-type: disc;margin-left:14px">
-        <li>Mehr Umsatz durch mehr Vertrauen</li>
-        <li>Orientierungshilfe für Ihre Kunden</li>
-        <li>Echte Kundenmeinungen im Shop</li>
-        <li>Besserer Service durch Feedback</li>
-        <li>Webbasierte Lösung ohne Aufwand</li>
-        <li>Basis für Shop-Optimierungen</li>
-        <li>Auswertungen und Benchmarks</li>
-    </ul>
-<br><br>
-                        <b>So funktioniert es</b>
-<br><br>
-                        1.&nbsp;Sie melden sich auf dieser Seite für die Trusted Shops Kundenbewertungen an.<br>
-                        2.&nbsp;Sie erhalten Ihre Zugangsdaten und Ihre persönliche Trusted Shops ID per E-Mail, die <br>Sie dann bitte in das Eingabefeld eingeben. Das Widget integriert sich dann<br>automatisch in das Shop-Template und die Bewertungsauffoderung in die System E-Mails.<br>
-                        3.&nbsp;Ihre Käufer geben Bewertungen ab, die Sie prüfen und bestätigen können.<br>Im geschützten Bereich können Sie die Kundenbewertungen analysieren.<br><br><div id="reglink"></div>
-                    ]]></comment>
                 </info>
                 <trustedrating_documentation translate="label">
                         <label>Documentation</label>
