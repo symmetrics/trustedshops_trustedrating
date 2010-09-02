@@ -127,8 +127,6 @@ class Symmetrics_TrustedRating_Model_Observer
         );
     }
 
-
-
     /**
      * Generate email widget code
      *

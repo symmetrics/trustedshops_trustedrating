@@ -105,25 +105,6 @@
         </layout>
     </frontend>
     <adminhtml>
-        <acl>
-            <resources>
-                <admin>
-                    <children>
-                        <system>
-                            <children>
-                                <config>
-                                    <children>
-                                        <trustedrating>
-                                            <title>trustedrating</title>
-                                        </trustedrating>
-                                    </children>
-                                </config>
-                            </children>
-                        </system>
-                    </children>
-                </admin>
-            </resources>
-        </acl>
         <translate>
             <modules>
                 <Symmetrics_TrustedRating>
