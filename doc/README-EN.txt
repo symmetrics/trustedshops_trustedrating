@@ -92,7 +92,7 @@ Es sind keine Probleme bekannt.
         E-Mail - Widget.
 
 *** G: 1. Open "Admin Panel / System / Configuration / Sales /
-          Trusted Shops Seal / Info" and compare the contents of a banner
+          Customer Rating / Info" and compare the contents of a banner
           with a screenshot [SCREENSHOT: Info-Banner_en.png].
           Change the backend language from English to German, in this case,
           the banner should display the German text
