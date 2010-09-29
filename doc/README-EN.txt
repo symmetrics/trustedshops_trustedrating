@@ -31,9 +31,7 @@ Lokalisierung" gleicht.
 *** F: Je nach eingestellter Sprache im Shop wird das dazugehörige Widget geladen. Achtung: Die TrustedRating
         Sprache muss der Shop-Sprache gleichen!
 
-*** G: 1. There's multilanguage information banner for the whole MRG
-          in System Configuration with banner, text and action.
-          
+*** G: 1. There's multilanguage information banner in System Configuration.
        2. In the Backend are 2 links available, once to register and once to
           the documentation as a PDF.
 
