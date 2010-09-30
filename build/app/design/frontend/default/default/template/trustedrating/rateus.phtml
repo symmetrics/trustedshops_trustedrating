@@ -21,6 +21,8 @@
  * @link      http://www.symmetrics.de/
  */
 ?>
-<a target="_blank" href="<?php echo $this->getRatingLink() ?>">
-    <img src="<?php echo $this->getWidgetSource() ?>" border="0" alt="" />
-</a>
+<?php if (Mage::helper('trustedrating')->canShowWidget()): ?>
+    <a target="_blank" href="<?php echo $this->getRatingLink() ?>">
+        <img src="<?php echo $this->getWidgetSource() ?>" border="0" alt="" />
+    </a>
+<?php endif; ?>

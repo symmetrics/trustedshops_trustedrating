@@ -85,6 +85,20 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::getStoreConfig('trustedrating/data/trustedrating_id');
     }
+    
+    /**
+     * Check if TS id is correct and module is active.
+     *
+     * @return boolean
+     */
+    public function canShowWidget() 
+    {
+        if ($this->getTsId() && $this->getIsActive()) {
+            return true;
+        }
+        
+        return false;
+    }
 
     /**
      * Get the "incluce orders since" setting from store config
