@@ -30,7 +30,10 @@ Lokalisierung" gleicht.
         die Kunden-email sowie die OrderId übergeben wird.
 *** F: Je nach eingestellter Sprache im Shop wird das dazugehörige Widget geladen. Achtung: Die TrustedRating
         Sprache muss der Shop-Sprache gleichen!
-*** G: Im Backend stehen 2 links zur Verfügung, einmal zur Registrierung, einmal zu der Dokumentation als PDF.
+
+*** G: 1. There's multilanguage information banner in System Configuration.
+       2. In the Backend are 2 links available, once to register and once to
+          the documentation as a PDF.
 
 ** TECHNICAL
 	Per layout modifikator wird ein eigenes Template über eine eigene Blockklasse auf der Startseite
@@ -44,6 +47,10 @@ Lokalisierung" gleicht.
     Der Zugriff auf diese Tabelle funktioniert über 3 Resource-Models (Data, Mysql, Collection).
     Per Javascript werden im Backend 2 links hinzugefügt (siehe F)
 
+G: Magento template (with multilanguage support) is connected to Info-Box in
+   the Admin Panel Configuration by frontend model renderer
+   (adminhtml_system_config_info).
+   
 ** PROBLEMS
 Es sind keine Probleme bekannt.
 
@@ -83,9 +90,21 @@ Es sind keine Probleme bekannt.
         trage Sie eine neue (gültige) TS-ID ein und stellen Sie die Sprache entsprechend ein. Prüfen Sie ob im Frontend,
         wenn Sie auf die jeweilige StoreView umschalten, das richtige Widget geladen wird, das gleiche gilt für das
         E-Mail - Widget.
-*** G: Prüfen Sie ob unter im Konfigurationsbereich unter "Verkäufe -> Trusted Shops Kundenbewertung -> Info" im Info-Block unten ein
-        Button "Sondernkonditionen jetzt nutzen!" gibt und zur Registrierung führt. Es muss auch ein Dokumentation-Block unter 
-        "Verkäufe -> Trusted Shops Kundenbewertung -> Dokumentation" mit dem Link zur PDF geben und auch funktionieren.
+
+*** G: 1. Open "Admin Panel / System / Configuration / Sales /
+          Customer Rating / Info" and compare the contents of a banner
+          with a screenshot [SCREENSHOT: Info-Banner_en.png].
+          Change the backend language from English to German, in this case,
+          the banner should display the German text
+          [SCREENSHOT: Info-Banner_de.png].
+
+       2. Check whether, in the configuration section under the "Admin Panel /
+          System / Configuration / Sales / Customer Rating / Info" in the info
+          block below button "Checkout our Specialoffer now!" and registration
+          is out.
+          There is also a documentation block must be in "Admin Panel /
+          System / Configuration / Sales / Customer Rating / Documentation" 
+          with the link to the PDF and give work.
 
 ** CATCHABLE
 *** B: Bei einem ungültigen Datum (sollte aufgrund der drop-down nicht möglich sein) werden keine Mails verschickt.

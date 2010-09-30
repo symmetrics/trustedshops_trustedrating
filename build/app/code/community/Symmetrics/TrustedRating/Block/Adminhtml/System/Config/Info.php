@@ -22,7 +22,7 @@
  */
  
 /**
- * Info renderer for Symmetrics_TrustedRating system config
+ * This is the info renderer for Symmetrics_TrustedRating system config.
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -37,7 +37,7 @@ class Symmetrics_TrustedRating_Block_Adminhtml_System_Config_Info
     implements Varien_Data_Form_Element_Renderer_Interface
 {
     /**
-     * Internal constructor
+     * This is the internal constructor (template set for html rendering).
      * 
      * @return void
      */
@@ -47,8 +47,9 @@ class Symmetrics_TrustedRating_Block_Adminhtml_System_Config_Info
     }
     
     /**
-     * Render fieldset html
-     *
+     * Render to return the html-content of sub-menu,
+     * under Admin Panel / System / Configuration.
+     * 
      * @param Varien_Data_Form_Element_Abstract $element element
      * 
      * @return string
@@ -58,9 +59,10 @@ class Symmetrics_TrustedRating_Block_Adminhtml_System_Config_Info
         $html = $this->_getHeaderHtml($element);
 
         $this->setElement($element);
+
         $html .= '<tr><td>' . $this->toHtml() . '</tr></td>';
-        
         $html .= $this->_getFooterHtml($element);
+
         return $html;
     }
 }
