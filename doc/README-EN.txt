@@ -30,10 +30,11 @@ Lokalisierung" gleicht.
         die Kunden-email sowie die OrderId übergeben wird.
 *** F: Je nach eingestellter Sprache im Shop wird das dazugehörige Widget geladen. Achtung: Die TrustedRating
         Sprache muss der Shop-Sprache gleichen!
-
 *** G: 1. There's multilanguage information banner in System Configuration.
        2. In the Backend are 2 links available, once to register and once to
           the documentation as a PDF.
+*** H: The module provides for sending email to the buyer after the dispatch
+       of the goods with a proposal to evaluate this purchase.
 
 ** TECHNICAL
 	Per layout modifikator wird ein eigenes Template über eine eigene Blockklasse auf der Startseite
@@ -50,6 +51,9 @@ Lokalisierung" gleicht.
 G: Magento template (with multilanguage support) is connected to Info-Box in
    the Admin Panel Configuration by frontend model renderer
    (adminhtml_system_config_info).
+H: Added multilanguages templates for email adresses
+   (from config.xml/default/trustedratingmail/emails/default)
+   and the ability to assign each store with the email template.
    
 ** PROBLEMS
 Es sind keine Probleme bekannt.
@@ -90,14 +94,12 @@ Es sind keine Probleme bekannt.
         trage Sie eine neue (gültige) TS-ID ein und stellen Sie die Sprache entsprechend ein. Prüfen Sie ob im Frontend,
         wenn Sie auf die jeweilige StoreView umschalten, das richtige Widget geladen wird, das gleiche gilt für das
         E-Mail - Widget.
-
 *** G: 1. Open "Admin Panel / System / Configuration / Sales /
           Customer Rating / Info" and compare the contents of a banner
           with a screenshot [SCREENSHOT: Info-Banner_en.png].
           Change the backend language from English to German, in this case,
           the banner should display the German text
           [SCREENSHOT: Info-Banner_de.png].
-
        2. Check whether, in the configuration section under the "Admin Panel /
           System / Configuration / Sales / Customer Rating / Info" in the info
           block below button "Checkout our Specialoffer now!" and registration
@@ -105,6 +107,13 @@ Es sind keine Probleme bekannt.
           There is also a documentation block must be in "Admin Panel /
           System / Configuration / Sales / Customer Rating / Documentation" 
           with the link to the PDF and give work.
+H: 1. Adjust for any store or one of the templates that are added by default
+      ("Trusted Rating Notification E-Mail (DE)", "Trusted Rating Notification E-Mail (EN)"
+       or "Trusted Rating Notification E-Mail (FR)") in "Admin Panel / System / 
+      Configuration / Sales / Customer Rating / Email with rating request / Email Template"
+   2. Take in the store purchase.
+   3. Make one Shipment in AdminPanel in Orders, and make log out / log in.
+   4. Check whether the letter came in the prescribed language.
 
 ** CATCHABLE
 *** B: Bei einem ungültigen Datum (sollte aufgrund der drop-down nicht möglich sein) werden keine Mails verschickt.
