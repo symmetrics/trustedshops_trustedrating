@@ -107,13 +107,13 @@ Es sind keine Probleme bekannt.
           There is also a documentation block must be in "Admin Panel /
           System / Configuration / Sales / Customer Rating / Documentation" 
           with the link to the PDF and give work.
-H: 1. Adjust for any store or one of the templates that are added by default
-      ("Trusted Rating Notification E-Mail (DE)", "Trusted Rating Notification E-Mail (EN)"
-       or "Trusted Rating Notification E-Mail (FR)") in "Admin Panel / System / 
-      Configuration / Sales / Customer Rating / Email with rating request / Email Template"
-   2. Take in the store purchase.
-   3. Make one Shipment in AdminPanel in Orders, and make log out / log in.
-   4. Check whether the letter came in the prescribed language.
+*** H: 1. Adjust for any store or one of the templates that are added by default
+          ("Trusted Rating Notification E-Mail (DE)", "Trusted Rating Notification E-Mail (EN)"
+          or "Trusted Rating Notification E-Mail (FR)") in "Admin Panel / System / 
+          Configuration / Sales / Customer Rating / Email with rating request / Email Template"
+       2. Take in the store purchase.
+       3. Make one Shipment in AdminPanel in Orders, and make log out / log in.
+       4. Check whether the letter came in the prescribed language.
 
 ** CATCHABLE
 *** B: Bei einem ungültigen Datum (sollte aufgrund der drop-down nicht möglich sein) werden keine Mails verschickt.
