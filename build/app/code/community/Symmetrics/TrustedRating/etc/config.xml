@@ -164,7 +164,7 @@
                 <default>
                     <trustedrating_mail_de>
                         <execute>1</execute>
-                        <template_code>Trustedrating Post</template_code>
+                        <template_code>Trusted Rating Notification E-Mail (DE)</template_code>
                         <template_type>2</template_type>
                         <template_subject>Trusted Shops Kundenbewertung</template_subject>
                         <config_data_path>sales_email/trustedrating/template/de</config_data_path>
@@ -172,7 +172,7 @@
                     </trustedrating_mail_de>
                     <trustedrating_mail_en>
                         <execute>1</execute>
-                        <template_code>Trustedrating Mail</template_code>
+                        <template_code>Trusted Rating Notification E-Mail (EN)</template_code>
                         <template_type>2</template_type>
                         <template_subject>Trusted Shops Customer Review</template_subject>
                         <config_data_path>sales_email/trustedrating/template/en</config_data_path>
@@ -180,7 +180,7 @@
                     </trustedrating_mail_en>
                     <trustedrating_mail_fr>
                         <execute>1</execute>
-                        <template_code>Trustedrating Poste</template_code>
+                        <template_code>Trusted Rating Notification E-Mail (FR)</template_code>
                         <template_type>2</template_type>
                         <template_subject>Des commentaires client de Trusted Shops</template_subject>
                         <config_data_path>sales_email/trustedrating/template/fr</config_data_path>
