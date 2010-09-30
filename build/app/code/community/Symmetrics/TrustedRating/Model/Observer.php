@@ -37,11 +37,11 @@
 class Symmetrics_TrustedRating_Model_Observer
 {
     /**
-     * Config path to email template
+     * Config path to email template id
      *
      * @var string
      */
-    const XML_PATH_SYMMETRICS_TRUSTEDRATING_EMAIL_TEMPLATE = 'sales_email/trustedrating/template';
+    const XML_PATH_CONFIG_EMAIL_TEMPLATE = 'trustedrating/trustedrating_email/template';
 
     /**
      * Email identity path
@@ -103,24 +103,20 @@ class Symmetrics_TrustedRating_Model_Observer
     /**
      * Send transactional email
      *
-     * @param int    $orderId       Order Id
+     * @param string $incrementId   Order incriment Id
      * @param string $customerEmail Customer Email
      *
      * @return void
      */
-    private function _sendTransactionalMail($orderId, $customerEmail)
+    private function _sendTransactionalMail($incrementId, $customerEmail)
     {
-        $orderStoreId = Mage::getModel('sales/order')->load($orderId)->getStoreId();
-        $countryCode = substr(Mage::getStoreConfig('general/locale/code', $orderStoreId), 0, 2);
-
-        $templateConfigPath = self::XML_PATH_SYMMETRICS_TRUSTEDRATING_EMAIL_TEMPLATE . '/' . $countryCode;
-        $template = Mage::getStoreConfig($templateConfigPath, $orderStoreId);
-        $emailWidgetLink = $this->_getEmailWidgetLink($orderId, $customerEmail, $orderStoreId);
+        $orderStoreId = Mage::getModel('sales/order')->loadByIncrementId($incrementId)->getStoreId();
+        $emailWidgetLink = $this->_getEmailWidgetLink($incrementId, $customerEmail, $orderStoreId);
 
         Mage::getModel('core/email_template')->sendTransactional(
-            $template,
+            Mage::getStoreConfig(self::XML_PATH_CONFIG_EMAIL_TEMPLATE, $orderStoreId),
             Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY),
-            $customerEmail, //replace through your own when you want to test it
+            $customerEmail, //replace with your own when you want to test it
             $customerEmail,
             array('emailwidget' => $emailWidgetLink),
             $orderStoreId
@@ -130,21 +126,21 @@ class Symmetrics_TrustedRating_Model_Observer
     /**
      * Generate email widget code
      *
-     * @param int    $orderId       Order Id
+     * @param string $incrementId   Order incriment Id
      * @param string $customerEmail Customer Email
      * @param int    $orderStoreId  Order store id, used for multistore logic
      *
      * @return string
      */
-    private function _getEmailWidgetLink($orderId, $customerEmail, $orderStoreId)
+    private function _getEmailWidgetLink($incrementId, $customerEmail, $orderStoreId)
     {
         $model = Mage::getModel('trustedrating/trustedrating');
 
         $buyerEmail = base64_encode($customerEmail);
-        $orderId = base64_encode($orderId);
+        $incrementId = base64_encode($incrementId);
         $baseUrl = Mage::getBaseUrl('web');
         $link = '<a href="' . $model->getEmailRatingLink() . '_' . $model->getTsId() . '.html';
-        $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $orderId . '">';
+        $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $incrementId . '">';
         $widgetPath = Symmetrics_TrustedRating_Model_Trustedrating::IMAGE_LOCAL_PATH;
         $ratingLinkData = $model->getRatingLinkData('emailratingimage', $orderStoreId);
         $widget = '<img src="' . $baseUrl . $widgetPath . $ratingLinkData . '"/></a>';
