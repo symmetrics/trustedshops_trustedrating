@@ -58,7 +58,7 @@ H: Added multilanguages templates for email adresses
 No problems are known.
 
 * TESTCASES
-** 
+** BASIC
 
 *** A: 1. Specify Trusted Shops ID and the language in configuration section 
 	    "System -> Configuration -> Sales -> 
