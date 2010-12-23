@@ -30,6 +30,7 @@ MAINTAINER = {
 AUTHORS = {
     'Siegfried Schmitz': 'ss@symmetrics.de',
     'Eric Reiche': 'er@symmetrics.de',
+    'Vladimir Luniov': 'vladimir.luniov@symmetrics.de',
 }
 
 # =============================================================================
@@ -60,5 +61,5 @@ PEAR_KEY = 'magento-community/symmetrics_trustedrating'
 
 COMPATIBLE_WITH = {
      'magento': ['1.3.2.3', '1.4.0.0', '1.4.0.1', '1.4.1.1'],
-     'magento_enterprise': ['1.3.2.4', '1.7.0.0', '1.9.0.0'],
+     'magento_enterprise': ['1.3.2.4', '1.7.0.0', '1.9.0.0', '1.9.1.1'],
 }
