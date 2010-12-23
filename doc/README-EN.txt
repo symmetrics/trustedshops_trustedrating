@@ -1,119 +1,118 @@
 * DOCUMENTATION
 
 ** INSTALLATION
-Extrahieren Sie den Inhalt dieses Archivs in Ihr Magento Verzeichnis.
+Extract content of this archive to your Magento directory.
 
 ** USAGE
-Dieses Modul implementiert das Bewertungssystem von Trusted Shops 
-(Trusted Ratings) in einem Magento Shop. Das Moduls beschäftigt sich mit
-der Anzeige des Bewertungswidgets und Email-Versand für die Kundenbewertung.
-Im Konfigurationsbereich im Backend kann man Trusted Rating aktivieren / 
-deaktiveren. Man kann einstellen, nach wieviel Tagen einer Bestellung, der Kunde
-eine Mail mit Bewerten-Button bekommt. Die Kunden, die vor der Installation 
-des Moduls im Shop eingekauft haben, werden nicht angeschrieben werden.
-Um mehrere Sprachen pro Shop zu unterstützen, benötigt man eine 
-eindeutige Trusted Shops ID für jede Sprache bzw. pro StoreView. 
-Es ist auch wichtig, dass die ausgewählte Sprache unter "Verkäufe => 
-Trusted Shops Kundenbewertung => Freischaltung => Shop Sprache" der 
-Lokalisierung unter "Allgemein => Option für Lokalisierungen => 
-Lokalisierung" gleicht.
+This module implements the rating system of Trusted Shops
+(Trusted ratings) in a Magento shop. The module handles the display of 
+the rating widget and e-mail sending for the customer rating. 
+In configuration section in backend one can activate / deactivate 
+Trusted Rating. One can set after how many days from the order the
+customer receives an e-mail with Evaluate button. Customers that bought in
+the shop before installation of the module, will not be written.
+In order to support several languages per shop, one needs explicit 
+Trusted Shops ID for each language or per StoreView. It is also important
+that the selected language under "Sales -> Trusted Shops customer 
+rating -> activation -> Shop language" is the same as localization 
+under "General -> Option for localization -> Localization".
 
 ** FUNCTIONALITY
-*** A: Im Konfigurationsbereich im Backend kann man Trusted Rating aktivieren / deaktiveren.
-*** B: Email-Versand berücksichtigt die Bestellungen, die ab Aktivierungsdatum des Moduls 
-        getätigt wurden.
-*** C: Man kann einstellen, nach wieviel Tagen einer Bestellung, der Kunde
-        eine Mail mit Bewerten-Button bekommt. Der sinvolleste minimalle Wert ist ein Tag.
-*** D: Über das eingebundene Widget kann der Kunde die Anzahl der bisherigen Bewertungen
-        sehen sowie beim klick auf das Image eine Bewertung vornehmen.
-*** E: Auf der Bestellbestätigungsseite erscheint ein "Bewerten" - Button mit dem gleichzeitig
-        die Kunden-email sowie die OrderId übergeben wird.
-*** F: Je nach eingestellter Sprache im Shop wird das dazugehörige Widget geladen. Achtung: Die TrustedRating
-        Sprache muss der Shop-Sprache gleichen!
+*** A: In configuration section in backend one can activate / deactivate Trusted Rating 
+*** B: E-mail sending takes into consideration the orders that were made from 
+       the activation date of the module. 
+*** C: One can set after how many days from the order the customer receives an e-mail 
+        with Evaluate button. The most reasonable minimal value is one day.
+*** D: Through the integrated widget the customer can see the number of the existing 
+		evaluations as well as make a rating by click on the image.
+*** E: On the order confirmation page "Evaluate" button appears with which 
+		simultaneously the customer e-mail as well as Order ID is passed
+*** F: According to the language set in shop, the widget belonging to it is loaded. Attention: the TrustedRating language 
+		must be the same as the shop language.
 *** G: 1. There's multilanguage information banner in System Configuration.
-       2. In the Backend are 2 links available, once to register and once to
+       2. In the Backend 2 links are available, one to register and one to
           the documentation as a PDF.
 *** H: The module provides for sending email to the buyer after the dispatch
-       of the goods with a proposal to evaluate this purchase.
+		of the goods with a proposal to evaluate this purchase.
 
 ** TECHNICAL
-	Per layout modifikator wird ein eigenes Template über eine eigene Blockklasse auf der Startseite
-	eingebunden, das das Widget darstellt. In <checkout_onepage_success> wird ein neuer Block
-	hinzugefügt der die Grafik für die Bewertung darstellt (das ist eine andere Grafik und
-	verweist auf eine andere Bewertungsseite, hier wird gleichzeitig die email und die OrderId übertragen.)
-    Wenn sich jemand ins Backend einloggt wird ein Event ausgelöst das alle Bestellungen die mindestens x
-    (Tage in der config einstellbar) Tage her sind, aber nach dem eingestellen Datum liegen, überprüft
-    ob sie schon eine TR-Mail bekommen haben. Wenn nein, wird eine versendet und die shipping-ID der
-    Sendung in einer eigenen Tabelle gespeichert.
-    Der Zugriff auf diese Tabelle funktioniert über 3 Resource-Models (Data, Mysql, Collection).
-    Per Javascript werden im Backend 2 links hinzugefügt (siehe F)
+Per layout modifier a special template is integrated through a special block class on the homepage,
+that represents the widget. In <checkout_onepage_success> a new block is added which provides
+graphic for the rating (this is another graphic and refers to another rating page, here
+simultaneously e-mail and OrderID is passed.)  
+    When someone logs in backend an event is initiated that checks for all orders that are at least
+    x days old (the days are customizable in the config), but are made after the set date,  
+    if they have already got a TR mail. If not, it is sent and the shipping-ID of the sending
+    is saved in a special table.
+    Access to these tables works through 3 resource models (Data, Mysql, Collection).
+    Per JavaScript 2 links are added in backend (see F)
 
 G: Magento template (with multilanguage support) is connected to Info-Box in
    the Admin Panel Configuration by frontend model renderer
-   (adminhtml_system_config_info).
+   (adminhtml_system_config_info). 
 H: Added multilanguages templates for email adresses
    (from config.xml/default/trustedratingmail/emails/default)
-   and the ability to assign each store with the email template.
+   and the ability to assign the email template to each store.
    
 ** PROBLEMS
-Es sind keine Probleme bekannt.
+No problems are known.
 
 * TESTCASES
-** BASIC
-*** A:	1. Geben Sie im Konfigurationsbereich "System -> Konfiguration
-            -> Verkäufe -> Trusted Shops Kundenbewertung -> Freischaltung"
-            die Trusted Shops ID und die Sprache ein.
-	    2. Stellen Sie im Tab "Aktivierung" "Trusted Rating aktivieren?" auf Ja
-	    3. Speichern Sie die Konfiguration und prüfen sie ob die Meldung (notice)
-            "TrustedShops Antwort: OK" erscheint, wenn ja hat die Kommunikation mit 
-            Trusted Shops geklappt, das heißt die Daten sind korrekt (diese 
-            Meldung muß auch kommen wenn Sie den Status auf "Nein" stellen).
-*** B:  1. Das Datum, das mit folgende SQL Abfrage zu bekommen ist
-            "select * from core_config_data where path like '%trusted%';"
-            sollte dem Installationszeitpunkt gleichen. Prüfen Sie dies. 
-            Beachten Sie hierbei, dass dort die Magento interne Zeit 
-            benutzt wird, welche GMT entspricht. Zeitzonenabweichungen 
-            und/oder DST (Sommerzeit) wird hier nicht berücksichtigt um 
-            eine einheitliche Rechengrundlage zu haben.
-*** C: 1. Stellen Sie in der Trusted-Rating Konfiguration den Wert "0" unter "
-           System -> Konfiguration -> Verkäufe -> Trusted Shops Kundenbewertun -> 
-           E-Mail zur Bewertungsaufforderung -> Tage nach Sendung" ein.
-       2. Tätigen Sie eine Bestellung
-       3. Versenden Sie sie
-       4. Loggen Sie sich aus dem Back-End und wieder ein und prüfen Sie, ob Sie eine E-Mail mit dem Bewertungs-Widget bekommen haben.
-*** D:  1. Prüfen Sie ob auf der Startseite das Trusted Rating Widget erscheint [SCREENSHOT: trustedrating-widget.png].
-		2. Prüfen Sie ob das Widget nur erscheint wenn im Backend der Status auf Ja gestellt ist, bei Nein muß es verschwinden.
-        3. Prüfen Sie ob Sie beim Klick auf das Widget zu der Bewertungsseite weitergeleitet werden [SCREENSHOT: trustedratingsite.png]
-		4. Führen Sie eine Bewertung durch, bestätigen sie die Bewertung per E-mail (Sie bekommen einen Link zugeschickt).
-		5. Loggen Sie sich auf https://qa.trustedshops.de/shop/login.html (Testumgebung) oder
-		    https://www.trustedshops.de/shop/login.html (Live-Umgebung) in Ihren Account ein und prüfen sie ob die Bewertung
-		    angekommen ist, bestätigen sie die Bewertung.
-*** E: Prüfen sie ob auf der Bestellbestätigungsseite eine "Bewerten" - Grafik erscheint und in dem Formular auf das der
-        Link verweist, bereits die Kunden-Emailadresse sowie die OrderID eingetragen ist.
-*** F: Schalten Sie in der Konfiguration auf eine andere StoreView mit englischer, spanischer oder französischer Sprache um,
-        trage Sie eine neue (gültige) TS-ID ein und stellen Sie die Sprache entsprechend ein. Prüfen Sie ob im Frontend,
-        wenn Sie auf die jeweilige StoreView umschalten, das richtige Widget geladen wird, das gleiche gilt für das
-        E-Mail - Widget.
-*** G: 1. Open "Admin Panel / System / Configuration / Sales /
-          Customer Rating / Info" and compare the contents of a banner
-          with a screenshot [SCREENSHOT: Info-Banner_en.png].
-          Change the backend language from English to German, in this case,
-          the banner should display the German text
-          [SCREENSHOT: Info-Banner_de.png].
-       2. Check whether, in the configuration section under the "Admin Panel /
-          System / Configuration / Sales / Customer Rating / Info" in the info
-          block below button "Checkout our Specialoffer now!" and registration
-          is out.
-          There is also a documentation block must be in "Admin Panel /
-          System / Configuration / Sales / Customer Rating / Documentation" 
-          with the link to the PDF and give work.
+** 
+
+*** A: 1. Specify Trusted Shops ID and the language in configuration section 
+	    "System -> Configuration -> Sales -> 
+	    Trusted Shops customer rating -> Activation"
+    2. Set in tab "Activation" "Activate Trusted Rating?" on yes
+    3. Save the configuration and check if the notice "Trusted Shops answer: Ok" appears, 
+		if yes, the communication with Trusted Shops was successful,
+		this means that the data are correct (this message should also appear
+		when you set the status on "no").
+*** B:  1. Date, which is to be obtained using the following SQL command
+        "select * from core_config_data where path like '%trusted%';"
+        should be the same as the installation date. Check this.
+	    Though pay attention that there the Magento internal time 
+	    is used, which corresponds to GMT. Time zone differences
+	    and/or DST is not taken into consideration here in order 
+	    to ensure a uniform calculation.
+*** C: 1. Set in Trusted-Rating Configuration the value "0" under "
+        System -> Configuration -> Sales -> Trusted Shops Customer ratings -> 
+        E-Mail for rating request -> Days after shipping".
+		2. Carry out an order
+		3. Send it
+		4. Log out from backend and log in again, and check if you have received an e-mail with rating widget.
+*** D: 	1. Check if the Trusted Rating Widget appears on the homepage [SCREENSHOT: trustedrating-widget.png].
+		2. Check if the widget appears only when in backend the staus is set on Yes, when the status is on No, it must disappear.
+		3. Check if upon click you are redirected to the ratings page on the widget [SCREENSHOT: trustedratingsite.png]
+		4. Give a rating, confirm the rating by e-mail (a link is sent to you).
+		5. Login to https://qa.trustedshops.de/shop/login.html (Test environment) or
+		https://www.trustedshops.de/shop/login.html (Live-environment) in your account and check if the rating is there, confirm the rating.
+*** E: 	Check if "Rate" graphic appears on the order confirmation page and refers to the link in form, 
+		the customer e-mail address as well as the Order ID are already specified.
+*** F: 	Switch in configuration on another StoreView with english, spanish or french language,
+		enter a new (valid) TS-ID and set the language respectively. Check in frontend,
+		when you switch to some Storeview, that correct widget is loaded, the same
+		applies for the e-mail widget.
+*** G: 	1. Open "Admin Panel / System / Configuration / Sales /
+		Customer Rating / Info" and compare the contents of a banner
+		with a screenshot [SCREENSHOT: Info-Banner_en.png].
+		Change the backend language from English to German, in this case,
+		the banner should display the German text
+		[SCREENSHOT: Info-Banner_de.png].
+		2. Check whether, in the configuration section under the "Admin Panel /
+		System / Configuration / Sales / Customer Rating / Info" in the info
+		block below button "Checkout our Specialoffer now!" and registration
+		is out.
+		There must also be a documentation block in "Admin Panel /
+		System / Configuration / Sales / Customer Rating / Documentation" 
+		with the link to the PDF and give work.
 *** H: 1. Adjust for any store or one of the templates that are added by default
           ("Trusted Rating Notification E-Mail (DE)", "Trusted Rating Notification E-Mail (EN)"
           or "Trusted Rating Notification E-Mail (FR)") in "Admin Panel / System / 
           Configuration / Sales / Customer Rating / Email with rating request / Email Template"
        2. Take in the store purchase.
-       3. Make one Shipment in AdminPanel in Orders, and make log out / log in.
-       4. Check whether the letter came in the prescribed language.
+       3. Make one Shipment in AdminPanel in Orders, and log out / log in.
+       4. Check whether the letter came in the prescribed language.		
 
 ** CATCHABLE
-*** B: Bei einem ungültigen Datum (sollte aufgrund der drop-down nicht möglich sein) werden keine Mails verschickt.
+*** B: Upon an invalid date (should not be possible because of the drop-down) no e-mails are sent.
