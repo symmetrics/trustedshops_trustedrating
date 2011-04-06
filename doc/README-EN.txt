@@ -41,7 +41,7 @@ that represents the widget. In <checkout_onepage_success> a new block is added w
 graphic for the rating (this is another graphic and refers to another rating page, here
 simultaneously e-mail and OrderID is passed.)  
     When someone logs in backend an event is initiated that checks for all orders that are at least
-    x days old (the days are customizable in the config), but are made after the set date,  
+    x days old (the days are customizable in the config), but were made after the set date,  
     if they have already got a TR mail. If not, it is sent and the shipping-ID of the sending
     is saved in a special table.
     Access to these tables works through 3 resource models (Data, Mysql, Collection).
@@ -112,7 +112,7 @@ No problems are known.
           Configuration / Sales / Customer Rating / Email with rating request / Email Template"
        2. Take in the store purchase.
        3. Make one Shipment in AdminPanel in Orders, and log out / log in.
-       4. Check whether the letter came in the prescribed language.		
+       4. Check whether the e-mail was received in the prescribed language.		
 
 ** CATCHABLE
 *** B: Upon an invalid date (should not be possible because of the drop-down) no e-mails are sent.
