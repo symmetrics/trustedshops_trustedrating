@@ -263,10 +263,10 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         $link = self::REGISTRATION_LINK;
         $link .= 'partnerPackage=' . Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage');
 
-        /* if symmetrics_impressum is installed, get data from there */
-        if ($data = Mage::getStoreConfig('general/impressum')) {
+        /* if symmetrics_imprint is installed, get data from there */
+        if ($data = Mage::getStoreConfig('general/imprint')) {
             $params = array(
-                'company' => $data['company1'],
+                'company' => $data['company_first'],
                 'website' => $data['web'],
                 'street' => $data['street'],
                 'zip' => $data['zip'],
