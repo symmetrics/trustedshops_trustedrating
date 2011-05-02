@@ -30,8 +30,6 @@
         var linkHtml = '<button style="" onclick="window.open(\'' + link + '\')" class="scalable" type="button">';
         linkHtml += '<span><?php echo $this->__('Checkout our Specialoffer now!') ?></span></button>';
         $('reglink').innerHTML = linkHtml;
-        var languageLabel = $$('#trustedrating_data label')[1];
-        languageLabel.innerHTML = '<?php echo $this->__('Shop Language') ?><font color="red">*</font>';
     });
 </script>
 <?php endif; ?>

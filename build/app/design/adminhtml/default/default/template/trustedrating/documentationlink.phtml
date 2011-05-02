@@ -30,9 +30,5 @@
             var linkHtml = '<a href = "<?php echo $this->getLinkTarget() ?>" target = "_blank"><?php echo $this->__('Trusted Shops Documentation') ?></a>';
             comment.insert({ 'before': linkHtml });
         }
-        var languageLabel = $$('#trustedrating_data label')[1];
-        if (languageLabel !== undefined) {
-            languageLabel.innerHTML = '<?php echo $this->__('Shop Language') ?><font color="red">*</font>';
-        }
     });
 </script>
