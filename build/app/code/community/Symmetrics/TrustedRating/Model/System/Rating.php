@@ -16,7 +16,8 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Eric Reiche <er@symmetrics.de>
+ * @copyright 2010-2011 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -28,12 +29,28 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Eric Reiche <er@symmetrics.de>
+ * @copyright 2010-2011 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
 class Symmetrics_TrustedRating_Model_System_Rating
 {
+    /**
+     * @const LANG_DE Option for German language.
+     */
+    const LANG_DE = 'de';
+    
+    /**
+     * @const LANG_EN Option for English language.
+     */
+    const LANG_EN = 'en';
+    
+    /**
+     * @const LANG_FR Option for French language.
+     */
+    const LANG_FR = 'fr';
+    
     /**
      * options
      *
@@ -49,18 +66,19 @@ class Symmetrics_TrustedRating_Model_System_Rating
     public function toOptionArray()
     {
         if (is_null($this->_options)) {
-            $this->_options = array();
-            $this->_options[0] = array(
-                'value' => 'de',
-                'label' => Mage::helper('trustedrating')->__('German'),
-            );
-            $this->_options[1] = array(
-                'value' => 'en',
-                'label' => Mage::helper('trustedrating')->__('English'),
-            );
-            $this->_options[2] = array(
-                'value' => 'fr',
-                'label' => Mage::helper('trustedrating')->__('French'),
+            $this->_options = array(
+                array(
+                    'value' => self::LANG_DE,
+                    'label' => Mage::helper('trustedrating')->__('German'),
+                ),
+                array(
+                    'value' => self::LANG_EN,
+                    'label' => Mage::helper('trustedrating')->__('English'),
+                ),
+                array(
+                    'value' => self::LANG_FR,
+                    'label' => Mage::helper('trustedrating')->__('French')
+                )
             );
         }
         return $this->_options;

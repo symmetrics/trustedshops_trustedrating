@@ -23,7 +23,7 @@
  */
 
 /**
- * Main model
+ * Trusted rating main class.
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -37,49 +37,57 @@
 class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstract
 {
     /**
-     * Fixed part of the link for the rating-site for the widget
-     *
-     * @var string
+     * @const WIDGET_LINK Fixed part of the link for the rating-site for the widget.
      */
     const WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/widgets/';
 
     /**
-     * Fixed part of the link for the rating-site for the email - widget
-     *
-     * @var string
+     * @const EMAIL_WIDGET_LINK Fixed part of the link for the rating-site for the email - widget.
      */
     const EMAIL_WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/img/';
 
     /**
-     * Fixed part of the registration link
-     *
-     * @var string
+     * @const REGISTRATION_LINK Fixed part of the registration link.
      */
     const REGISTRATION_LINK = 'https://www.trustedshops.com/bewertung/anmeldung.html?';
 
     /**
-     * Fixed part of the widget path
-     *
-     * @var string
+     * @const IMAGE_LOCAL_PATH Fixed part of the widget path.
      */
     const IMAGE_LOCAL_PATH = 'media/';
 
     /**
-     * The cacheid to cache the widget
-     *
-     * @var string
+     * @const CACHEID The cacheid to cache the widget.
      */
     const CACHEID = 'trustedratingimage';
 
     /**
-     * The cacheid to cache the email widget
-     *
-     * @var string
+     * @ const EMAIL_CACHEID The cacheid to cache the email widget.
      */
     const EMAIL_CACHEID = 'trustedratingemailimage';
+    
+    /**
+     * @ const CONFIG_DAYS_INTERVAL System configuration path to day interval setting.
+     */
+    const CONFIG_DAYS_INTERVAL = 'trustedrating/trustedrating_email/days';
+    
+    /**
+     * @ const CONFIG_LANGUAGE System configuration path to selected language.
+     */
+    const CONFIG_LANGUAGE = 'trustedrating/data/trustedrating_ratinglanguage';
+    
+    /**
+     * @ const MYSQL_DATE_FORMAT Date format for MySQL comparison (ZEND_DATE).
+     */
+    const MYSQL_DATE_FORMAT = 'Y-m-d H:i:s';
+    
+    /**
+     * @ const WIDGET_FILE_SUFFIX File suffix for trusted rating widget.
+     */
+    const WIDGET_FILE_SUFFIX = '.gif';
 
     /**
-     * Get the trusted rating id from store config
+     * Get the Trusted Shops ID from system configugration.
      *
      * @return string
      */
@@ -89,7 +97,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
 
     /**
-     * Get the module status from store config
+     * Get the module status from system configugration.
      *
      * @return string
      */
@@ -100,7 +108,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 
     /**
      * Get the selected language (for the rating - site) from the store config and returns
-     * the link for the widget, which is stored in the module config for each language
+     * the link for the widget, which is stored in the module config for each language.
      *
      * @param string $type    type
      * @param int    $storeId store id
@@ -109,23 +117,24 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
     public function getRatingLinkData($type, $storeId = null)
     {
-        $optionValue = Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage', $storeId);
+        $optionValue = Mage::getStoreConfig(self::CONFIG_LANGUAGE, $storeId);
         $link = Mage::helper('trustedrating')->getConfig($type, $optionValue);
 
         return $link;
     }
 
     /**
-     * Check if the current language is chosen in the trusted rating config
+     * Check if the current language is chosen in the trusted rating config.
      *
      * @return boolean
      */
     public function checkLocaleData()
     {
         $storeId = Mage::app()->getStore()->getId();
-        $countryCode = substr(Mage::getStoreConfig('general/locale/code', $storeId), 0, 2);
+        $countrycode = Mage::getStoreConfig(Mage_Core_Model_Locale::XML_PATH_DEFAULT_LOCALE, $storeId);
+        $countryCode = substr($countrycode, 0, 2);
 
-        if (Mage::getStoreConfig('trustedrating/data/trustedrating_ratinglanguage') == $countryCode) {
+        if (Mage::getStoreConfig(self::CONFIG_LANGUAGE) == $countryCode) {
             return true;
         }
 
@@ -133,7 +142,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
 
     /**
-     * Get the rating link
+     * Get the rating link.
      *
      * @return string
      */
@@ -143,7 +152,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
 
     /**
-     * Get the email rating link
+     * Get the email rating link.
      *
      * @return string
      */
@@ -153,7 +162,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
 
     /**
-     * Get the link data for the widget-image from cache
+     * Get the link data for the widget-image from cache.
      *
      * @return array
      */
@@ -173,7 +182,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
 
     /**
-     * Get the link data for the email-widget-image from cache
+     * Get the link data for the email-widget-image from cache.
      *
      * @return array
      */
@@ -202,7 +211,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
 
     /**
-     * Cache the widget images
+     * Cache the widget images.
      *
      * @param string $type type
      * @param string $tsId Trusted Rating Id
@@ -220,8 +229,8 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
             $writePath = self::IMAGE_LOCAL_PATH . $emailWidgetName;
             $cacheId = self::EMAIL_CACHEID;
         } else {
-            $readPath = self::WIDGET_LINK . $tsId . '.gif';
-            $writePath = self::IMAGE_LOCAL_PATH . $tsId . '.gif';
+            $readPath = self::WIDGET_LINK . $tsId . self::WIDGET_FILE_SUFFIX;
+            $writePath = self::IMAGE_LOCAL_PATH . $tsId . self::WIDGET_FILE_SUFFIX;
             $cacheId = self::CACHEID;
         }
 
@@ -232,7 +241,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
 
     /**
-     * Cache the email image
+     * Cache the email image.
      *
      * @return void
      */
@@ -242,7 +251,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     }
 
     /**
-     * Cache the widget image
+     * Cache the widget image.
      *
      * @param int $tsId Trusted Rating Id
      *
@@ -341,12 +350,13 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     {
         $from = Mage::helper('trustedrating')->getActiveSince();
         $fromString = $from->toString(Varien_Date::DATETIME_INTERNAL_FORMAT);
-        $dayInterval = (float) Mage::getStoreConfig('trustedrating/trustedrating_email/days');
+        $dayInterval = (float) Mage::getStoreConfig(self::CONFIG_DAYS_INTERVAL);
         if (is_null($dayInterval) || $dayInterval < 0) {
             return false;
         }
         
-        $intervalSeconds = $dayInterval * 24 * 60 * 60;
+        // Convert days to seconds.
+        $intervalSeconds = $dayInterval * 86400;
         $date = new Zend_Date();
         $timestamp = $date->get();
         
@@ -354,7 +364,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 
         return array(
             'from' => $fromString,
-            'to' => date("Y-m-d H:i:s", $diff)
+            'to' => date(self::MYSQL_DATE_FORMAT, $diff)
         );
     }
 }
