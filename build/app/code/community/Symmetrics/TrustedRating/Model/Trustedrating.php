@@ -47,10 +47,31 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     const EMAIL_WIDGET_LINK = 'https://www.trustedshops.com/bewertung/widget/img/';
 
     /**
-     * @const REGISTRATION_LINK Fixed part of the registration link.
+     * @const REGISTRATION_LINK_PREFIX Fixed part of the registration link,
+     *                                  prepended to all localized variations below.
      */
-    const REGISTRATION_LINK = 'https://www.trustedshops.com/bewertung/anmeldung.html?';
+    const REGISTRATION_LINK_PREFIX = 'https://www.trustedshops.com/';
 
+    /**
+     * @const REGISTRATION_LINK_DE Fixed part of the registration link, German variant.
+     */
+    const REGISTRATION_LINK_DE = 'bewertung/anmeldung.html?';
+    
+    /**
+     * @const REGISTRATION_LINK_EN Fixed part of the registration link, English variant.
+     */
+    const REGISTRATION_LINK_EN = 'buyerrating/signup.html';
+    
+    /**
+     * @const REGISTRATION_LINK_FR Fixed part of the registration link, French variant.
+     */
+    const REGISTRATION_LINK_FR = 'evaluation/inscription.html?';
+    
+    /**
+     * @const REGISTRATION_LINK_PL Fixed part of the registration link, Polish variant.
+     */
+    const REGISTRATION_LINK_PL = 'opinia/ocen_TSID.html?';
+    
     /**
      * @const IMAGE_LOCAL_PATH Fixed part of the widget path.
      */
@@ -261,6 +282,35 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     {
         $this->_cacheImageData('mainWidget', $tsId);
     }
+    
+    /**
+     * Get language dependent static part of URL.
+     *
+     * @return string|bool
+     */
+    public function getRegistrationPrefix()
+    {
+        if (!$this->checkLocaleData()) {
+            return false;
+        }
+        $prefix = REGISTRATION_LINK_PREFIX;
+        $countrycode = Mage::getStoreConfig(Mage_Core_Model_Locale::XML_PATH_DEFAULT_LOCALE, $storeId);
+        $countryCode = substr($countrycode, 0, 2);
+        switch ($countryCode) {
+            case 'de':
+                return $prefix . self::REGISTRATION_LINK_DE;
+                break;
+            case 'en':
+                return $prefix . self::REGISTRATION_LINK_EN;
+                break;
+            case 'fr':
+                return $prefix . self::REGISTRATION_LINK_FR;
+                break;
+            case 'pl':
+                return $prefix . self::REGISTRATION_LINK_PL;
+                break;
+        }
+    }
 
     /**
      * Return registration Link
@@ -269,12 +319,12 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
     public function getRegistrationLink()
     {
-        $link = self::REGISTRATION_LINK;
-        $link .= 'partnerPackage=' . Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage');
+        $link = $this->getRegistrationPrefix();
+        $params = array('partnerPackage' => Mage::helper('trustedrating')->getConfig('soapapi', 'partnerpackage'));
 
         /* if symmetrics_imprint is installed, get data from there */
         if ($data = Mage::getStoreConfig('general/imprint')) {
-            $params = array(
+            $params += array(
                 'company' => $data['company_first'],
                 'website' => $data['web'],
                 'street' => $data['street'],
@@ -282,12 +332,8 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
                 'city' => $data['city'],
                 'buyerEmail' => $data['email'],
             );
-
-            foreach ($params as $key => $param) {
-                if ($param) {
-                    $link .= '&' . $key . '=' . urlencode($param);
-                }
-            }
+            
+            $link .= http_build_query($params);
         }
 
         return $link;
