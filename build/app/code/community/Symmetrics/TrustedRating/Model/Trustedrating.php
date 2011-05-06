@@ -360,7 +360,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
             }
         }
         $shipments->addAttributeToFilter('created_at', array('from' => $dateFrom, 'to' => $dateTo))
-            ->load();
+            ->load(false, true);
 
         if (!$shipments) {
             return false;
@@ -394,8 +394,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      */
     public function getDayInterval()
     {
-        $from = Mage::helper('trustedrating')->getActiveSince();
-        $fromString = $from->toString(Varien_Date::DATETIME_INTERNAL_FORMAT);
+        $fromString = Mage::helper('trustedrating')->getActiveSince();
         $dayInterval = (float) Mage::getStoreConfig(self::CONFIG_DAYS_INTERVAL);
         if (is_null($dayInterval) || $dayInterval < 0) {
             return false;

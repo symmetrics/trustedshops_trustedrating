@@ -107,10 +107,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getActiveSince()
     {
-        $activeSince = $this->getConfig('trustedrating/data', 'active_since');
-        $activeDate = new Zend_Date($activeSince);
-        
-        return $activeDate;
+        return $this->getConfig('trustedrating/data', 'active_since');
     }
     
     /**
