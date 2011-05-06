@@ -133,10 +133,11 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getCustomerEmail($shipmentId)
     {
+        
         $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
-        $customerId = $shipment->getData('customer_id');
-        $customer = Mage::getModel('customer/customer')->load($customerId);
-
-        return $customer->getData('email');
+        $order = $shipment->getOrder();
+        $email = $order->getCustomerEmail();                           
+        
+        return $email;
     }
 }

@@ -360,7 +360,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
             }
         }
         $shipments->addAttributeToFilter('created_at', array('from' => $dateFrom, 'to' => $dateTo))
-            ->load(false, true);
+            ->load();
 
         if (!$shipments) {
             return false;
