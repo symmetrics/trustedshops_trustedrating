@@ -26,36 +26,105 @@
  * @see Symmetrics_TrustedRating_Block_Adminhtml_System_Config_Info
  */
 ?>
-<div style="width:500px;">
-    <b><?php echo $this->__('Trusted Shops ratings'); ?></b>
-    <br /><br />
-    <?php echo $this->__('Positive and verifiable customer ratings for online shoppers are an important indication of the online shops\' trustworthiness. The necessary software is already in your shop solution, so you can get to your store ratings with just a few clicks.'); ?>
-    <br /><br />
-    <?php echo $this->__('The users evaluate the quality of the website, the delivery of the product and customer service. Additionally, the buyers can add a free comment to their evaluation.'); ?>
-    <br /><br />
-    <img src="http://www.trustedshops.de/shop-info/wp-content/uploads/2009/08/grafik-kundenbewertungen-kundenmeinungen.jpg"/>
-    <br /><br />
-    <b><?php echo $this->__('Your benefits'); ?></b>
-    <br /><br />
-    <?php echo $this->__('Get to know your customer\'s needs better and improve your service. <br /> Make such satisfied customers your best sellers!'); ?>
-    <br /><br />
-    <ul style="list-style-type: disc;margin-left:14px">
-        <li><?php echo $this->__('More sales with more confidence'); ?></li>
-        <li><?php echo $this->__('Guidance for your clients'); ?></li>
-        <li><?php echo $this->__('Real ratings in the shop'); ?></li>
-        <li><?php echo $this->__('Better service through feedback'); ?></li>
-        <li><?php echo $this->__('Web-based solution without the expense'); ?></li>
-        <li><?php echo $this->__('Basis for shop improvements'); ?></li>
-        <li><?php echo $this->__('Evaluations and benchmarks'); ?></li>
-    </ul>
-    <br /><br />
-    <b><?php echo $this->__('How it works'); ?></b>
-    <br /><br />
-    1.&nbsp;<?php echo $this->__('You log in to this site for the Trusted Shops ratings.'); ?>
-    <br />
-    2.&nbsp;<?php echo $this->__('You will receive your access data and your personal Trusted Shops ID by e-mail, which you should then enter in the input field. The widget then integrates itself automatically into the template as well as integrates the evaluation request into the system e-mails.'); ?>
-    <br />
-    3.&nbsp;<?php echo $this->__('Your customers leave evaluations, that you can check and confirm. In the business area you can analyze the customer ratings.'); ?>
-    <br /><br />
-    <div id="reglink"></div>
+<?php
+/**
+ * @see Symmetrics_Buyerprotect_Block_Adminhtml_System_Config_Info
+ */
+ $registrationUrl = Mage::helper('trustedrating')->__('http://www.trustedshops.com/merchants/membership.html');
+ $registrationUrl .= '?shopsw=MAGENTO&partnerPackage=SYMMETRICS&et_cid=47&et_lid=3338';
+?>
+<script type="text/javascript">
+document.observe('dom:loaded', function() {
+    // Unfold MRG info Banner
+    var banner = $('buyerprotection_info-head');
+    if (banner) {
+        banner.onclick();
+    }
+});
+</script>
+<div style="font-family:Arial,sans-serif;background-color:white;color:#8f8f8f;font-size:13px;line-height:1.2em;">
+    <table border="0" cellpadding="0" cellspacing="0" style="width:640px;">
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" style="width:640px;padding:2px;margin:4px;">
+                    <tr>
+                        <td colspan="2">
+                            <p style="font-family:Arial;color:#000000;font-size:10pt;font-weight: bold;margin-bottom:0;">
+                                <?php echo $this->__('Trusted Shops Customer Rating'); ?>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-family:Arial, sans-serif;color:#000000;font-size:10pt;">
+                                <?php echo $this->__('For online buyers, positive and verifiable customer ratings are an important indication of an online shop\'s trustworthiness. The required software is already included in Market Ready Germany for Magento, so you can start collecting customer ratings in your online shop too in just a few clicks.'); ?>
+                            </p>
+                        </td>
+                        <td>
+                            <img class="tsimg"
+                                src="<?php echo Mage::getDesign()->getSkinUrl('images/trustedshops/ts_wortmarke.jpg'); ?>"
+                                alt="" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td><img class="mrgimg" src="<?php echo Mage::getDesign()->getSkinUrl('images/trustedshops/tophr.png'); ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" style="width:640px;padding:2px;margin:4px;">
+                    <tr>
+                        <td rowspan="5">
+                            <img style="margin: 10px 20px 0 2px;"
+                                class="tsimg"
+                                src="<?php echo Mage::getDesign()->getSkinUrl('images/trustedshops/ts_siegel_links.jpg'); ?>"
+                                alt="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-family:Arial;color:#000000;font-size:10pt;font-weight: bold;margin-bottom:0;">
+                                <?php echo $this->__('Orientation support for your customers'); ?>
+                            </p>
+                            <p style="font-family:Arial, sans-serif;color:#000000;font-size:10pt;">
+                                <?php echo $this->__('Satisfied customers are your best salespeople. Let your customers speak for themselves as to how safe and easy it is to buy from your online shop.'); ?>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-family:Arial;color:#000000;font-size:10pt;font-weight: bold;margin-bottom:0;">
+                                <?php echo $this->__('Basis for shop optimisation'); ?>
+                            </p>
+                            <p style="font-family:Arial, sans-serif;color:#000000;font-size:10pt;">
+                                <?php echo $this->__('Your customers are happy to help you optimise your shop with their feedback. After all, the better your online shop works, the more satisfied your customers will be.'); ?>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-family:Arial;color:#000000;font-size:10pt;font-weight: bold;margin-bottom:0;">
+                                <?php echo $this->__('Increase reach via Facebook, Twitter and Google'); ?>
+                            </p>
+                            <p style="font-family:Arial, sans-serif;color:#000000;font-size:10pt;">
+                                <?php echo $this->__('Your customers spread reviews and rating on Facebook and Twitter directly to friends and followers. Ratings are automatically listed in the Google-Index and are displayed in Google Shopping.'); ?>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button style=""
+                                onclick="window.open('<?php echo $registrationUrl ?>')" class="scalable" type="button">
+                                <span>
+                                    <?php echo $this->__('Apply now!'); ?>
+                                </span>
+                            </button>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
 </div>

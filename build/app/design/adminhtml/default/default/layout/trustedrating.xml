@@ -25,7 +25,6 @@
 <layout>
     <adminhtml_system_config_edit>
         <reference name="content">
-            <block type="trustedrating/registrationlink" name="trustedrating_registrationlink" template="trustedrating/registrationlink.phtml"/>
             <block type="trustedrating/documentationlink" name="trustedrating_documentationlink" template="trustedrating/documentationlink.phtml"/>
         </reference>
     </adminhtml_system_config_edit>
