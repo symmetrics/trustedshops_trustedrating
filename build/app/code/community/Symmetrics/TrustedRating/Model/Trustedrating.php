@@ -293,7 +293,8 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         if (!$this->checkLocaleData()) {
             return false;
         }
-        $prefix = REGISTRATION_LINK_PREFIX;
+        $prefix = REGISTRATION_LINK_PREFIX;           
+        $storeId = Mage::app()->getStore()->getId();   
         $countrycode = Mage::getStoreConfig(Mage_Core_Model_Locale::XML_PATH_DEFAULT_LOCALE, $storeId);
         $countryCode = substr($countrycode, 0, 2);
         switch ($countryCode) {
