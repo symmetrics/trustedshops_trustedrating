@@ -188,6 +188,14 @@
                         <config_data_path>sales_email/trustedrating/template/fr</config_data_path>
                         <text>app/locale/fr_FR/template/trustedrating/email/trustedrating_email.html</text>
                     </trustedrating_mail_fr>
+                    <trustedrating_mail_pl>
+                        <execute>1</execute>
+                        <template_code>Trusted Rating Notification E-Mail (PL)</template_code>
+                        <template_type>2</template_type>
+                        <template_subject>Czy jesteś zadowolony z zakupu i naszych usług? Tutaj możesz ocenić {{var store.getFrontendName()}}.</template_subject>
+                        <config_data_path>sales_email/trustedrating/template/pl</config_data_path>
+                        <text>app/locale/pl_PL/template/trustedrating/email/trustedrating_email.html</text>
+                    </trustedrating_mail_pl>
                 </default>
             </emails>
         </trustedratingmail>
