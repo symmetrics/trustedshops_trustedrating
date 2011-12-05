@@ -21,7 +21,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * Return array with German, English and French codes
  *
@@ -40,12 +40,12 @@ class Symmetrics_TrustedRating_Model_System_Rating
      * @const LANG_DE Option for German language.
      */
     const LANG_DE = 'de';
-    
+
     /**
      * @const LANG_EN Option for English language.
      */
     const LANG_EN = 'en';
-    
+
     /**
      * @const LANG_FR Option for French language.
      */

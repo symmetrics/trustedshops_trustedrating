@@ -20,7 +20,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * Setup model
  *
@@ -41,17 +41,17 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
 
     /**
      * Get config data
-     * 
+     *
      * @return array
      */
     public function getConfigData()
     {
         return Mage::getConfig()->getNode('default/trustedratingmail')->asArray();
     }
-    
+
     /**
      * Get config node
-     * 
+     *
      * @param string $node      main node
      * @param string $childNode child Node
      *
@@ -66,7 +66,7 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
             return $configData[$node];
         }
     }
-    
+
     /**
      * Get email from config
      *
@@ -90,10 +90,10 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
             ->getNode(self::XML_PATH_TRUSTEDRATINGMAIL . ($key ? '/' . $key : ''))
             ->asArray();
     }
-    
+
     /**
      * Get content of template file
-     * 
+     *
      * @param string $filename Name of File
      *
      * @return file
@@ -102,13 +102,13 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     {
         return file_get_contents(Mage::getBaseDir() . '/' . $filename);
     }
-    
+
     /**
      * Create transaction email template
-     * 
+     *
      * @param array $emailData collected data for email template
      *
-     * @return int temlate id 
+     * @return int temlate id
      */
     public function createEmail($emailData)
     {
@@ -126,7 +126,7 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
             ->save();
 
         $this->setConfigData($emailData['config_data_path'], $template->getId());
-        
+
         return $template->getId();
     }
 }
