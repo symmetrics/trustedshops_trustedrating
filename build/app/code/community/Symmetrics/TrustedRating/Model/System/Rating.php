@@ -50,7 +50,12 @@ class Symmetrics_TrustedRating_Model_System_Rating
      * @const LANG_FR Option for French language.
      */
     const LANG_FR = 'fr';
-    
+
+    /**
+     * @const LANG_PL Option for Polish language.
+     */
+    const LANG_PL = 'pl';
+
     /**
      * options
      *
@@ -78,6 +83,10 @@ class Symmetrics_TrustedRating_Model_System_Rating
                 array(
                     'value' => self::LANG_FR,
                     'label' => Mage::helper('trustedrating')->__('French')
+                ),
+                array(
+                    'value' => self::LANG_PL,
+                    'label' => Mage::helper('trustedrating')->__('Polish')
                 )
             );
         }
