@@ -34,6 +34,11 @@
  */
 class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
 {
+    /*
+     * Config paths for trustedratingmaiil
+     */
+    const XML_PATH_TRUSTEDRATINGMAIL = 'default/trustedratingmail/emails/default';
+
     /**
      * Get config data
      * 
@@ -75,12 +80,14 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     /**
      * Get email from config
      *
+     * @param string $key Config path last key.
+     *
      * @return string
      */
-    public function getTrustedratingEmails()
+    public function getTrustedratingEmails($key = null)
     {
         return Mage::getConfig()
-            ->getNode('default/trustedratingmail/emails/default')
+            ->getNode(self::XML_PATH_TRUSTEDRATINGMAIL . ($key ? '/' . $key : ''))
             ->asArray();
     }
     
