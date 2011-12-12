@@ -17,6 +17,9 @@ that the selected language under "Sales -> Trusted Shops customer
 rating -> activation -> Shop language" is the same as localization
 under "General -> Option for localization -> Localization".
 
+Test Trusted Shops ID: X41495A6E65ECDDCD554A02C0601D1C97
+
+
 ** FUNCTIONALITY
 *** A: In configuration section in backend one can activate / deactivate Trusted Rating
 *** B: E-mail sending takes into consideration the orders that were made from
