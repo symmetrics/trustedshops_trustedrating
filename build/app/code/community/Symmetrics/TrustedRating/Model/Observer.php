@@ -141,6 +141,7 @@ class Symmetrics_TrustedRating_Model_Observer
         $incrementId = base64_encode($incrementId);
         $link = '<a href="' . $model->getEmailRatingLink() . '_' . $model->getTsId() . '.html';
         $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $incrementId . '">';
+        $textLink = Mage::helper('trustedrating')->__('Please rate the shop') . '<br/>';
 
         $baseUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);
         $widgetPath = Symmetrics_TrustedRating_Model_Trustedrating::RATING_BUTON_LOCAL_PATH;
@@ -152,7 +153,7 @@ class Symmetrics_TrustedRating_Model_Observer
         Mage::log($widgetPath);
         Mage::log($ratingLinkData);
 
-        return $link . $params . $widget;
+        return $link . $params . $textLink . $widget;
     }
 
     /**
