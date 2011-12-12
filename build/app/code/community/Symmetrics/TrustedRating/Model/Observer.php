@@ -133,24 +133,24 @@ class Symmetrics_TrustedRating_Model_Observer
      * @return string
      */
     private function _getEmailWidgetLink($incrementId, $customerEmail, $orderStoreId)
-    {           
-        Mage::log('_getEmailWidgetLink');      
+    {
+        Mage::log('_getEmailWidgetLink');
         $model = Mage::getModel('trustedrating/trustedrating');
 
         $buyerEmail = base64_encode($customerEmail);
-        $incrementId = base64_encode($incrementId);       
+        $incrementId = base64_encode($incrementId);
         $link = '<a href="' . $model->getEmailRatingLink() . '_' . $model->getTsId() . '.html';
-        $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $incrementId . '">';    
-        
-        $baseUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);     
-        $widgetPath = Symmetrics_TrustedRating_Model_Trustedrating::RATING_BUTON_LOCAL_PATH;   
-        
+        $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $incrementId . '">';
+
+        $baseUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);
+        $widgetPath = Symmetrics_TrustedRating_Model_Trustedrating::RATING_BUTON_LOCAL_PATH;
+
         $ratingLinkData = $model->getRatingLinkData('emailratingimage', $orderStoreId);
-        $widget = '<img src="' . $baseUrl . $widgetPath . $ratingLinkData . '"/></a>';            
-                 
-        Mage::log($baseUrl);                                                                                     
-        Mage::log($widgetPath);                                                                                 
-        Mage::log($ratingLinkData);                                                                  
+        $widget = '<img src="' . $baseUrl . $widgetPath . $ratingLinkData . '"/></a>';
+
+        Mage::log($baseUrl);
+        Mage::log($widgetPath);
+        Mage::log($ratingLinkData);
 
         return $link . $params . $widget;
     }

@@ -56,31 +56,31 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      * @const REGISTRATION_LINK_DE Fixed part of the registration link, German variant.
      */
     const REGISTRATION_LINK_DE = 'bewertung/anmeldung.html?';
-    
+
     /**
      * @const REGISTRATION_LINK_EN Fixed part of the registration link, English variant.
      */
     const REGISTRATION_LINK_EN = 'buyerrating/signup.html';
-    
+
     /**
      * @const REGISTRATION_LINK_FR Fixed part of the registration link, French variant.
      */
     const REGISTRATION_LINK_FR = 'evaluation/inscription.html?';
-    
+
     /**
      * @const REGISTRATION_LINK_PL Fixed part of the registration link, Polish variant.
      */
     const REGISTRATION_LINK_PL = 'opinia/ocen_TSID.html?';
-                                           
+
     /**
      * @const IMAGE_LOCAL_PATH Fixed part of the widget path.
      */
-    const IMAGE_LOCAL_PATH = 'media/';      
-    
+    const IMAGE_LOCAL_PATH = 'media/';
+
     /**
      * @const RATING_BUTON_LOCAL_PATH Fixed part of the rating button path.
      */
-    const RATING_BUTON_LOCAL_PATH = 'frontend/default/default/images/';    
+    const RATING_BUTON_LOCAL_PATH = 'frontend/default/default/images/';
 
     /**
      * @const CACHEID The cacheid to cache the widget.
@@ -91,22 +91,22 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      * @ const EMAIL_CACHEID The cacheid to cache the email widget.
      */
     const EMAIL_CACHEID = 'trustedratingemailimage';
-    
+
     /**
      * @ const CONFIG_DAYS_INTERVAL System configuration path to day interval setting.
      */
     const CONFIG_DAYS_INTERVAL = 'trustedrating/trustedrating_email/days';
-    
+
     /**
      * @ const CONFIG_LANGUAGE System configuration path to selected language.
      */
     const CONFIG_LANGUAGE = 'trustedrating/data/trustedrating_ratinglanguage';
-    
+
     /**
      * @ const MYSQL_DATE_FORMAT Date format for MySQL comparison (ZEND_DATE).
      */
     const MYSQL_DATE_FORMAT = 'Y-m-d H:i:s';
-    
+
     /**
      * @ const WIDGET_FILE_SUFFIX File suffix for trusted rating widget.
      */
@@ -287,7 +287,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     {
         $this->_cacheImageData('mainWidget', $tsId);
     }
-    
+
     /**
      * Get language dependent static part of URL.
      *
@@ -298,8 +298,8 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         if (!$this->checkLocaleData()) {
             return false;
         }
-        $prefix = REGISTRATION_LINK_PREFIX;           
-        $storeId = Mage::app()->getStore()->getId();   
+        $prefix = REGISTRATION_LINK_PREFIX;
+        $storeId = Mage::app()->getStore()->getId();
         $countrycode = Mage::getStoreConfig(Mage_Core_Model_Locale::XML_PATH_DEFAULT_LOCALE, $storeId);
         $countryCode = substr($countrycode, 0, 2);
         switch ($countryCode) {
@@ -338,13 +338,13 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
                 'city' => $data['city'],
                 'buyerEmail' => $data['email'],
             );
-            
+
             $link .= http_build_query($params);
         }
 
         return $link;
     }
-    
+
     /**
      * Get all shippings which are older than x days and are not in table
      *
@@ -373,7 +373,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         }
         return $shipments->getAllIds();
     }
-    
+
     /**
      * Get all IDs from trusted_rating table of customers which already got an email
      *
@@ -391,7 +391,7 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 
          return $shipmentIds;
      }
-    
+
     /**
      * Substract the days in the config (3 for default) from the current date for upper limit
      * and get the "include since" date (default: setup date) for lower limit; return both in array
@@ -405,12 +405,12 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
         if (is_null($dayInterval) || $dayInterval < 0) {
             return false;
         }
-        
+
         // Convert days to seconds.
         $intervalSeconds = $dayInterval * 86400;
         $date = new Zend_Date();
         $timestamp = $date->get();
-        
+
         $diff = $timestamp - $intervalSeconds;
 
         return array(
