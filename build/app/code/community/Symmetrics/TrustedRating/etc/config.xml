@@ -143,18 +143,21 @@
             <en>https://www.trustedshops.com/buyerrating/info</en>
             <fr>https://www.trustedshops.com/evaluation/info</fr>
             <es>https://www.trustedshops.com/evaluacion/info</es>
+            <pl>https://www.trustedshops.com/evaluacion/info</pl>
         </overviewlanguagelink>
         <ratinglanguagelink>
             <de>https://www.trustedshops.com/bewertung/bewerten</de>
             <en>https://www.trustedshops.com/buyerrating/rate</en>
             <fr>https://www.trustedshops.com/evaluation/evaluer</fr>
             <es>https://www.trustedshops.com/evaluacion/evaluar</es>
+            <pl>https://www.trustedshops.com/evaluacion/evaluar</pl>
         </ratinglanguagelink>
         <emailratingimage>
             <de>bewerten_de.gif</de>
             <en>bewerten_en.gif</en>
             <fr>bewerten_fr.gif</fr>
             <es>bewerten_es.gif</es>
+            <pl>bewerten_pl.gif</pl>
         </emailratingimage>
         <soapapi>
             <wsuser>symmetricsOnTS</wsuser>
