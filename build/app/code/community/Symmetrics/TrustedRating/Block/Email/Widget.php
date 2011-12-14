@@ -36,7 +36,7 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
 {
     /**
      * Generate rating link
-     * 
+     *
      * @return string
      */
     public function getRatingLink()
@@ -50,10 +50,10 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
         }
         return $link;
     }
-    
+
     /**
      * Generate widget image source
-     * 
+     *
      * @return string
      */
     public function getWidgetSource()
@@ -62,7 +62,7 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
         if ($data = $this->getDataForWidget('EMAIL')) {
             $baseUrl = Mage::getBaseUrl('web');
             $widgetSrc = $baseUrl . $data['imageLocalPath'] . $data['widgetName'];
-            
+
         }
         return $widgetSrc;
     }

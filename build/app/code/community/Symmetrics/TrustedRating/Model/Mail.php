@@ -20,7 +20,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * Resource model for sent emails
  *
@@ -36,7 +36,7 @@ class Symmetrics_TrustedRating_Model_Mail extends Mage_Core_Model_Abstract
 {
     /**
      * Constructor for send mail model
-     * 
+     *
      * @return void
      */
     public function _construct()

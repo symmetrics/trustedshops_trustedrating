@@ -21,7 +21,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * Default helper class, return config values
  *
@@ -40,7 +40,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      * @const CONFIG_STATUS_PATH system config path to status settings
      */
     const CONFIG_STATUS_PATH = 'trustedrating/status';
-    
+
     /**
      * Get store config by node and key
      *
@@ -53,12 +53,12 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::getStoreConfig($node . '/' . $key, Mage::app()->getStore());
     }
-    
+
     /**
      * Get module specific config from system configuration
-     * 
+     *
      * @param string $key config key
-     * 
+     *
      * @return mixed
      */
     public function getModuleConfig($key)
@@ -85,18 +85,18 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::getStoreConfig('trustedrating/data/trustedrating_id');
     }
-    
+
     /**
      * Check if TS id is correct and module is active.
      *
      * @return boolean
      */
-    public function canShowWidget() 
+    public function canShowWidget()
     {
         if ($this->getTsId() && $this->getIsActive()) {
             return true;
         }
-        
+
         return false;
     }
 
@@ -109,7 +109,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return $this->getConfig('trustedrating/data', 'active_since');
     }
-    
+
     /**
      * Get order ID by shipment ID
      *
@@ -120,10 +120,10 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     public function getOrderId($shipmentId)
     {
         $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
-        
+
         return $shipment->getData('order_id');
     }
-    
+
     /**
      * Get customer email by shipment Id
      *
@@ -133,11 +133,11 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getCustomerEmail($shipmentId)
     {
-        
+
         $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
         $order = $shipment->getOrder();
-        $email = $order->getCustomerEmail();                           
-        
+        $email = $order->getCustomerEmail();
+
         return $email;
     }
 }
