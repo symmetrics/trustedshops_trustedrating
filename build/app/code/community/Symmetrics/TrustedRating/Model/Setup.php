@@ -16,11 +16,12 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Andreas Timm <at@symmetrics.de>
+ * @copyright 2010-2011 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * Setup model
  *
@@ -28,25 +29,31 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Andreas Timm <at@symmetrics.de>
+ * @copyright 2010-2011 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
 class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
 {
+    /*
+     * Config paths for trustedratingmaiil
+     */
+    const XML_PATH_TRUSTEDRATINGMAIL = 'default/trustedratingmail/emails/default';
+
     /**
      * Get config data
-     * 
+     *
      * @return array
      */
     public function getConfigData()
     {
         return Mage::getConfig()->getNode('default/trustedratingmail')->asArray();
     }
-    
+
     /**
      * Get config node
-     * 
+     *
      * @param string $node      main node
      * @param string $childNode child Node
      *
@@ -61,7 +68,7 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
             return $configData[$node];
         }
     }
-    
+
     /**
      * Get email from config
      *
@@ -75,18 +82,20 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     /**
      * Get email from config
      *
+     * @param string $key Config path last key.
+     *
      * @return string
      */
-    public function getTrustedratingEmails()
+    public function getTrustedratingEmails($key = null)
     {
         return Mage::getConfig()
-            ->getNode('default/trustedratingmail/emails/default')
+            ->getNode(self::XML_PATH_TRUSTEDRATINGMAIL . ($key ? '/' . $key : ''))
             ->asArray();
     }
-    
+
     /**
      * Get content of template file
-     * 
+     *
      * @param string $filename Name of File
      *
      * @return file
@@ -95,13 +104,13 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     {
         return file_get_contents(Mage::getBaseDir() . '/' . $filename);
     }
-    
+
     /**
      * Create transaction email template
-     * 
+     *
      * @param array $emailData collected data for email template
      *
-     * @return int temlate id 
+     * @return int temlate id
      */
     public function createEmail($emailData)
     {
@@ -119,7 +128,7 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
             ->save();
 
         $this->setConfigData($emailData['config_data_path'], $template->getId());
-        
+
         return $template->getId();
     }
 }

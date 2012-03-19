@@ -20,7 +20,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * This is the info renderer for Symmetrics_TrustedRating system config.
  *
@@ -38,20 +38,20 @@ class Symmetrics_TrustedRating_Block_Adminhtml_System_Config_Info
 {
     /**
      * This is the internal constructor (template set for html rendering).
-     * 
+     *
      * @return void
      */
     protected function _construct()
     {
         $this->setTemplate('trustedrating/system/config/info.phtml');
     }
-    
+
     /**
      * Render to return the html-content of sub-menu,
      * under Admin Panel / System / Configuration.
-     * 
+     *
      * @param Varien_Data_Form_Element_Abstract $element element
-     * 
+     *
      * @return string
      */
     public function render(Varien_Data_Form_Element_Abstract $element)

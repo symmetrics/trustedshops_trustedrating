@@ -45,7 +45,7 @@ class Symmetrics_TrustedRating_Block_Widget_Abstract extends Mage_Core_Block_Tem
     {
         $model = Mage::getModel('trustedrating/trustedrating');
 
-        if (!$model->getIsActive() || !$model->checkLocaleData()) {        
+        if (!$model->getIsActive() || !$model->checkLocaleData()) {
             return null;
         }
 

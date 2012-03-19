@@ -12,36 +12,23 @@
  * obtain it through the world-wide-web, please send an email
  * to license@magentocommerce.com so we can send you a copy immediately.
  *
- * @category  Symmetrics
- * @package   Symmetrics_TrustedRating
- * @author    symmetrics gmbh <info@symmetrics.de>
- * @author    Eric Reiche <er@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- * @link      http://www.symmetrics.de/
- */
-
-/**
- * Resource model for sent emails
+ * Add trusted rating polish email to standard template emails.
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
- * @author    Eric Reiche <er@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Andreas Timm <at@symmetrics.de>
+ * @copyright 2011 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
-class Symmetrics_TrustedRating_Model_Mail extends Mage_Core_Model_Abstract
-{
-    /**
-     * Constructor for send mail model
-     *
-     * @return void
-     */
-    public function _construct()
-    {
-        parent::_construct();
-        $this->_init('trustedrating/mail');
-    }
-}
+
+$installer = $this;
+$installer->startSetup();
+
+// execute emails
+
+$emailData = $this->getTrustedratingEmails('trustedrating_mail_pl');
+$this->createEmail($emailData);
+
+$installer->endSetup();

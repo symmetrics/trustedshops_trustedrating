@@ -20,7 +20,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
- 
+
 /**
  * Generate documentation links for backend
  *
@@ -38,10 +38,10 @@ class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_T
      * @const PDFPATH directory path to Trusted Shops PDF
      */
     const PDFPATH = 'media/TS_Kundenbewertung_Magento_v1_0.pdf';
-    
+
     /**
      * Generate the documentation-Pdf link
-     * 
+     *
      * @return string
      */
     public function getLinkTarget()
