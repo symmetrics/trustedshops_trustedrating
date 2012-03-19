@@ -28,7 +28,7 @@
 <config>
     <modules>
         <Symmetrics_TrustedRating>
-            <version>0.1.57</version>
+            <version>0.1.58</version>
         </Symmetrics_TrustedRating>
     </modules>
     <global>
