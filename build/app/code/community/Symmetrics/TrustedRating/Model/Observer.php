@@ -17,7 +17,8 @@
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
  * @author    Yauhen Yakimovich <yy@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Toni Stache <ts@symmetrics.de>
+ * @copyright 2010-2012 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -30,7 +31,8 @@
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
  * @author    Yauhen Yakimovich <yy@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Toni Stache <ts@symmetrics.de>
+ * @copyright 2010-2012 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -92,68 +94,69 @@ class Symmetrics_TrustedRating_Model_Observer
        foreach ($shipmentIds as $shipmentId) {
            $orderId = $this->getHelper()->getOrderId($shipmentId);
            $order = Mage::getModel('sales/order')->load($orderId);
-           $incrementId = $order->getRealOrderId();
-           $customerEmail = $this->getHelper()->getCustomerEmail($shipmentId);
-
-           $this->_sendTransactionalMail($incrementId, $customerEmail);
+           $this->_sendTransactionalMail($order);
            $this->_saveShipmentIdToTable($shipmentId);
        }
     }
 
     /**
-     * Send transactional email
+     * Generates the rating url by given order object.
      *
-     * @param string $incrementId   Order incriment Id
-     * @param string $customerEmail Customer Email
-     *
-     * @return void
-     */
-    private function _sendTransactionalMail($incrementId, $customerEmail)
-    {
-        $orderStoreId = Mage::getModel('sales/order')->loadByIncrementId($incrementId)->getStoreId();
-        $emailWidgetLink = $this->_getEmailWidgetLink($incrementId, $customerEmail, $orderStoreId);
-
-        Mage::getModel('core/email_template')->sendTransactional(
-            Mage::getStoreConfig(self::XML_PATH_CONFIG_EMAIL_TEMPLATE, $orderStoreId),
-            Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY),
-            $customerEmail, //replace with your own when you want to test it
-            $customerEmail,
-            array('emailwidget' => $emailWidgetLink),
-            $orderStoreId
-        );
-    }
-
-    /**
-     * Generate email widget code
-     *
-     * @param string $incrementId   Order incriment Id
-     * @param string $customerEmail Customer Email
-     * @param int    $orderStoreId  Order store id, used for multistore logic
+     * @param Mage_Sales_Model_Order $order Order object.
      *
      * @return string
      */
-    private function _getEmailWidgetLink($incrementId, $customerEmail, $orderStoreId)
+    protected function _getRatingUrl($order)
     {
-        Mage::log('_getEmailWidgetLink');
-        $model = Mage::getModel('trustedrating/trustedrating');
+        $trustedRating = Mage::getSingleton('trustedrating/trustedrating');
+        $params = array(
+            'buyerEmail' => base64_encode($order->getCustomerEmail()),
+            'shopOrderID' => base64_encode($order->getRealOrderId())
+        );
+        $ratingUrl = $trustedRating->getEmailRatingLink() . '_' . $trustedRating->getTsId() . '.html'
+                   . '&'
+                   . http_build_query($params);
 
-        $buyerEmail = base64_encode($customerEmail);
-        $incrementId = base64_encode($incrementId);
-        $link = '<a href="' . $model->getEmailRatingLink() . '_' . $model->getTsId() . '.html';
-        $params = '&buyerEmail=' . $buyerEmail . '&shopOrderID=' . $incrementId . '">';
-        $textLink = Mage::helper('trustedrating')->__('Please rate the shop') . '<br/>';
+        return $ratingUrl;
+    }
 
-        $baseUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);
-        $widgetPath = Symmetrics_TrustedRating_Model_Trustedrating::RATING_BUTON_LOCAL_PATH;
+    /**
+     * Generates the image url by given order object.
+     *
+     * @param Mage_Sales_Model_Order $order Order object.
+     *
+     * @return string
+     */
+    protected function _getImageUrl($order)
+    {
+        $language = Mage::getStoreConfig(
+            Symmetrics_TrustedRating_Model_Trustedrating::CONFIG_LANGUAGE,
+            $order->getStoreId()
+        );
 
-        $ratingLinkData = $model->getRatingLinkData('emailratingimage', $orderStoreId);
-        $widget = '<img src="' . $baseUrl . $widgetPath . $ratingLinkData . '"/></a>';
+        return Mage::getDesign()->getSkinUrl('images/bewerten_' . $language . '.gif');
+    }
 
-        Mage::log($baseUrl);
-        Mage::log($widgetPath);
-        Mage::log($ratingLinkData);
-
-        return $link . $params . $textLink . $widget;
+    /**
+     * Send transactional email to customer.
+     *
+     * @param Mage_Sales_Model_Order $order Order object.
+     *
+     * @return void
+     */
+    public function _sendTransactionalMail($order)
+    {
+        Mage::getModel('core/email_template')->sendTransactional(
+            Mage::getStoreConfig(self::XML_PATH_CONFIG_EMAIL_TEMPLATE, $order->getStoreId()),
+            Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY),
+            $order->getCustomerEmail(),
+            $order->getCustomerName(),
+            array(
+                'ratingUrl' => $this->_getRatingUrl($order),
+                'imageUrl' => $this->_getImageUrl($order)
+            ),
+            $order->getStoreId()
+        );
     }
 
     /**
