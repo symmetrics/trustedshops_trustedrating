@@ -17,7 +17,8 @@
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
  * @author    Andreas Timm <at@symmetrics.de>
- * @copyright 2010-2011 symmetrics gmbh
+ * @author    Toni Stache <ts@symmetrics.de>
+ * @copyright 2010-2012 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -30,7 +31,8 @@
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
  * @author    Andreas Timm <at@symmetrics.de>
- * @copyright 2010-2011 symmetrics gmbh
+ * @author    Toni Stache <ts@symmetrics.de>
+ * @copyright 2010-2012 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -106,29 +108,28 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
     }
 
     /**
-     * Create transaction email template
+     * Creates or updates transaction email template.
      *
-     * @param array $emailData collected data for email template
+     * @param array $emailData Collected data for email template.
      *
-     * @return int temlate id
+     * @return int
      */
     public function createEmail($emailData)
     {
-        try {
-            Mage::getModel('core/email_template')->loadByCode($emailData['template_code'])->delete();
-        } catch (Exception $exception) {
-            Mage::logException($exception);
+        $emailTemplate = Mage::getModel('core/email_template')->loadByCode($emailData['template_code']);
+
+        if (!$emailTemplate->getId()) {
+            // Set additional data for new template.
+            $emailTemplate->setTemplateCode($emailData['template_code'])
+                ->setTemplateType($emailData['template_type']);
         }
-        $model = Mage::getModel('core/email_template');
-        $template = $model->setTemplateSubject($emailData['template_subject'])
-            ->setTemplateCode($emailData['template_code'])
+
+        $emailTemplate
+            ->setTemplateSubject($emailData['template_subject'])
             ->setTemplateText($this->getTemplateContent($emailData['text']))
-            ->setTemplateType($emailData['template_type'])
             ->setModifiedAt(Mage::getSingleton('core/date')->gmtDate())
             ->save();
 
-        $this->setConfigData($emailData['config_data_path'], $template->getId());
-
-        return $template->getId();
+        return $emailTemplate->getId();
     }
 }
