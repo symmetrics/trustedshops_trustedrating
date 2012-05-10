@@ -78,11 +78,6 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     const IMAGE_LOCAL_PATH = 'media/';
 
     /**
-     * @const RATING_BUTON_LOCAL_PATH Fixed part of the rating button path.
-     */
-    const RATING_BUTON_LOCAL_PATH = 'frontend/default/default/images/';
-
-    /**
      * @const CACHEID The cacheid to cache the widget.
      */
     const CACHEID = 'trustedratingimage';
