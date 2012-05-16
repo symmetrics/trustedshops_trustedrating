@@ -32,7 +32,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
-class Symmetrics_Buyerprotect_Helper_Adminhtml extends Mage_Core_Helper_Abstract
+class Symmetrics_TrustedRating_Helper_Adminhtml extends Mage_Core_Helper_Abstract
 {
     /**
      * Constants for building path to seals.
