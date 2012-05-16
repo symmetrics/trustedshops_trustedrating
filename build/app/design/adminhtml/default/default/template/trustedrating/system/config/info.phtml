@@ -16,7 +16,8 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Andreas Timm <at@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
+ * @copyright 2010-2012 symmetrics gmbh
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -70,7 +71,7 @@ document.observe('dom:loaded', function() {
             </td>
         </tr>
         <tr>
-            <td><img class="mrgimg" src="<?php echo Mage::getDesign()->getSkinUrl('images/trustedrating/tophr.png'); ?>" /></td>
+            <td><img class="mrgimg" src="<?php echo Mage::getDesign()->getSkinUrl('images/symmetrics/tophr.png') ?>" /></td>
         </tr>
         <tr>
             <td>
@@ -79,7 +80,7 @@ document.observe('dom:loaded', function() {
                         <td rowspan="5">
                             <img style="margin: 10px 20px 0 2px;"
                                 class="tsimg"
-                                src="<?php echo Mage::getDesign()->getSkinUrl('images/trustedrating/ts_siegel_links.jpg'); ?>"
+                                src="<?php echo Mage::helper('trustedrating/adminhtml')->getTsSeal() ?>"
                                 alt="" />
                         </td>
                     </tr>
@@ -116,15 +117,15 @@ document.observe('dom:loaded', function() {
                     <tr>
                         <td>
                             <button style=""
-                                onclick="window.open('<?php echo $registrationUrl ?>')" class="scalable" type="button">
+                                    onclick="window.open('<?php echo $registrationUrl ?>')" class="scalable" type="button">
                                 <span>
                                     <?php echo $this->__('Apply now!'); ?>
                                 </span>
                             </button>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </div>

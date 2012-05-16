@@ -17,7 +17,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics gmbh <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @author    Ngoc Anh Doan <nd@symmetrics.de>
+ * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
  * @author    Eric Reiche <er@symmetrics.de>
  * @author    Andreas Timm <at@symmetrics.de>
  * @author    Toni Stache <ts@symmetrics.de>
@@ -190,6 +190,13 @@
                         <template_subject>Etes-vous satisfait de votre achat chez {{var store.getFrontendName()}}? Donnez nous votre avis!</template_subject>
                         <text>app/locale/fr_FR/template/trustedrating/email/trustedrating_email.html</text>
                     </trustedrating_mail_fr>
+                    <trustedrating_mail_es>
+                        <execute>1</execute>
+                        <template_code>Trusted Rating Notification E-Mail (ES)</template_code>
+                        <template_type>2</template_type>
+                        <template_subject>¿Está satisfecho con su compra en {{var store.getFrontendName()}}? ¡Haga una valoración!</template_subject>
+                        <text>app/locale/es_ES/template/trustedrating/email/trustedrating_email.html</text>
+                    </trustedrating_mail_es>
                     <trustedrating_mail_pl>
                         <execute>1</execute>
                         <template_code>Trusted Rating Notification E-Mail (PL)</template_code>
