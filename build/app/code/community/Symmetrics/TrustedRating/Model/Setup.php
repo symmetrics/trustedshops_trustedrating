@@ -14,7 +14,7 @@
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
- * @author    symmetrics gmbh <info@symmetrics.de>
+ * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
  * @author    Andreas Timm <at@symmetrics.de>
  * @author    Toni Stache <ts@symmetrics.de>
@@ -28,7 +28,7 @@
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
- * @author    symmetrics gmbh <info@symmetrics.de>
+ * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
  * @author    Andreas Timm <at@symmetrics.de>
  * @author    Toni Stache <ts@symmetrics.de>
