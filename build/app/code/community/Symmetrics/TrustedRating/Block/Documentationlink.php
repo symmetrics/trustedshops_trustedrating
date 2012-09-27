@@ -14,9 +14,10 @@
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
- * @author    symmetrics gmbh <info@symmetrics.de>
+ * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
+ * @copyright 2010-2012 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -26,26 +27,27 @@
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
- * @author    symmetrics gmbh <info@symmetrics.de>
+ * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @copyright 2010 symmetrics gmbh
+ * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
+ * @copyright 2010-2012 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
 class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_Template
 {
     /**
-     * @const PDFPATH directory path to Trusted Shops PDF
+     * @const TS' URL to online documentation
      */
-    const PDFPATH = 'media/TS_Kundenbewertung_Magento_v1_0.pdf';
+    const ONLINE_DOC_URL = 'https://www.trustedshops.com/docs/magento/seller_rating_%s.htm';
 
     /**
-     * Generate the documentation-Pdf link
+     * Get language specific online documentation link.
      *
      * @return string
      */
     public function getLinkTarget()
     {
-        return Mage::getBaseUrl('web') . self::PDFPATH;
+        return sprintf(self::ONLINE_DOC_URL, substr(Mage::app()->getLocale()->getLocaleCode(), 0, 2));
     }
 }
