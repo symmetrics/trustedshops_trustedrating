@@ -37,9 +37,21 @@
 class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_Template
 {
     /**
+     * Default documentation language.
+     */
+    const DEFAULT_DOCUMENTATION_LANGUAGE = 'en';
+    
+    /**
      * @const TS' URL to online documentation
      */
     const ONLINE_DOC_URL = 'https://www.trustedshops.com/docs/magento/seller_rating_%s.htm';
+    
+    /**
+     * List of supported documentation languages
+     *
+     * @var array
+     */
+    public static $availableLanguages = array('de', 'en', 'es', 'fr', 'pl');
 
     /**
      * Get language specific online documentation link.
@@ -48,6 +60,12 @@ class Symmetrics_TrustedRating_Block_Documentationlink extends Mage_Core_Block_T
      */
     public function getLinkTarget()
     {
-        return sprintf(self::ONLINE_DOC_URL, substr(Mage::app()->getLocale()->getLocaleCode(), 0, 2));
+        $docLanguage = substr(Mage::app()->getLocale()->getLocaleCode(), 0, 2);
+        
+        if (!in_array($docLanguage, self::$availableLanguages)) {
+            $docLanguage = self::DEFAULT_DOCUMENTATION_LANGUAGE;
+        }
+        
+        return sprintf(self::ONLINE_DOC_URL, $docLanguage);
     }
 }
