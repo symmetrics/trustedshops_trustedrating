@@ -16,7 +16,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Eric Reiche <er@symmetrics.de>
- * @copyright 2010-2012 symmetrics - a CGI Group brand
+ * @copyright 2009-2012 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -28,7 +28,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Eric Reiche <er@symmetrics.de>
- * @copyright 2010-2012 symmetrics - a CGI Group brand
+ * @copyright 2009-2012 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */

@@ -16,7 +16,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2012 symmetrics gmbh
+ * @copyright 2012 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -28,7 +28,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2012 symmetrics gmbh
+ * @copyright 2012 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -37,7 +37,7 @@ class Symmetrics_TrustedRating_Helper_Adminhtml extends Mage_Core_Helper_Abstrac
     /**
      * Constants for building path to seals.
      */
-    const TS_SEAL_SKIN_PATH = 'images/buyerprotect/';
+    const TS_SEAL_SKIN_PATH = 'images/trustedrating/';
     const TS_SEAL_PREFIX = 'seal_rating_';
     const TS_SEAL_DEFAULT = 'seal_rating_en';
     const TS_SEAL_SUFFIX = '.jpg';
