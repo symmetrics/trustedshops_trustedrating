@@ -17,7 +17,8 @@
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
  * @author    Yauhen Yakimovich <yy@symmetrics.de>
- * @copyright 2009-2012 symmetrics - a CGI Group brand
+ * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -30,7 +31,8 @@
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
  * @author    Yauhen Yakimovich <yy@symmetrics.de>
- * @copyright 2009-2012 symmetrics - a CGI Group brand
+ * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -40,6 +42,49 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      * @const CONFIG_STATUS_PATH system config path to status settings
      */
     const CONFIG_STATUS_PATH = 'trustedrating/status';
+    
+    /**
+     * List of store IDs which have TrustedRating IDs
+     *
+     * @var array
+     */
+    protected $_trustedRatingStores = null;
+    
+    /**
+     * Get all stores having set Trustedrating ID.
+     * 
+     * @param bool $active Trigger to remove stores which are not active or
+     *                     where Trustedrating is not active.
+     * 
+     * @return array
+     */
+    public function getAllTrustedRatingStores($active = true)
+    {
+        if (null == $this->_trustedRatingStores) {
+            $stores = Mage::getModel('core/store')->getCollection();
+            /* @var $stores Mage_Core_Model_Resource_Store_Collection */
+            $tsRatingStoreIds = array();
+
+            $stores->setWithoutDefaultFilter();
+            if ($active) {
+                $stores->addFieldToFilter('is_active', true);
+            }
+
+            foreach ($stores as $store) {
+                if ($active && !Mage::getStoreConfigFlag('trustedrating/status/trustedrating_active', $store)) {
+                    continue;
+                }
+
+                if (Mage::getStoreConfig('trustedrating/data/trustedrating_id', $store)) {
+                    $tsRatingStoreIds[] = $store->getId();
+                }
+            }
+            
+            $this->_trustedRatingStores = $tsRatingStoreIds;
+        }
+        
+        return $this->_trustedRatingStores;
+    }
 
     /**
      * Get store config by node and key
@@ -78,12 +123,19 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * Get the trusted rating id from store config
+     * 
+     * @param mixed $storeId ID of Store.
      *
      * @return string
      */
-    public function getTsId()
+    public function getTsId($storeId = null)
     {
-        return Mage::getStoreConfig('trustedrating/data/trustedrating_id');
+        if ((null == $storeId) && Mage::app()->getStore()->isAdmin()) {
+            $excMessage = 'Can\'t determine TS ID in Admin scope without Store ID!';
+            Mage::logException(new Exception($excMessage));
+        }
+        
+        return Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
     }
 
     /**

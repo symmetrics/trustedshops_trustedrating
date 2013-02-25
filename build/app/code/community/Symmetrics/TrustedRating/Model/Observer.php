@@ -79,7 +79,7 @@ class Symmetrics_TrustedRating_Model_Observer
     public function checkSendRatingEmail()
     {
         $model = Mage::getModel('trustedrating/trustedrating');
-        if ($this->isActive() && $shipmentIds = $model->checkShippings()) {
+        if ($shipmentIds = $model->checkShippings()) {
             $this->_sendTrustedRatingMails($shipmentIds);
         }
     }
@@ -111,12 +111,13 @@ class Symmetrics_TrustedRating_Model_Observer
     protected function _getRatingUrl($order)
     {
         $trustedRating = Mage::getSingleton('trustedrating/trustedrating');
+        $tsId = $trustedRating->getTsId($order->getStoreId());
         $params = array(
             'buyerEmail' => base64_encode($order->getCustomerEmail()),
             'shopOrderID' => base64_encode($order->getRealOrderId())
         );
-        $ratingUrl = $trustedRating->getEmailRatingLink() . '_' . $trustedRating->getTsId() . '.html'
-                   . '&'
+        $ratingUrl = $trustedRating->getEmailRatingLink() . '_' . $tsId . '.html'
+                   . '?'
                    . http_build_query($params);
 
         return $ratingUrl;

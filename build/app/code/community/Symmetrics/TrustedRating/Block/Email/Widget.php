@@ -16,7 +16,8 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @copyright 2009-2012 symmetrics - a CGI Group brand
+ * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -28,7 +29,8 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @copyright 2009-2012 symmetrics - a CGI Group brand
+ * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -45,7 +47,7 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
         if ($data = $this->getDataForWidget('EMAIL')) {
             $buyerEmail = base64_encode($data['buyerEmail']);
             $orderId = base64_encode($data['orderId']);
-            $link = $data['ratingLink'] . '_' . $data['tsId'] . '.html&buyerEmail=';
+            $link = $data['ratingLink'] . '_' . $data['tsId'] . '.html?buyerEmail=';
             $link .= $buyerEmail . '&shopOrderID=' . $orderId;
         }
         return $link;
