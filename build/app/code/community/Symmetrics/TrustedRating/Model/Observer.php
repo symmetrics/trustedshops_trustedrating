@@ -117,7 +117,8 @@ class Symmetrics_TrustedRating_Model_Observer
             'shopOrderID' => base64_encode($order->getRealOrderId())
         );
         $ratingUrl = $trustedRating->getEmailRatingLink() . '_' . $tsId . '.html'
-                   . '?'
+                   . '&'    // Do not change, it's necessary for the TS systems to
+                            // handle the query parameters correctly.
                    . http_build_query($params);
 
         return $ratingUrl;

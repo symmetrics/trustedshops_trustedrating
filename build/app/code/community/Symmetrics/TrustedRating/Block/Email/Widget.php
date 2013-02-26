@@ -47,7 +47,9 @@ class Symmetrics_TrustedRating_Block_Email_Widget extends Symmetrics_TrustedRati
         if ($data = $this->getDataForWidget('EMAIL')) {
             $buyerEmail = base64_encode($data['buyerEmail']);
             $orderId = base64_encode($data['orderId']);
-            $link = $data['ratingLink'] . '_' . $data['tsId'] . '.html?buyerEmail=';
+            // Do not change the query string separator, it's necessary to use the ampersand (&)
+            // for the TS systems to handle the query parameters correctly.
+            $link = $data['ratingLink'] . '_' . $data['tsId'] . '.html&buyerEmail=';
             $link .= $buyerEmail . '&shopOrderID=' . $orderId;
         }
         return $link;
