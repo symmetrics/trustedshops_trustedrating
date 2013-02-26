@@ -179,11 +179,17 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     /**
      * Get the email rating link.
      *
+     * @param string|int $storeId ID of Store.
+     * 
      * @return string
      */
-    public function getEmailRatingLink()
+    public function getEmailRatingLink($storeId = null)
     {
-        return $this->getRatingLinkData('ratinglanguagelink');
+        if (null == $storeId) {
+            $storeId = Mage::app()->getStore()->getId();
+        }
+        
+        return $this->getRatingLinkData('ratinglanguagelink', $storeId);
     }
 
     /**

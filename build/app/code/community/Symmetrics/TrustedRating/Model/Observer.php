@@ -111,12 +111,13 @@ class Symmetrics_TrustedRating_Model_Observer
     protected function _getRatingUrl($order)
     {
         $trustedRating = Mage::getSingleton('trustedrating/trustedrating');
-        $tsId = $trustedRating->getTsId($order->getStoreId());
+        $storeId = $order->getStoreId();
+        $tsId = $trustedRating->getTsId($storeId);
         $params = array(
             'buyerEmail' => base64_encode($order->getCustomerEmail()),
             'shopOrderID' => base64_encode($order->getRealOrderId())
         );
-        $ratingUrl = $trustedRating->getEmailRatingLink() . '_' . $tsId . '.html'
+        $ratingUrl = $trustedRating->getEmailRatingLink($storeId) . '_' . $tsId . '.html'
                    . '&'    // Do not change, it's necessary for the TS systems to
                             // handle the query parameters correctly.
                    . http_build_query($params);
