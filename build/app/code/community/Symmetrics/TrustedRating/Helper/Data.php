@@ -39,6 +39,12 @@
 class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
 {
     /**
+     * Some constants to test if buyerprotect widget is available.
+     */
+    const BUYERPROTECT_MODULE_CONFIG_KEY = 'buyerprotect',
+          BUYERPROTECT_MODULE_NAME = 'Symmetrics_Buyerprotect';
+    
+    /**
      * @const CONFIG_STATUS_PATH system config path to status settings
      */
     const CONFIG_STATUS_PATH = 'trustedrating/status';
@@ -110,7 +116,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return $this->getConfig(self::CONFIG_STATUS_PATH, $key);
     }
-
+    
     /**
      * Get the activity status from store config
      *
@@ -139,13 +145,13 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Check if TS id is correct and module is active.
+     * Do not show widget if buyerprotect widget is active.
      *
      * @return boolean
      */
     public function canShowWidget()
     {
-        if ($this->getTsId() && $this->getIsActive()) {
+        if ($this->getTsId() && $this->getIsActive() && !$this->isBuyerprotectActive()) {
             return true;
         }
 
@@ -191,5 +197,16 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
         $email = $order->getCustomerEmail();
 
         return $email;
+    }
+    
+    /**
+     * Check if Symmetrics_Buyerprotect module is active.
+     * 
+     * @return bool
+     */
+    public function isBuyerprotectActive()
+    {
+        return Mage::helper('core')->isModuleEnabled(self::BUYERPROTECT_MODULE_NAME) &&
+            Mage::helper(self::BUYERPROTECT_MODULE_CONFIG_KEY)->isBuyerprotectActive();
     }
 }
