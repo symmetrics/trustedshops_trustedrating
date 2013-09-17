@@ -49,12 +49,26 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      */
     const CONFIG_STATUS_PATH = 'trustedrating/status';
     
+    const XML_PATH_SHOW_WIDGET = 'show_widget';
+    
     /**
      * List of store IDs which have TrustedRating IDs
      *
      * @var array
      */
     protected $_trustedRatingStores = null;
+
+    /**
+     * SUPTRUSTEDSHOPS-122: 
+     *
+     * @return boolean
+     */
+    public function canShowWidget()
+    {
+        return $this->getTsId() &&
+            $this->getIsActive() &&
+            $this->getModuleConfig(self::XML_PATH_SHOW_WIDGET);
+    }
     
     /**
      * Get all stores having set Trustedrating ID.
@@ -142,20 +156,6 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
         }
         
         return Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
-    }
-
-    /**
-     * Do not show widget if buyerprotect widget is active.
-     *
-     * @return boolean
-     */
-    public function canShowWidget()
-    {
-        if ($this->getTsId() && $this->getIsActive() && !$this->isBuyerprotectActive()) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

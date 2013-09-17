@@ -213,6 +213,7 @@
             </trustedrating_email>
             <status>
                 <trustedrating_active>0</trustedrating_active>
+                <show_widget><![CDATA[1]]></show_widget>
             </status>
         </trustedrating>
     </default>
