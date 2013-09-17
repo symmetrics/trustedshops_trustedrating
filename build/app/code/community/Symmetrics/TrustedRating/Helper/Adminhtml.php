@@ -16,7 +16,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2012 symmetrics - a CGI Group brand
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -28,7 +28,7 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2012 symmetrics - a CGI Group brand
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -91,8 +91,8 @@ class Symmetrics_TrustedRating_Helper_Adminhtml extends Mage_Core_Helper_Abstrac
             // Fallback to default seal, see self::TS_SEAL_DEFAULT
             if (!is_file(Mage::getDesign()->getSkinBaseDir() . DS . $seal)) {
                 $seal = self::TS_SEAL_SKIN_PATH
-                . self::TS_SEAL_DEFAULT
-                . self::TS_SEAL_SUFFIX;
+                    . self::TS_SEAL_DEFAULT
+                    . self::TS_SEAL_SUFFIX;
             }
 
             $sealResource = Mage::getDesign()->getSkinUrl($seal, $params);
