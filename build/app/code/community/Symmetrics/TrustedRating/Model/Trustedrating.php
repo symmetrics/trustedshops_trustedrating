@@ -17,7 +17,8 @@
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
  * @author    Yauhen Yakimovich <yy@symmetrics.de>
- * @copyright 2010-2012 symmetrics - a CGI Group brand
+ * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -30,7 +31,8 @@
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Siegfried Schmitz <ss@symmetrics.de>
  * @author    Yauhen Yakimovich <yy@symmetrics.de>
- * @copyright 2010-2012 symmetrics - a CGI Group brand
+ * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -109,12 +111,14 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 
     /**
      * Get the Trusted Shops ID from system configugration.
+     * 
+     * @param mixed $storeId ID of Store.
      *
      * @return string
      */
-    public function getTsId()
+    public function getTsId($storeId = null)
     {
-        return Mage::helper('trustedrating')->getTsId();
+        return Mage::helper('trustedrating')->getTsId($storeId);
     }
 
     /**
@@ -175,11 +179,17 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     /**
      * Get the email rating link.
      *
+     * @param string|int $storeId ID of Store.
+     * 
      * @return string
      */
-    public function getEmailRatingLink()
+    public function getEmailRatingLink($storeId = null)
     {
-        return $this->getRatingLinkData('ratinglanguagelink');
+        if (null == $storeId) {
+            $storeId = Mage::app()->getStore()->getId();
+        }
+        
+        return $this->getRatingLinkData('ratinglanguagelink', $storeId);
     }
 
     /**
@@ -353,16 +363,20 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
 
         $dateFrom = $dayInterval['from'];
         $dateTo = $dayInterval['to'];
+        $trustedRatingStores = Mage::helper('trustedrating')->getAllTrustedRatingStores();
 
         $shipments = Mage::getResourceModel('sales/order_shipment_collection');
+        /* @var $shipments Mage_Sales_Model_Resource_Order_Shipment_Collection */
+        
         if ($sentIds = $this->_getSentIds()) {
             if (!is_null($sentIds)) {
                 $shipments->addAttributeToFilter('entity_id', array('nin' => $sentIds));
             }
         }
         $shipments->addAttributeToFilter('created_at', array('from' => $dateFrom, 'to' => $dateTo))
+            ->addAttributeToFilter('store_id', array('in' => $trustedRatingStores))
             ->load();
-
+        
         if (!$shipments) {
             return false;
         }

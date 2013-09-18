@@ -19,7 +19,7 @@
  * @author    Eric Reiche <er@symmetrics.de>
  * @author    Andreas Timm <at@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2010-2012 symmetrics gmbh
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -34,7 +34,7 @@
  * @author    Eric Reiche <er@symmetrics.de>
  * @author    Andreas Timm <at@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2010-2012 symmetrics gmbh
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */

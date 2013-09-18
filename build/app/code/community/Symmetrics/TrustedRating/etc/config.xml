@@ -21,7 +21,7 @@
  * @author    Eric Reiche <er@symmetrics.de>
  * @author    Andreas Timm <at@symmetrics.de>
  * @author    Toni Stache <ts@symmetrics.de>
- * @copyright 2009-2012 symmetrics gmbh
+ * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
  */
@@ -29,7 +29,7 @@
 <config>
     <modules>
         <Symmetrics_TrustedRating>
-            <version>0.2.2</version>
+            <version>0.2.3</version>
         </Symmetrics_TrustedRating>
     </modules>
     <global>
@@ -213,6 +213,7 @@
             </trustedrating_email>
             <status>
                 <trustedrating_active>0</trustedrating_active>
+                <show_widget><![CDATA[1]]></show_widget>
             </status>
         </trustedrating>
     </default>
