@@ -60,6 +60,8 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Alias of self::isTrustedRatingActive()
      *
+     * @param int|null|Mage_Core_Model_Store $store Store instance or ID
+     *
      * @return boolean
      * @see self::isTrustedRatingActive()
      */
@@ -204,7 +206,8 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Get language specific Trusted Shops rating URL
      * 
-     * @param null|string $store Store ID or language
+     * @param null|string                    $rateType Rating type, now or laterg
+     * @param null|int|Mage_Core_Model_Store $store    Store ID or language
      * 
      * @return type
      */
@@ -281,7 +284,14 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
         
         return Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
     }
-    
+
+    /**
+     * Getter for TS' privacy link
+     *
+     * @param int|null $storeId Store ID
+     *
+     * @return mixed
+     */
     public function getTsPrivacyUrl($storeId = null)
     {
         $xmlPath = Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_PRIVACY_URL_PREFIX .
@@ -359,7 +369,8 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Get Base64 URL encoded string.
      * 
-     * @param mixed $data
+     * @param string $data      Data to encode
+     * @param bool   $urlEncode Using urlencode or not
      * 
      * @return string
      * @see urlencode

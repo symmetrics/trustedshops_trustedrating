@@ -74,7 +74,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
     /**
      * Assemble store and setting specific button image file names
      *
-     * @param Varien_Object $storeData Data object to consider for image file name
+     * @param Varien_Object &$storeData Data object to consider for image file name
      *
      * @return string
      */
@@ -176,7 +176,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
      * Getting skin folder containing rating button images. It is common to copy base/default folder to custom
      * design/theme thus we have to consider it here.
      *
-     * @param $string $language ISO language code
+     * @param string $language ISO language code
      *
      * @return string
      */
@@ -252,7 +252,10 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
     
     /**
      * List of affected stores with active TrustedRating feature.
-     * 
+     *
+     * @param string $scope Configuration scope in backend
+     * @param string $code  Store code
+     *
      * @return array
      */
     protected function _getTsStores($scope = self::SCOPE_DEFAULT, $code = '')
@@ -276,7 +279,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
             }
 
             foreach ($_stores as $store) {
-                /* @var $store Mage_Core_Model_Store */#
+                /** @var $store Mage_Core_Model_Store */#
                 if ($this->getHelper()->isTrustedRatingActive($store)) {
                     $stores[] = $store;
                 }
@@ -291,9 +294,9 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
     /**
      * Wrapper to save just store specific settings
      * 
-     * @param string                $path
-     * @param mixed                 $value
-     * @param Mage_Core_Model_Store $store
+     * @param string                $path    XML PATH to use as key
+     * @param mixed                 $value   Value to save
+     * @param Mage_Core_Model_Store $storeId Store ID
      * 
      * @return Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button
      */
