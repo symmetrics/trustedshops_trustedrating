@@ -61,8 +61,10 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
      * @var array
      */
     public static $fieldPlaceMaps = array(
-        self::SYSTEM_CONFIG_FIELD_SIZE_IN_EMAILS => Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_PLACE_EMAILS,
-        self::SYSTEM_CONFIG_FIELD_SIZE_IN_FRONTEND => Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_PLACE_FRONTEND,
+        self::SYSTEM_CONFIG_FIELD_SIZE_IN_EMAILS =>
+            Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_PLACE_EMAILS,
+        self::SYSTEM_CONFIG_FIELD_SIZE_IN_FRONTEND =>
+            Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_PLACE_FRONTEND,
     );
 
     /**
