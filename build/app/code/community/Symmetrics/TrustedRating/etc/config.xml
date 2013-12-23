@@ -107,6 +107,15 @@
                 </trustedrating>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <Symmetrics_TrustedRating>
+                    <files>
+                        <trustedrating>Symmetrics_TrustedRating.csv</trustedrating>
+                    </files>
+                </Symmetrics_TrustedRating>
+            </modules>
+        </translate>
     </frontend>
     <adminhtml>
         <translate>
@@ -166,66 +175,28 @@
             <url>https://www.trustedshops.de/ts/services/TsRating?wsdl</url>
             <partnerpackage>symmetrics</partnerpackage>
         </soapapi>
-        <trustedratingmail>
-            <emails>
-                <default>
-                    <trustedrating_mail_de>
-                        <execute>1</execute>
-                        <template_code>Trusted Rating Notification E-Mail (DE)</template_code>
-                        <template_type>2</template_type>
-                        <template_subject>Waren Sie mit Ihrem Kauf bei {{var store.getFrontendName()}} zufrieden? Bitte bewerten Sie uns!</template_subject>
-                        <text>app/locale/de_DE/template/trustedrating/email/trustedrating_email.html</text>
-                    </trustedrating_mail_de>
-                    <trustedrating_mail_en>
-                        <execute>1</execute>
-                        <template_code>Trusted Rating Notification E-Mail (EN)</template_code>
-                        <template_type>2</template_type>
-                        <template_subject>Are you satified with {{var store.getFrontendName()}}? Please write a review!</template_subject>
-                        <text>app/locale/en_US/template/trustedrating/email/trustedrating_email.html</text>
-                    </trustedrating_mail_en>
-                    <trustedrating_mail_fr>
-                        <execute>1</execute>
-                        <template_code>Trusted Rating Notification E-Mail (FR)</template_code>
-                        <template_type>2</template_type>
-                        <template_subject>Etes-vous satisfait de votre achat chez {{var store.getFrontendName()}}? Donnez nous votre avis!</template_subject>
-                        <text>app/locale/fr_FR/template/trustedrating/email/trustedrating_email.html</text>
-                    </trustedrating_mail_fr>
-                    <trustedrating_mail_es>
-                        <execute>1</execute>
-                        <template_code>Trusted Rating Notification E-Mail (ES)</template_code>
-                        <template_type>2</template_type>
-                        <template_subject>¿Está satisfecho con su compra en {{var store.getFrontendName()}}? ¡Haga una valoración!</template_subject>
-                        <text>app/locale/es_ES/template/trustedrating/email/trustedrating_email.html</text>
-                    </trustedrating_mail_es>
-                    <trustedrating_mail_pl>
-                        <execute>1</execute>
-                        <template_code>Trusted Rating Notification E-Mail (PL)</template_code>
-                        <template_type>2</template_type>
-                        <template_subject>Czy jesteś zadowolony z zakupu i naszych usług? Tutaj możesz ocenić {{var store.getFrontendName()}}.</template_subject>
-                        <text>app/locale/pl_PL/template/trustedrating/email/trustedrating_email.html</text>
-                    </trustedrating_mail_pl>
-                </default>
-            </emails>
-        </trustedratingmail>
         <trustedrating>
-            <trustedrating_email>
-                <days>3</days>
-            </trustedrating_email>
             <status>
                 <trustedrating_active>0</trustedrating_active>
+                <reminder_interval><![CDATA[5]]></reminder_interval>
             </status>
+            <rate_now_url>
+                <de>https://www.trustedshops.com/bewertung/bewerten</de>
+                <en>https://www.trustedshops.com/buyerrating/rate</en>
+                <fr>https://www.trustedshops.com/evaluation/evaluer</fr>
+                <es>https://www.trustedshops.com/evaluacion/evaluar</es>
+                <pl>https://www.trustedshops.com/evaluacion/evaluar</pl>
+            </rate_now_url>
+            <rate_later_url>
+                <en><![CDATA[https://www.trustedshops.com/reviews/rateshoplater.php]]></en>
+            </rate_later_url>
+            <privacy_url>
+                <de><![CDATA[http://www.trustedshops.de/datenschutz.html]]></de>
+                <en><![CDATA[http://www.trustedshops.eu/legal-notice-privacy.html]]></en>
+                <fr><![CDATA[http://www.trustedshops.fr/mentions-legales.html]]></fr>
+                <es><![CDATA[http://www.trustedshops.es/aviso-legal.html]]></es>
+                <pl><![CDATA[http://www.trustedshops.pl/dane-firmy-ochrona-danych.html]]></pl>
+            </privacy_url>
         </trustedrating>
     </default>
-    <crontab>
-        <jobs>
-            <trustedrating>
-                <schedule>
-                    <cron_expr>4 4 * * *</cron_expr>
-                </schedule>
-                <run>
-                    <model>trustedrating/observer::checkSendRatingEmail</model>
-                </run>
-            </trustedrating>
-        </jobs>
-    </crontab>
 </config>
