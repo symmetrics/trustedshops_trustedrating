@@ -144,7 +144,7 @@ abstract class Symmetrics_TrustedRating_Block_RateUs_Order extends Symmetrics_Tr
     /**
      * Assemble rating parameter passing to Trusted Shops
      *
-     * @param string $rateType
+     * @param string $rateType Rate type either rating now or later
      *
      * @return array
      */
