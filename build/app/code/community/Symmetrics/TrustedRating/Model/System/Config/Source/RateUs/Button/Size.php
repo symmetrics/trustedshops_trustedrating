@@ -16,9 +16,11 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2009-2013 symmetrics - a CGI Group brand
+ * @copyright 2009-2014 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
+ * @link      http://www.de.cgi.com/
  * @link      http://www.de.cgi.com/
  */
 
@@ -29,9 +31,11 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2009-2013 symmetrics - a CGI Group brand
+ * @copyright 2009-2014 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
+ * @link      http://www.de.cgi.com/
  * @link      http://www.de.cgi.com/
  */
 class Symmetrics_TrustedRating_Model_System_Config_Source_RateUs_Button_Size
