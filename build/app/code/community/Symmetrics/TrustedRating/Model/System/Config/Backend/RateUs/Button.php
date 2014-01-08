@@ -16,9 +16,11 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2009-2013 symmetrics - a CGI Group brand
+ * @copyright 2009-2014 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
+ * @link      http://www.de.cgi.com/
  * @link      http://www.de.cgi.com/
  */
 
@@ -30,9 +32,11 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2009-2013 symmetrics - a CGI Group brand
+ * @copyright 2009-2014 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
+ * @link      http://www.de.cgi.com/
  * @link      http://www.de.cgi.com/
  */
 class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends Mage_Core_Model_Config_Data
@@ -115,7 +119,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
         $dest .= $image;
         
         if (!is_file($dest) && is_file($src)) {
-            $io = new Varien_Io_File;
+            $ioF = new Varien_Io_File;
             Mage::getSingleton('adminhtml/session')->addNotice(
                 $this->getHelper()->__(
                     '%s has been copied to the media folder (%s)!',
@@ -124,7 +128,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
                 )
             );
             
-            $io->cp($src, $dest);
+            $ioF->cp($src, $dest);
         }
     }
 
@@ -191,14 +195,14 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
                 '_area' => 'frontend',
             );
             
-            $rateusButtonImageSubpath = DS . 'images' . DS .
+            $btnImageSubpath = DS . 'images' . DS .
                 Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_BUTTON_IMAGE_SUBPATH .
                 DS . strtoupper($language);
             
             // Custom design package and theme
             $skinDir = '';
             $skinDir .= Mage::getDesign()->getSkinBaseDir($skinDirParams);
-            $skinDir .= $rateusButtonImageSubpath;
+            $skinDir .= $btnImageSubpath;
             
             // Custom design package and 'default' theme
             if (!is_dir($skinDir)) {
@@ -206,7 +210,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
                 
                 $skinDir = '';
                 $skinDir .= Mage::getDesign()->getSkinBaseDir($skinDirParams);
-                $skinDir .= $rateusButtonImageSubpath;
+                $skinDir .= $btnImageSubpath;
             }
             
             // We finally fall back to Magento's 'base' design package
@@ -215,7 +219,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
                 
                 $skinDir = '';
                 $skinDir .= Mage::getDesign()->getSkinBaseDir($skinDirParams);
-                $skinDir .= $rateusButtonImageSubpath;
+                $skinDir .= $btnImageSubpath;
             }
             
             $this->setData($dataKey, $skinDir);
