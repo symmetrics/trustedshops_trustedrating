@@ -52,7 +52,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @var bool
      */
-    protected $_trustedRatingRateusButtonMediaDirExists;
+    protected $_btnMediaDirExists;
     
     /**
      * List of store IDs which have TrustedRating IDs
@@ -339,15 +339,15 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function initTrustedRatingRateusButtonMediaDir()
     {
-        if (is_null($this->_trustedRatingRateusButtonMediaDirExists)) {
-            $io = new Varien_Io_File;
+        if (is_null($this->_btnMediaDirExists)) {
+            $ioF = new Varien_Io_File;
             $dir = Mage::getBaseDir(Mage_Core_Model_Store::URL_TYPE_MEDIA). DS .
                 Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_BUTTON_IMAGE_SUBPATH;
             
-            $this->_trustedRatingRateusButtonMediaDirExists = $io->checkAndCreateFolder($dir);
+            $this->_btnMediaDirExists = $ioF->checkAndCreateFolder($dir);
         }
         
-        return $this->_trustedRatingRateusButtonMediaDirExists;
+        return $this->_btnMediaDirExists;
     }
     
     /**

@@ -53,11 +53,12 @@ class Symmetrics_TrustedRating_Model_System_Config_Source_RateUs_Button_Size
      * @param string $lang Language specific buttons
      * 
      * @return void
-     * @todo Complete implementation, currently this source model is static
+     * @see self::toOptionArray()
+     * @todo Complete implementation, currently method is unused and this source model is static
      */
     protected function _listImages($lang = Symmetrics_TrustedRating_Model_Trustedrating::DEFAULT_LANGUAGE)
     {
-        $buttonsImageDir = Mage::getDesign()->getSkinBaseDir(array('_area' => 'frontend')) . DS .
+        Mage::getDesign()->getSkinBaseDir(array('_area' => 'frontend')) . DS .
             Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_BUTTON_IMAGE_SUBPATH . DS .
             strtoupper($lang);
     }

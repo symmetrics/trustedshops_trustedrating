@@ -19,7 +19,7 @@
  * @author    Yauhen Yakimovich <yy@symmetrics.de>
  * @author    Toni Stache <ts@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2010-2014 symmetrics - a CGI Group brand
+ * @copyright 2009-2014 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
@@ -40,7 +40,7 @@
  * @author    Yauhen Yakimovich <yy@symmetrics.de>
  * @author    Toni Stache <ts@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2010-2014 symmetrics - a CGI Group brand
+ * @copyright 2009-2014 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
