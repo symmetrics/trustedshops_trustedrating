@@ -31,7 +31,7 @@
 <config>
     <modules>
         <Symmetrics_TrustedRating>
-            <version>0.2.4</version>
+            <version>0.2.5</version>
         </Symmetrics_TrustedRating>
     </modules>
     <global>
@@ -43,16 +43,7 @@
         <models>
             <trustedrating>
                 <class>Symmetrics_TrustedRating_Model</class>
-                <resourceModel>trustedrating_mysql4</resourceModel>
             </trustedrating>
-            <trustedrating_mysql4>
-                <class>Symmetrics_TrustedRating_Model_Mysql4</class>
-                <entities>
-                    <mail>
-                        <table>symmetrics_trustedrating_emails</table>
-                    </mail>
-                </entities>
-            </trustedrating_mysql4>
         </models>
         <blocks>
             <trustedrating>
@@ -69,15 +60,6 @@
                     </symmetrics_trustedrating_model_observer>
                 </observers>
             </admin_system_config_changed_section_trustedrating>
-            <admin_session_user_login_success>
-                <observers>
-                    <symmetrics_trustedrating_model_observer>
-                        <type>singleton</type>
-                        <class>Symmetrics_TrustedRating_Model_Observer</class>
-                        <method>checkSendRatingEmail</method>
-                    </symmetrics_trustedrating_model_observer>
-                </observers>
-            </admin_session_user_login_success>
         </events>
         <resources>
             <trustedrating_setup>
