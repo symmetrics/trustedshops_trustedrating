@@ -43,9 +43,20 @@
 class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
 {
     /**
+     * Some constants to test if buyerprotect widget is available.
+     */
+    const BUYERPROTECT_MODULE_CONFIG_KEY = 'buyerprotect',
+          BUYERPROTECT_MODULE_NAME = 'Symmetrics_Buyerprotect';
+    
+    /**
      * @const CONFIG_STATUS_PATH system config path to status settings
      */
     const CONFIG_STATUS_PATH = 'trustedrating/status';
+
+    /**
+     * SUPTRUSTEDSHOPS-122:
+     */
+    const XML_PATH_SHOW_WIDGET = 'show_widget';
 
     /**
      * Flag indicates if rating button image underneath media already exists
@@ -62,16 +73,15 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     protected $_trustedRatingStores = null;
 
     /**
-     * Alias of self::isTrustedRatingActive()
-     *
-     * @param int|null|Mage_Core_Model_Store $store Store instance or ID
+     * SUPTRUSTEDSHOPS-122: 
      *
      * @return boolean
-     * @see self::isTrustedRatingActive()
      */
-    public function canShowWidget($store = null)
+    public function canShowWidget()
     {
-        return $this->isTrustedRatingActive($store);
+        return $this->getTsId() &&
+            $this->getIsActive() &&
+            $this->getModuleConfig(self::XML_PATH_SHOW_WIDGET);
     }
     
     /**
@@ -124,6 +134,27 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * Get configured language of module
+     *
+     * @param null|int $storeId Store ID
+     *
+     * @return string
+     */
+    public function getLanguage($storeId = null)
+    {
+        $language = Mage::getStoreConfig(
+            Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_LANGUAGE,
+            $storeId
+        );
+
+        if (!$language) {
+            $language = Symmetrics_TrustedRating_Model_Trustedrating::DEFAULT_LANGUAGE;
+        }
+
+        return $language;
+    }
+
+    /**
      * Get module specific config from system configuration
      *
      * @param string $key config key
@@ -133,16 +164,6 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     public function getModuleConfig($key)
     {
         return $this->getConfig(self::CONFIG_STATUS_PATH, $key);
-    }
-
-    /**
-     * Get the "incluce orders since" setting from store config
-     *
-     * @return Zend_Date
-     */
-    public function getActiveSince()
-    {
-        return $this->getConfig('trustedrating/data', 'active_since');
     }
 
     /**
@@ -156,24 +177,20 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Get configured language of module
-     *
-     * @param null|int $storeId Store ID
+     * Get the trusted rating id from store config
+     * 
+     * @param mixed $storeId ID of Store.
      *
      * @return string
      */
-    public function getLanguage($storeId = null)
+    public function getTsId($storeId = null)
     {
-        $language = Mage::getStoreConfig(
-            Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_LANGUAGE,
-            $storeId
-        );
-        
-        if (!$language) {
-            $language = Symmetrics_TrustedRating_Model_Trustedrating::DEFAULT_LANGUAGE;
+        if ((null == $storeId) && Mage::app()->getStore()->isAdmin()) {
+            $excMessage = 'Can\'t determine TS ID in Admin scope without Store ID!';
+            Mage::logException(new Exception($excMessage));
         }
         
-        return $language;
+        return Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
     }
 
     /**
@@ -206,13 +223,13 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $email;
     }
-    
+
     /**
      * Get language specific Trusted Shops rating URL
-     * 
+     *
      * @param null|string                    $rateType Rating type, now or laterg
      * @param null|int|Mage_Core_Model_Store $store    Store ID or language
-     * 
+     *
      * @return type
      */
     public function getRatingUrl($rateType = 'rate_now', $store = null)
@@ -270,23 +287,6 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
         $path = Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_RATE_LATER_DAYS_INTERVAL;
         
         return Mage::getStoreConfig($path, $store);
-    }
-
-    /**
-     * Get the trusted rating id from store config
-     * 
-     * @param mixed $storeId ID of Store.
-     *
-     * @return string
-     */
-    public function getTsId($storeId = null)
-    {
-        if ((null == $storeId) && Mage::app()->getStore()->isAdmin()) {
-            $excMessage = 'Can\'t determine TS ID in Admin scope without Store ID!';
-            Mage::logException(new Exception($excMessage));
-        }
-        
-        return Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
     }
 
     /**
@@ -369,13 +369,13 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
         return $store->getConfig(Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_ACTIVE) &&
             $store->getConfig(Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_ID);
     }
-    
+
     /**
      * Get Base64 URL encoded string.
-     * 
+     *
      * @param string $data      Data to encode
      * @param bool   $urlEncode Using urlencode or not
-     * 
+     *
      * @return string
      * @see urlencode
      * @see base64_encode

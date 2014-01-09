@@ -81,6 +81,115 @@ class Symmetrics_TrustedRating_Model_Observer
     }
 
     /**
+     * Checks the shippings which will get an email
+     *
+     * @return void
+     */
+    public function checkSendRatingEmail()
+    {
+        $model = Mage::getModel('trustedrating/trustedrating');
+        if ($shipmentIds = $model->checkShippings()) {
+            $this->_sendTrustedRatingMails($shipmentIds);
+        }
+    }
+
+    /**
+     * Send mail and save entry to db
+     *
+     * @param array $shipmentIds Shipment IDs
+     *
+     * @return void
+     */
+    private function _sendTrustedRatingMails($shipmentIds)
+    {
+       foreach ($shipmentIds as $shipmentId) {
+           $orderId = $this->getHelper()->getOrderId($shipmentId);
+           $order = Mage::getModel('sales/order')->load($orderId);
+           $this->_sendTransactionalMail($order);
+           $this->_saveShipmentIdToTable($shipmentId);
+       }
+    }
+
+    /**
+     * Generates the rating url by given order object.
+     *
+     * @param Mage_Sales_Model_Order $order Order object.
+     *
+     * @return string
+     */
+    protected function _getRatingUrl($order)
+    {
+        $trustedRating = Mage::getSingleton('trustedrating/trustedrating');
+        $storeId = $order->getStoreId();
+        $tsId = $trustedRating->getTsId($storeId);
+        $params = array(
+            'buyerEmail' => base64_encode($order->getCustomerEmail()),
+            'shopOrderID' => base64_encode($order->getRealOrderId())
+        );
+        $ratingUrl = $trustedRating->getEmailRatingLink($storeId) . '_' . $tsId . '.html'
+                   . '&'    // Do not change, it's necessary for the TS systems to
+                            // handle the query parameters correctly.
+                   . http_build_query($params);
+
+        return $ratingUrl;
+    }
+
+    /**
+     * Generates the image url by given order object.
+     *
+     * @param Mage_Sales_Model_Order $order Order object.
+     *
+     * @return string
+     */
+    protected function _getImageUrl($order)
+    {
+        $language = Mage::getStoreConfig(
+            Symmetrics_TrustedRating_Model_Trustedrating::CONFIG_LANGUAGE,
+            $order->getStoreId()
+        );
+        
+        return Mage::getDesign()->getSkinUrl(
+            'images/bewerten_' . $language . '.gif', array('_area' => 'frontend')
+        );
+    }
+
+    /**
+     * Send transactional email to customer.
+     *
+     * @param Mage_Sales_Model_Order $order Order object.
+     *
+     * @return void
+     */
+    public function _sendTransactionalMail($order)
+    {
+        Mage::getModel('core/email_template')->sendTransactional(
+            Mage::getStoreConfig(self::XML_PATH_CONFIG_EMAIL_TEMPLATE, $order->getStoreId()),
+            Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY),
+            $order->getCustomerEmail(),
+            $order->getCustomerName(),
+            array(
+                'ratingUrl' => $this->_getRatingUrl($order),
+                'imageUrl' => $this->_getImageUrl($order)
+            ),
+            $order->getStoreId()
+        );
+    }
+
+    /**
+     * Save shipping ID of customers which got an email to table
+     *
+     * @param int $shipmentId Shipping Id
+     *
+     * @return void
+     */
+    private function _saveShipmentIdToTable($shipmentId)
+    {
+        $mailModel = Mage::getModel('trustedrating/mail');
+        $mailModel->setShippmentId($shipmentId)
+            ->save();
+    }
+
+    /**
      * Collect the data for sending to Trusted Shops
      *
      * @param int $storeId storeID
