@@ -134,6 +134,27 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * Get configured language of module
+     *
+     * @param null|int $storeId Store ID
+     *
+     * @return string
+     */
+    public function getLanguage($storeId = null)
+    {
+        $language = Mage::getStoreConfig(
+            Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_LANGUAGE,
+            $storeId
+        );
+
+        if (!$language) {
+            $language = Symmetrics_TrustedRating_Model_Trustedrating::DEFAULT_LANGUAGE;
+        }
+
+        return $language;
+    }
+
+    /**
      * Get module specific config from system configuration
      *
      * @param string $key config key
