@@ -16,9 +16,11 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2009-2013 symmetrics - a CGI Group brand
+ * @copyright 2009-2014 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
+ * @link      http://www.de.cgi.com/
  * @link      http://www.de.cgi.com/
  */
 
@@ -29,9 +31,11 @@
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
  * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2009-2013 symmetrics - a CGI Group brand
+ * @copyright 2009-2014 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
+ * @link      http://www.de.cgi.com/
  * @link      http://www.de.cgi.com/
  */
 class Symmetrics_TrustedRating_Model_System_Config_Source_RateUs_Button_Size
@@ -49,11 +53,12 @@ class Symmetrics_TrustedRating_Model_System_Config_Source_RateUs_Button_Size
      * @param string $lang Language specific buttons
      * 
      * @return void
-     * @todo Complete implementation, currently this source model is static
+     * @see self::toOptionArray()
+     * @todo Complete implementation, currently method is unused and this source model is static
      */
     protected function _listImages($lang = Symmetrics_TrustedRating_Model_Trustedrating::DEFAULT_LANGUAGE)
     {
-        $buttonsImageDir = Mage::getDesign()->getSkinBaseDir(array('_area' => 'frontend')) . DS .
+        Mage::getDesign()->getSkinBaseDir(array('_area' => 'frontend')) . DS .
             Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_BUTTON_IMAGE_SUBPATH . DS .
             strtoupper($lang);
     }
