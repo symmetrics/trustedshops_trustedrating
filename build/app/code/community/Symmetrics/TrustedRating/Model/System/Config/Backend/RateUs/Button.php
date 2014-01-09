@@ -61,8 +61,10 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
      * @var array
      */
     public static $fieldPlaceMaps = array(
-        self::SYSTEM_CONFIG_FIELD_SIZE_IN_EMAILS => Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_PLACE_EMAILS,
-        self::SYSTEM_CONFIG_FIELD_SIZE_IN_FRONTEND => Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_PLACE_FRONTEND,
+        self::SYSTEM_CONFIG_FIELD_SIZE_IN_EMAILS =>
+            Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_PLACE_EMAILS,
+        self::SYSTEM_CONFIG_FIELD_SIZE_IN_FRONTEND =>
+            Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_PLACE_FRONTEND,
     );
 
     /**
@@ -279,7 +281,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
             }
 
             foreach ($_stores as $store) {
-                /** @var $store Mage_Core_Model_Store */#
+                /** @var $store Mage_Core_Model_Store */
                 if ($this->getHelper()->isTrustedRatingActive($store)) {
                     $stores[] = $store;
                 }
