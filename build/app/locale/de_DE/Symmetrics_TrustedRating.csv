@@ -57,3 +57,8 @@
 "Thanks for having purchased at %s. Were you satisfied with our service? Please write a review and rate us.","Danke für Ihren Einkauf bei %s. Waren Sie mit Ihrem Einkauf und unserem Service zufrieden? Hier können Sie %s bewerten, wir freuen uns auf Ihr Feedback"
 "Yes, I would like to ""rate my purchase later"" and receive a one-off e-mail from Trusted Shops after %s days reminding me to submit my rating (%s).","Ja, ich möchte meinen Einkauf ""später bewerten"" und von Trusted Shops nach %s Tagen einmalig per E-Mail an die Abgabe eine Bewertung erinnert werden (%s)."
 "Details","Details"
+"For emails insert following snippet in your template(s):<br/><span style=""color: #ea7601"">{{layout handle=""trustedrating_rateus_buttons_emails"" order=$order store=$store}}</span>","Für E-Mails, fügen Sie folgenden Code in Ihre Template(s) ein:<br/><span style=""color: #ea7601"">{{layout handle=""trustedrating_rateus_buttons_emails"" order=$order store=$store}}</span>"
+"Reminder email interval in days","Erinnerungs-Mail Intervall in Tagen"
+"Interval starts from the point the customer clicks the <i>Rate Later</i> button","Intervall ab den Punkt, wo der Kunde den <i>Rate Later</i> Button betätigt"
+"<i>'Rate Now'</i> Button Designs","<i>'Rate Now'</i> Button Designs"
+"<i>'Rate Later'</i> Button Designs","<i>'Rate Later'</i> Button Designs"

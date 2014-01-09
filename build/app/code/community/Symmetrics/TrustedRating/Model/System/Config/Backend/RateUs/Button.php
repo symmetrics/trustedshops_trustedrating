@@ -42,6 +42,11 @@
 class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends Mage_Core_Model_Config_Data
 {
     /**
+     * XML attribute name for rate type.
+     */
+    const ATTRIBUTE_RATE_TYPE = 'rate_type';
+
+    /**
      * Magento's base design package name
      */
     const BASE_DESIGN_PACKAGE = 'base';
@@ -88,7 +93,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
     {
         $imageName = '';
         
-        $imageName .= $this->getGroupId();
+        $imageName .= $this->getFieldConfig()->getAttribute(self::ATTRIBUTE_RATE_TYPE);
         $imageName .= '_';
         $imageName .= $storeData->getData('language');
         $imageName .= '_';
@@ -117,7 +122,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
         $dest .= $this->_getTrustedratingRateusButtonImageMediaDir();
         $dest .= DS;
         $dest .= $image;
-        
+
         if (!is_file($dest) && is_file($src)) {
             $ioF = new Varien_Io_File;
             Mage::getSingleton('adminhtml/session')->addNotice(
@@ -133,8 +138,8 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
     }
 
     /**
-     * Hook into system config save and save to custom XML path as well copying button image file
-     * names to media folder
+     * Hook into system config save event and save to custom XML path of button image names
+     * as well copying button image files to media folder
      *
      * @return Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button
      */
@@ -143,7 +148,7 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
         if ($this->isValueChanged()) {
             $scopeCode = ($this->getStoreCode()) ? $this->getStoreCode() : $this->getWebsiteCode();
             $this->getHelper()->initTrustedRatingRateusButtonMediaDir();
-            $type = $this->getGroupId();
+            $type = $this->getFieldConfig()->getAttribute(self::ATTRIBUTE_RATE_TYPE);
             $place = self::$fieldPlaceMaps[$this->getField()];
 
             foreach ($this->_getTsStoreData($this->getScope(), $scopeCode) as $storeId => $data) {
@@ -300,9 +305,9 @@ class Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button extends
     /**
      * Wrapper to save just store specific settings
      * 
-     * @param string                $path    XML PATH to use as key
-     * @param mixed                 $value   Value to save
-     * @param Mage_Core_Model_Store $storeId Store ID
+     * @param string                    $path    XML PATH to use as key
+     * @param mixed                     $value   Value to save
+     * @param Mage_Core_Model_Store|int $storeId Store ID
      * 
      * @return Symmetrics_TrustedRating_Model_System_Config_Backend_RateUs_Button
      */
