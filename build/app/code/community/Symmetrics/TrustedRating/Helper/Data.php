@@ -49,6 +49,9 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      */
     const CONFIG_STATUS_PATH = 'trustedrating/status';
 
+    /**
+     * SUPTRUSTEDSHOPS-122:
+     */
     const XML_PATH_SHOW_WIDGET = 'show_widget';
 
     /**
@@ -195,12 +198,13 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $email;
     }
-    
+
     /**
      * Get language specific Trusted Shops rating URL
-     * 
-     * @param null|string $store Store ID or language
-     * 
+     *
+     * @param null|string                    $rateType Rating type, now or laterg
+     * @param null|int|Mage_Core_Model_Store $store    Store ID or language
+     *
      * @return type
      */
     public function getRatingUrl($rateType = 'rate_now', $store = null)
@@ -261,22 +265,12 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Get the trusted rating id from store config
-     * 
-     * @param mixed $storeId ID of Store.
+     * Getter for TS' privacy link
      *
-     * @return string
+     * @param int|null $storeId Store ID
+     *
+     * @return mixed
      */
-    public function getTsId($storeId = null)
-    {
-        if ((null == $storeId) && Mage::app()->getStore()->isAdmin()) {
-            $excMessage = 'Can\'t determine TS ID in Admin scope without Store ID!';
-            Mage::logException(new Exception($excMessage));
-        }
-        
-        return Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
-    }
-    
     public function getTsPrivacyUrl($storeId = null)
     {
         $xmlPath = Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_PRIVACY_URL_PREFIX .
@@ -350,12 +344,13 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
         return $store->getConfig(Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_ACTIVE) &&
             $store->getConfig(Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_ID);
     }
-    
+
     /**
      * Get Base64 URL encoded string.
-     * 
-     * @param mixed $data
-     * 
+     *
+     * @param string $data      Data to encode
+     * @param bool   $urlEncode Using urlencode or not
+     *
      * @return string
      * @see urlencode
      * @see base64_encode
@@ -365,16 +360,5 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
         $returnValue = base64_encode($data);
         
         return (!$urlEncode) ? $returnValue : urlencode($returnValue);
-    }
-    
-    /**
-     * Check if Symmetrics_Buyerprotect module is active.
-     * 
-     * @return bool
-     */
-    public function isBuyerprotectActive()
-    {
-        return Mage::helper('core')->isModuleEnabled(self::BUYERPROTECT_MODULE_NAME) &&
-            Mage::helper(self::BUYERPROTECT_MODULE_CONFIG_KEY)->isBuyerprotectActive();
     }
 }
