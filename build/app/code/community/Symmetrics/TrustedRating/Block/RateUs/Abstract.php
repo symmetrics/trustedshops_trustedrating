@@ -47,7 +47,7 @@ abstract class Symmetrics_TrustedRating_Block_RateUs_Abstract extends Mage_Core_
     protected $_ratePlace = Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_PLACE_FRONTEND;
 
     /**
-     *
+     * Getter for Magento store instance
      *
      * @param int|Mage_Core_Model_Store $storeId Store ID or instance
      *
@@ -127,7 +127,7 @@ abstract class Symmetrics_TrustedRating_Block_RateUs_Abstract extends Mage_Core_
         $rateType = (empty($rateType)) ?
             Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_TYPE_RATE_NOW :
             $rateType;
-        if (!in_array($rateType, Symmetrics_TrustedRating_Model_Trustedrating::$rateTypes)){
+        if (!in_array($rateType, Symmetrics_TrustedRating_Model_Trustedrating::$rateTypes)) {
             $message = "Unknow rating type '%s'!";
             Mage::throwException($this->__($message, $rateType));
         }
@@ -139,6 +139,8 @@ abstract class Symmetrics_TrustedRating_Block_RateUs_Abstract extends Mage_Core_
      * Get scheme-less base URL to the 'Rate Us' button images in media folder:
      * 
      *  '//magento-shop.net/media/trustedrating/buttons/'
+     *
+     * @param bool $withProtocol Flag to generate scheme-less URL
      * 
      * @return string
      */
@@ -164,7 +166,7 @@ abstract class Symmetrics_TrustedRating_Block_RateUs_Abstract extends Mage_Core_
     /**
      * Getter of configured Trusted Shops ID
      * 
-     * @param mixed $storeId
+     * @param mixed $storeId Store ID
      * 
      * @return string
      */
@@ -186,7 +188,7 @@ abstract class Symmetrics_TrustedRating_Block_RateUs_Abstract extends Mage_Core_
     /**
      * Setter of self::$ratePlace
      *
-     * @param $ratePlace Rate place defining whether we're in shop frontend or email context
+     * @param string $ratePlace Rate place defining whether we're in shop frontend or email context
      *
      * @return Symmetrics_TrustedRating_Block_RateUs_Abstract
      * @throws Mage_Core_Exception
@@ -194,7 +196,7 @@ abstract class Symmetrics_TrustedRating_Block_RateUs_Abstract extends Mage_Core_
      */
     public function setRatePlace($ratePlace)
     {
-        if (!in_array($ratePlace, Symmetrics_TrustedRating_Model_Trustedrating::$ratePlaces)){
+        if (!in_array($ratePlace, Symmetrics_TrustedRating_Model_Trustedrating::$ratePlaces)) {
             $message = "Unknow rating place '%s'!";
             Mage::throwException($this->__($message, $ratePlace));
         }
