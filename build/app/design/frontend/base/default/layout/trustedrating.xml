@@ -24,6 +24,19 @@
  */
 -->
 <layout version="0.1.0">
+    <trustedrating_rateus_buttons_checkout>
+        <reference name="content">
+            <block type="trustedrating/rateUs_order_checkout" name="trustedrating.rateus" after="-" />
+        </reference>
+    </trustedrating_rateus_buttons_checkout>
+    
+    <trustedrating_rateus_buttons_emails>
+        <block type="trustedrating/rateUs_order_email" name="trustedrating.rateus">
+            <action method="setRatePlace"><place>emails</place></action>
+        </block>
+    </trustedrating_rateus_buttons_emails>
+    
+    
     <default>
         <reference name="head">
             <action method="addCss"><stylesheet>css/symmetrics/trustedrating.css</stylesheet></action>
@@ -32,9 +45,8 @@
              <block type="trustedrating/widget" after="cart_sidebar" name="trustedrating_widget" template="trustedrating/trustedrating.phtml" />
         </reference>
     </default>
+    
     <checkout_onepage_success>
-        <reference name="content">
-            <block type="trustedrating/email_widget" name="trustedrating_email_widget" template="trustedrating/rateus.phtml"/>
-        </reference>
+        <update handle="trustedrating_rateus_buttons_checkout" />
     </checkout_onepage_success>
 </layout>

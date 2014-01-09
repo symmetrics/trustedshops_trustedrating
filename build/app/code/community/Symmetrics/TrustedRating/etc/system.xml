@@ -77,15 +77,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </trustedrating_ratinglanguage>
-                        <active_since translate="label comment">
-                            <label><![CDATA[Installation date (GMT)]]></label>
-                            <comment><![CDATA[Mail can be sent only for orders placed after installation of this module.]]></comment>
-                            <frontend_type>label</frontend_type>
-                            <sort_order>100</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </active_since>
                     </fields>
                 </data>
                 <status translate="label">
@@ -117,36 +108,123 @@
                                 <trustedrating_active><![CDATA[1]]></trustedrating_active>
                             </depends>
                         </show_widget>
-                    </fields>
-                </status>
-                <trustedrating_email translate="label">
-                    <label>Email with rating request</label>
-                    <frontend_type>text</frontend_type>
-                    <sort_order>5</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                        <fields>
-                            <template translate="label">
-                                <label>Email Template</label>
+                        <trustedrating_active translate="label">
+                            <label>Activate TrustedRating?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trustedrating_active>
+                        <rateus_in_frontend translate="label">
+                            <label><![CDATA[Show <i>Rate Us</i> Buttons in Checkout]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </rateus_in_frontend>
+                            
+                            <!--
+                            <rateus_in_emails translate="label">
+                                <label><![CDATA[Show <i>Rate Us</i> Buttons in Emails]]></label>
                                 <frontend_type>select</frontend_type>
-                                <source_model>adminhtml/system_config_source_email_template</source_model>
-                                <sort_order>0</sort_order>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>30</sort_order>
                                 <show_in_default>1</show_in_default>
                                 <show_in_website>1</show_in_website>
                                 <show_in_store>1</show_in_store>
-                            </template>
-                            <days translate="label comment">
-                                <label>Days after shipment</label>
-                                <comment>0 = Immediately after placement of the order</comment>
-                                <frontend_type>text</frontend_type>
-                                <sort_order>1</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <show_in_website>0</show_in_website>
-                                <show_in_store>0</show_in_store>
-                            </days>
-                        </fields>
-                </trustedrating_email>
+                            </rateus_in_emails>
+                            -->
+                            
+                        <reminder_interval translate="label comment">
+                            <label><![CDATA[Reminder email interval in days]]></label>
+                            <comment><![CDATA[Interval starts from the point the customer clicks the <i>Rate Later</i> button]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <frontend_class>validate-number</frontend_class>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reminder_interval>
+                    </fields>
+                </status>
+                <design translate="label">
+                    <label><![CDATA[<i>Rate Us</i> Button Designs]]></label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <rate_now type="group" translate="label">
+                            <label><![CDATA[<i>Rate Now</i>]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <fields>
+                                <size_in_frontend translate="label">
+                                    <label><![CDATA[Button Size in Frontend]]></label>
+                                    <frontend_type>select</frontend_type>
+                                    <config_path><![CDATA[trustedrating/design/rate_now_size_in_frontend]]></config_path>
+                                    <source_model>trustedrating/system_config_source_rateUs_button_size</source_model>
+                                    <backend_model>trustedrating/system_config_backend_rateUs_button</backend_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </size_in_frontend>
+                                <size_in_emails translate="label">
+                                    <label><![CDATA[Button Size in Emails]]></label>
+                                    <frontend_type>select</frontend_type>
+                                    <config_path><![CDATA[trustedrating/design/rate_now_size_in_emails]]></config_path>
+                                    <source_model>trustedrating/system_config_source_rateUs_button_size</source_model>
+                                    <backend_model>trustedrating/system_config_backend_rateUs_button</backend_model>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </size_in_emails>
+                            </fields>
+                        </rate_now>
+                        <rate_later type="group" translate="label">
+                            <label><![CDATA[<i>Rate Later</i>]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <fields>
+                                <size_in_frontend translate="label">
+                                    <label><![CDATA[Button Size in Frontend]]></label>
+                                    <frontend_type>select</frontend_type>
+                                    <config_path><![CDATA[trustedrating/design/rate_later_size_in_frontend]]></config_path>
+                                    <source_model>trustedrating/system_config_source_rateUs_button_size</source_model>
+                                    <backend_model>trustedrating/system_config_backend_rateUs_button</backend_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </size_in_frontend>
+                                <size_in_emails translate="label">
+                                    <label><![CDATA[Button Size in Emails]]></label>
+                                    <frontend_type>select</frontend_type>
+                                    <config_path><![CDATA[trustedrating/design/rate_later_size_in_emails]]></config_path>
+                                    <source_model>trustedrating/system_config_source_rateUs_button_size</source_model>
+                                    <backend_model>trustedrating/system_config_backend_rateUs_button</backend_model>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </size_in_emails>
+                            </fields>
+                        </rate_later>
+                    </fields>
+                </design>
             </groups>
         </trustedrating>
     </sections>

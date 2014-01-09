@@ -21,6 +21,7 @@
  * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
+ * @link      http://www.de.cgi.com/
  */
 
 /**
@@ -35,9 +36,56 @@
  * @copyright 2009-2013 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.symmetrics.de/
+ * @link      http://www.de.cgi.com/
  */
 class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstract
 {
+    /**
+     * As a fallback consider EN as language.
+     */
+    const DEFAULT_LANGUAGE = 'en';
+    
+    /**
+     * Rate now/later buttons related information.
+     */
+    const
+        RATEUS_BUTTON_IMAGE_PREFIX_RATE_LATER = 'rate_later_',
+        RATEUS_BUTTON_IMAGE_PREFIX_RATE_NOW = 'rate_now_',
+        RATEUS_BUTTON_IMAGE_SUBPATH = 'trustedrating/buttons',
+        RATEUS_BUTTON_IMAGE_SUFFIX = '.png';
+    
+    /**
+     * XML node name of RateUs configuration section.
+     */
+    const RATEUS_CONFIG_KEY = 'trustedrating_rateus';
+    
+    /**
+     * TS rating service provides two main types through its API:
+     * 
+     *  - immediate rate
+     *  - delayed rate - the delivery time is part for rating thus it makes sense
+     *    to delay till the order has been send
+     */
+    const
+        RATEUS_TYPE_RATE_LATER = 'rate_later',
+        RATEUS_TYPE_RATE_NOW = 'rate_now';
+    
+    /**
+     * Where to show the rating buttons. Either in shop frontend (checkout success)
+     * or in the mails
+     */
+    const
+        RATEUS_PLACE_EMAILS = 'emails',
+        RATEUS_PLACE_FRONTEND = 'frontend';
+        
+    const
+        RATEUS_RATING_PARAM_NAME_CUSTOMER_EMAIL = 'buyerEmail',
+        RATEUS_RATING_PARAM_NAME_ORDER_ID = 'shopOrderID',
+        RATEUS_RATING_PARAM_NAME_RATE_LATER_DAYS = 'days',
+        RATEUS_RATING_PARAM_NAME_TS_ID = 'shop_id';
+    
+    const RATEUS_RATE_LATER_URL = 'https://www.trustedshops.com/reviews/rateshoplater.php';
+    
     /**
      * @const WIDGET_LINK Fixed part of the link for the rating-site for the widget.
      */
@@ -85,17 +133,19 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
     const CACHEID = 'trustedratingimage';
 
     /**
-     * @ const EMAIL_CACHEID The cacheid to cache the email widget.
+     * @const EMAIL_CACHEID The cacheid to cache the email widget.
      */
     const EMAIL_CACHEID = 'trustedratingemailimage';
 
     /**
-     * @ const CONFIG_DAYS_INTERVAL System configuration path to day interval setting.
+     * @const CONFIG_DAYS_INTERVAL System configuration path to day interval setting.
+     * @deprecated since 0.2.4
      */
     const CONFIG_DAYS_INTERVAL = 'trustedrating/trustedrating_email/days';
 
     /**
-     * @ const CONFIG_LANGUAGE System configuration path to selected language.
+     * @const CONFIG_LANGUAGE System configuration path to selected language.
+     * @deprecated since 0.2.4
      */
     const CONFIG_LANGUAGE = 'trustedrating/data/trustedrating_ratinglanguage';
 
@@ -108,6 +158,69 @@ class Symmetrics_TrustedRating_Model_Trustedrating extends Mage_Core_Model_Abstr
      * @ const WIDGET_FILE_SUFFIX File suffix for trusted rating widget.
      */
     const WIDGET_FILE_SUFFIX = '.gif';
+    
+    /**
+     * System configs of rate button image names, e.g. 'rate_later_en_140.png'
+     */
+    const
+        XML_PATH_RATEUS_BUTTON_IMAGE_RATE_LATER_EMAILS = 'trustedrating/button_image/rate_later_emails',
+        XML_PATH_RATEUS_BUTTON_IMAGE_RATE_LATER_FRONTEND = 'trustedrating/button_image/rate_later_frontend',
+        XML_PATH_RATEUS_BUTTON_IMAGE_RATE_NOW_EMAILS = 'trustedrating/button_image/rate_now_emails',
+        XML_PATH_RATEUS_BUTTON_IMAGE_RATE_NOW_FRONTEND = 'trustedrating/button_image/rate_now_frontend';
+
+    /**
+     * System config flag to show rating buttons in shop frontend
+     */
+    const XML_PATH_RATEUS_SHOW_IN_FRONTEND = 'trustedrating/status/rateus_in_frontend';
+
+    /**
+     * XML path prefixes to several Trusted Shops URLs
+     */
+    const
+        XML_PATH_PRIVACY_URL_PREFIX = 'trustedrating/privacy_url',
+        XML_PATH_RATE_LATER_URL_PREFIX = 'trustedrating/rate_later_url',
+        XML_PATH_RATE_NOW_URL_PREFIX = 'trustedrating/rate_now_url';
+    
+    /**
+     * XML paths to system configs in backend
+     */
+    const
+        XML_PATH_TRUSTEDRATING_ACTIVE = 'trustedrating/status/trustedrating_active',
+        XML_PATH_TRUSTEDRATING_BUTTON_RATE_LATER_SIZE_EMAILS = 'trustedrating/design/rate_later_size_in_emails',
+        XML_PATH_TRUSTEDRATING_BUTTON_RATE_LATER_SIZE_FRONTEND = 'trustedrating/design/rate_later_size_in_frontend',
+        XML_PATH_TRUSTEDRATING_BUTTON_RATE_NOW_SIZE_EMAILS = 'trustedrating/design/rate_now_size_in_emails',
+        XML_PATH_TRUSTEDRATING_BUTTON_RATE_NOW_SIZE_FRONTEND = 'trustedrating/design/rate_now_size_in_frontend',
+        XML_PATH_TRUSTEDRATING_ID = 'trustedrating/data/trustedrating_id',
+        // TODO: The language should also be determined through the set shop language
+        XML_PATH_TRUSTEDRATING_LANGUAGE = 'trustedrating/data/trustedrating_ratinglanguage',
+        XML_PATH_TRUSTEDRATING_RATE_LATER_DAYS_INTERVAL = 'trustedrating/status/reminder_interval';
+
+    /**
+     * List of available languages the module supports/provides
+     *
+     * @var array
+     */
+    public static $languages = array('de', 'en', 'es', 'fr', 'pl');
+
+    /**
+     * List of 'places' where the rating buttons can be shown
+     *
+     * @var array
+     */
+    public static $ratePlaces = array(
+        self::RATEUS_PLACE_EMAILS,
+        self::RATEUS_PLACE_FRONTEND,
+    );
+
+    /**
+     * List of rating types
+     *
+     * @var array
+     */
+    public static $rateTypes = array(
+        self::RATEUS_TYPE_RATE_NOW,
+        self::RATEUS_TYPE_RATE_LATER,
+    );
 
     /**
      * Get the Trusted Shops ID from system configugration.

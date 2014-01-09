@@ -48,8 +48,15 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
      * @const CONFIG_STATUS_PATH system config path to status settings
      */
     const CONFIG_STATUS_PATH = 'trustedrating/status';
-    
+
     const XML_PATH_SHOW_WIDGET = 'show_widget';
+
+    /**
+     * Flag indicates if rating button image underneath media already exists
+     *
+     * @var bool
+     */
+    protected $_trustedRatingRateusButtonMediaDirExists;
     
     /**
      * List of store IDs which have TrustedRating IDs
@@ -130,7 +137,7 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return $this->getConfig(self::CONFIG_STATUS_PATH, $key);
     }
-    
+
     /**
      * Get the activity status from store config
      *
@@ -156,16 +163,6 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
         }
         
         return Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
-    }
-
-    /**
-     * Get the "incluce orders since" setting from store config
-     *
-     * @return Zend_Date
-     */
-    public function getActiveSince()
-    {
-        return $this->getConfig('trustedrating/data', 'active_since');
     }
 
     /**
@@ -197,6 +194,177 @@ class Symmetrics_TrustedRating_Helper_Data extends Mage_Core_Helper_Abstract
         $email = $order->getCustomerEmail();
 
         return $email;
+    }
+    
+    /**
+     * Get language specific Trusted Shops rating URL
+     * 
+     * @param null|string $store Store ID or language
+     * 
+     * @return type
+     */
+    public function getRatingUrl($rateType = 'rate_now', $store = null)
+    {
+        $url = '';
+        $path = 'default';
+        $language = '';
+        
+        $path .= '/';
+        if ($rateType == Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_TYPE_RATE_NOW) {
+            $path .= Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_RATE_NOW_URL_PREFIX;
+        } else {
+            $path .= Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_RATE_LATER_URL_PREFIX;
+        }
+        $path .= '/';
+        
+        if (is_string($store) &&
+            (strlen($store) == 2) &&
+            in_array($store, Symmetrics_TrustedRating_Model_Trustedrating::$languages)) {
+            $language = $store;
+            $store = null;
+        } else {
+            if ($rateType == Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_TYPE_RATE_NOW) {
+                $language = Mage::getStoreConfig(
+                    Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_LANGUAGE,
+                    $store
+                );
+            } else {
+                $language = Symmetrics_TrustedRating_Model_Trustedrating::DEFAULT_LANGUAGE;
+            }
+        }
+        
+        if (!$language) {
+            $language = Symmetrics_TrustedRating_Model_Trustedrating::DEFAULT_LANGUAGE;
+        }
+        $path .= $language;
+        
+        $url .= Mage::getConfig()->getNode($path);
+        if ($rateType == Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_TYPE_RATE_NOW) {
+            $url .= '_' . $this->getTsId($store) . '.html';
+        }
+        
+        return $url;
+    }
+
+    /**
+     * Get number of days to passed by before TS system submits reminder emails
+     *
+     * @param null|int $store Store ID
+     *
+     * @return mixed
+     */
+    public function getRateLaterDaysInterval($store = null)
+    {
+        $path = Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_RATE_LATER_DAYS_INTERVAL;
+        
+        return Mage::getStoreConfig($path, $store);
+    }
+
+    /**
+     * Get the trusted rating id from store config
+     * 
+     * @param mixed $storeId ID of Store.
+     *
+     * @return string
+     */
+    public function getTsId($storeId = null)
+    {
+        if ((null == $storeId) && Mage::app()->getStore()->isAdmin()) {
+            $excMessage = 'Can\'t determine TS ID in Admin scope without Store ID!';
+            Mage::logException(new Exception($excMessage));
+        }
+        
+        return Mage::getStoreConfig('trustedrating/data/trustedrating_id', $storeId);
+    }
+    
+    public function getTsPrivacyUrl($storeId = null)
+    {
+        $xmlPath = Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_PRIVACY_URL_PREFIX .
+            '/' . $this->getLanguage($storeId);
+        
+        return Mage::getStoreConfig($xmlPath, $storeId);
+    }
+    
+    /**
+     * Get system config key as XML PATH to save the settings
+     * 
+     * @param string $rateType  Either rate immediately or later
+     * @param string $ratePlace Either in shop frontend or emails
+     * 
+     * @return null|string
+     * @see Symmetrics_TrustedRating_Model_Trustedrating::$rateTypes
+     * @see Symmetrics_TrustedRating_Model_Trustedrating::$ratePlaces
+     */
+    public function getXmlPathRateusButtonImage($rateType, $ratePlace)
+    {
+        if (!in_array($rateType, Symmetrics_TrustedRating_Model_Trustedrating::$rateTypes) ||
+            !in_array($ratePlace, Symmetrics_TrustedRating_Model_Trustedrating::$ratePlaces)) {
+            return null;
+        }
+        
+        return implode(
+            '/',
+            array(
+                Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_CONFIG_KEY,
+                $rateType,
+                $ratePlace,
+            )
+        );
+    }
+    
+    /**
+     * Get system dir to copy the rating button images to Magento's media dir
+     * '/var/www/magento_shop/media/trustedrating/buttons'
+     * 
+     * @return bool
+     */
+    public function initTrustedRatingRateusButtonMediaDir()
+    {
+        if (is_null($this->_trustedRatingRateusButtonMediaDirExists)) {
+            $io = new Varien_Io_File;
+            $dir = Mage::getBaseDir(Mage_Core_Model_Store::URL_TYPE_MEDIA). DS .
+                Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_BUTTON_IMAGE_SUBPATH;
+            
+            $this->_trustedRatingRateusButtonMediaDirExists = $io->checkAndCreateFolder($dir);
+        }
+        
+        return $this->_trustedRatingRateusButtonMediaDirExists;
+    }
+    
+    /**
+     * Check if TS ID is set and feature is enabled.
+     * 
+     * @param int|Mage_Core_Model_Store $store Store which should be checked
+     * 
+     * @return bool
+     * @throws Mage_Core_Exception
+     */
+    public function isTrustedRatingActive($store = null)
+    {
+        if ((null == $store) && Mage::app()->getStore()->isAdmin()) {
+            $excMessage = 'Can\'t determine TS settings in Admin scope without specific store!';
+            Mage::throwException($excMessage);
+        }
+        $store = Mage::app()->getStore($store);
+        
+        return $store->getConfig(Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_ACTIVE) &&
+            $store->getConfig(Symmetrics_TrustedRating_Model_Trustedrating::XML_PATH_TRUSTEDRATING_ID);
+    }
+    
+    /**
+     * Get Base64 URL encoded string.
+     * 
+     * @param mixed $data
+     * 
+     * @return string
+     * @see urlencode
+     * @see base64_encode
+     */
+    public function tsDataEncode($data, $urlEncode = false)
+    {
+        $returnValue = base64_encode($data);
+        
+        return (!$urlEncode) ? $returnValue : urlencode($returnValue);
     }
     
     /**
