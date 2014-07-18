@@ -159,7 +159,7 @@ abstract class Symmetrics_TrustedRating_Block_RateUs_Abstract extends Mage_Core_
                 $baseUrl = preg_replace('/^https?:/', '', $baseUrl);
             }
             $baseUrl .= Symmetrics_TrustedRating_Model_Trustedrating::RATEUS_BUTTON_IMAGE_SUBPATH;
-            $baseUrl .= DS;
+            $baseUrl .= '/';
             
             $this->setData($dataKey, $baseUrl);
         }
