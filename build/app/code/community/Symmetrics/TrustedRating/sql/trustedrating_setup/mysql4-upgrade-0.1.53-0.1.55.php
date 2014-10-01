@@ -31,6 +31,8 @@ $installer->startSetup();
 // execute emails
 
 $emailData = $this->getTrustedratingEmails('trustedrating_mail_pl');
-$this->createEmail($emailData);
+if ($emailData) {
+    $this->createEmail($emailData);
+}
 
 $installer->endSetup();
