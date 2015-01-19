@@ -57,7 +57,11 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
      */
     public function getConfigData()
     {
-        return Mage::getConfig()->getNode('default/trustedratingmail')->asArray();
+        $node = Mage::getConfig()->getNode('default/trustedratingmail');
+        if ($node) {
+            return $node->asArray();
+        }
+        return array();
     }
 
     /**
@@ -100,9 +104,12 @@ class Symmetrics_TrustedRating_Model_Setup extends Mage_Eav_Model_Entity_Setup
      */
     public function getTrustedratingEmails($key = null)
     {
-        return Mage::getConfig()
-            ->getNode(self::XML_PATH_TRUSTEDRATINGMAIL . ($key ? '/' . $key : ''))
-            ->asArray();
+        $node = Mage::getConfig()
+            ->getNode(self::XML_PATH_TRUSTEDRATINGMAIL . ($key ? '/' . $key : ''));
+        if ($node) {
+            return $node->asArray();
+        }
+        return array();
     }
 
     /**
