@@ -36,7 +36,7 @@
  * @link      http://www.symmetrics.de/
  * @link      http://www.de.cgi.com/
  */
-class Symmetrics_TrustedRating_RegistrationController extends Mage_Adminhtml_Controller_Action
+class Symmetrics_TrustedRating_Adminhtml_Trustedrating_RegistrationController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Get the registration link and redirect to it 
