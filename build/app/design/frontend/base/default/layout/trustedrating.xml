@@ -16,9 +16,7 @@
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
- * @author    Siegfried Schmitz <ss@symmetrics.de>
- * @author    Ngoc Anh Doan <ngoc-anh.doan@cgi.com>
- * @copyright 2009-2014 symmetrics - a CGI Group brand
+ * @copyright 2009-2015 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
@@ -26,29 +24,33 @@
  */
 -->
 <layout version="0.1.0">
-    <trustedrating_rateus_buttons_checkout>
+    <checkout_onepage_success>
         <reference name="content">
-            <block type="trustedrating/rateUs_order_checkout" name="trustedrating.rateus" after="-" />
+            <block type="trustedrating/calltoaction"
+                   name="trustedrating.calltoaction"
+                   template="trustedrating/calltoaction.phtml"
+                   after="-" />
         </reference>
-    </trustedrating_rateus_buttons_checkout>
-    
-    <trustedrating_rateus_buttons_emails>
-        <block type="trustedrating/rateUs_order_email" name="trustedrating.rateus">
-            <action method="setRatePlace"><place>emails</place></action>
+    </checkout_onepage_success>
+
+    <trustedrating_email_calltoaction>
+        <block type="trustedrating/email_calltoaction"
+               name="trustedrating.email.calltoaction"
+               template="trustedrating/email/calltoaction.phtml">
         </block>
-    </trustedrating_rateus_buttons_emails>
-    
-    
+    </trustedrating_email_calltoaction>
+
     <default>
-        <reference name="head">
-            <action method="addCss"><stylesheet>css/symmetrics/trustedrating.css</stylesheet></action>
+        <reference name="before_body_end">
+            <block type="trustedrating/trustbadge"
+                   name="trustedrating.trustbadge"
+                   after="-" />
         </reference>
         <reference name="right">
-             <block type="trustedrating/widget" after="cart_sidebar" name="trustedrating_widget" template="trustedrating/trustedrating.phtml" />
+             <block type="trustedrating/reviewsticker"
+                    name="trustedrating.reviewsticker"
+                    template="trustedrating/reviewsticker.phtml"
+                    after="cart_sidebar" />
         </reference>
     </default>
-    
-    <checkout_onepage_success>
-        <update handle="trustedrating_rateus_buttons_checkout" />
-    </checkout_onepage_success>
 </layout>

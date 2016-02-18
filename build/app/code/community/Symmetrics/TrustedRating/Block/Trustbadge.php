@@ -23,7 +23,7 @@
  */
 
 /**
- * Standard helper for Admin area
+ * Support the Trustbadge widget.
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
@@ -34,7 +34,20 @@
  * @link      http://www.symmetrics.de/
  * @link      http://www.de.cgi.com/
  */
-class Symmetrics_TrustedRating_Helper_Adminhtml extends Mage_Core_Helper_Abstract
+class Symmetrics_TrustedRating_Block_Trustbadge extends Mage_Core_Block_Template
 {
-
+    /**
+     * Render block HTML
+     *
+     * @return string
+     */
+    protected function _toHtml()
+    {
+        $trustedratingId = Mage::getStoreConfig('trustedrating/data/trustedrating_id');
+        return str_replace(
+            'TS_ID',
+            $trustedratingId,
+            Mage::getStoreConfig('trustedrating/trustbadge/code_snippet')
+        );
+    }
 }

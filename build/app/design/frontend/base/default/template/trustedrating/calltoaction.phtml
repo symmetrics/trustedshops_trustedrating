@@ -15,26 +15,22 @@
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
- * @copyright 2009-2015 symmetrics - a CGI Group brand
+ * @copyright 2015 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
  * @link      http://www.de.cgi.com/
- */
-
-/**
- * Standard helper for Admin area
  *
- * @category  Symmetrics
- * @package   Symmetrics_TrustedRating
- * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
- * @copyright 2009-2015 symmetrics - a CGI Group brand
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- * @link      https://github.com/symmetrics/trustedshops_trustedrating/
- * @link      http://www.symmetrics.de/
- * @link      http://www.de.cgi.com/
+ * @see       Symmetrics_TrustedRating_Block_Calltoaction
  */
-class Symmetrics_TrustedRating_Helper_Adminhtml extends Mage_Core_Helper_Abstract
-{
 
-}
+/* @var $this Symmetrics_TrustedRating_Block_Calltoaction */
+?>
+
+<div id="trustedShopsCheckout" style="display: none;">
+ <span id="tsCheckoutOrderNr"><?php echo $this->getOrderIncrementId() ?></span>
+ <span id="tsCheckoutBuyerEmail"><?php echo $this->getEmailAddress() ?></span>
+ <span id="tsCheckoutOrderAmount"><?php echo $this->getTotalSum() ?></span>
+ <span id="tsCheckoutOrderCurrency"><?php echo $this->getCurrencyCode() ?></span>
+ <span id="tsCheckoutOrderPaymentType"><?php echo $this->getPaymentMethod() ?></span>
+</div>
