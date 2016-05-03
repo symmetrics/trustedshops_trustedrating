@@ -1,0 +1,2 @@
+symmetrics/trustedshops_trustedrating
+=====================================

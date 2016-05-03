@@ -15,7 +15,7 @@
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
- * @copyright 2009-2015 symmetrics - a CGI Group brand
+ * @copyright 2015 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
@@ -23,18 +23,42 @@
  */
 
 /**
- * Standard helper for Admin area
+ * Support the review sticker.
  *
  * @category  Symmetrics
  * @package   Symmetrics_TrustedRating
  * @author    symmetrics - a CGI Group brand <info@symmetrics.de>
- * @copyright 2009-2015 symmetrics - a CGI Group brand
+ * @copyright 2015 symmetrics - a CGI Group brand
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      https://github.com/symmetrics/trustedshops_trustedrating/
  * @link      http://www.symmetrics.de/
  * @link      http://www.de.cgi.com/
  */
-class Symmetrics_TrustedRating_Helper_Adminhtml extends Mage_Core_Helper_Abstract
+class Symmetrics_TrustedRating_Block_Reviewsticker extends Mage_Core_Block_Template
 {
+    /**
+     * Returns whether we actually have any review sticker code.
+     *
+     * @return bool
+     */
+    public function hasReviewstickerCode()
+    {
+        $code = Mage::getStoreConfig('trustedrating/review_sticker/code_snippet');
+        return (strlen(trim($code)) > 0);
+    }
 
+    /**
+     * Get review sticker code.
+     *
+     * @return string
+     */
+    public function getReviewstickerCode()
+    {
+        $trustedratingId = Mage::getStoreConfig('trustedrating/data/trustedrating_id');
+        return str_replace(
+            'TS_ID',
+            $trustedratingId,
+            Mage::getStoreConfig('trustedrating/review_sticker/code_snippet')
+        );
+    }
 }
